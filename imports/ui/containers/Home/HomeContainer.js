@@ -1,4 +1,5 @@
-import { createContainer } from 'meteor/react-meteor-data';
+// import { createContainer } from 'meteor/react-meteor-data';
+import React, { Component } from 'react';
 import { Organizations,
          Users,
          Debates,
@@ -15,17 +16,19 @@ class HomeContainer extends Component {
   }
 }
 
-export default createContainer(() => {
-  Meteor.subscribe('debates');
-  Meteor.subscribe('users');
-  Meteor.subscribe('userAtDebate');
-  Meteor.subscribe('organizations');
+export default HomeContainer;
+
+// export default createContainer(() => {
+//   Meteor.subscribe('debates');
+//   Meteor.subscribe('users');
+//   Meteor.subscribe('userAtDebate');
+//   Meteor.subscribe('organizations');
   
   
-  return {
-    debates: Debates.find().fetch(),
-    users: Users.find().fetch(),
-    userAtDebate: UserAtDebate.find().fetch(),
-    organizations: Organizations.find().fetch()
-  };
-}, HomeContainer);
+//   return {
+//     debates: Debates.find().fetch(),
+//     users: Users.find().fetch(),
+//     userAtDebate: UserAtDebate.find().fetch(),
+//     organizations: Organizations.find().fetch()
+//   };
+// }, HomeContainer);
