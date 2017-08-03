@@ -8,7 +8,7 @@ import { Organizations, Users, Debates } from '../../../api/publications';
 import './styles.css';
 
 class DebateCreateContainer extends Component {
-
+  
 }
 
 
