@@ -1,5 +1,5 @@
-## Trevor's test commit!
-This is a test commit. 'Bate it!
+### 'BATE IT
 
-## Mission Statement
-To test communal project repo operations.
+### AUTHORS 
+Charlie Shingleton, Trevor McClean, Plinio Prado
+
