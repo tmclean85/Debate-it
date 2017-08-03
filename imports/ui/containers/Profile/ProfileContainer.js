@@ -13,9 +13,9 @@ export default createContainer(() => {
   
   
   return {
-    Debates: debates.find().fetch(),
-    Users: users.find().fetch(),
-    UserAtDebate: userAtDebate.find().fetch(),
-    Organizations: organizations.find().fetch()
+    debates: Debates.find().fetch(),
+    users: Users.find().fetch(),
+    userAtDebate: UserAtDebate.find().fetch(),
+    organizations: Organizations.find().fetch()
   };
-}, App, ProfileContainer);
+}, ProfileContainer);
