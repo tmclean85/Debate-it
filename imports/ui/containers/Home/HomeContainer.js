@@ -5,6 +5,16 @@ import { Organizations,
          UserAtDebate  
 } from '../../../api/publications';
 
+import Home from './Home';
+
+class HomeContainer extends Component {
+  render() {
+    return (
+      <Home />
+    );
+  }
+}
+
 export default createContainer(() => {
   Meteor.subscribe('debates');
   Meteor.subscribe('users');
