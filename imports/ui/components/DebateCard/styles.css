@@ -1,0 +1,20 @@
+.debate-card-wrapper {
+  height: auto;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  padding: 2rem;
+  border: 1rem solid #00BCD4;
+}
+
+.debate-card-main-info {
+  min-width: 50%;
+}
+
+.debate-card-meta-info {
+  min-width: 50%;
+}
+
+.debate-card-bold {
+  font-weight: bold;
+}
