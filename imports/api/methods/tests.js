@@ -4,7 +4,7 @@ import {
   Users,
   Debates,
   UserAtDebate
-} from './publications';
+} from './../publications';
 
 if (Meteor.isServer) {
 

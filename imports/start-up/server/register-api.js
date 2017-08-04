@@ -1,2 +1,2 @@
 import '../../api/publications';
-import '../../api/tests';
+import '../../api/methods/tests';
