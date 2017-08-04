@@ -11,7 +11,7 @@ const Layout = ({ children }) => (
       {children}
     </div>
     <div className="layout-footer">
-      <p>Copyright 2017 'BATE IT!!</p>
+      <p className="layout-footer"> &copy; Copyright 2017 'BATE IT!!</p>
     </div>
   </div>
 );
