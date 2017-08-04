@@ -11,5 +11,4 @@ const Home = ({ debateData }) => (
     </div>
 );
 
-
 export default Home;

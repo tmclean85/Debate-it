@@ -11,7 +11,6 @@ export default createContainer(() => {
   Meteor.subscribe('userAtDebate');
   Meteor.subscribe('organizations');
   
-  
   return {
     debates: Debates.find().fetch(),
     users: Users.find().fetch(),
