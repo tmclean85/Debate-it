@@ -1,3 +1,3 @@
-import Tests from './Tests.js';
+import Tests from './Tests';
 
 export default Tests;
