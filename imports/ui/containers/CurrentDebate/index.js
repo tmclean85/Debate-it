@@ -1,5 +1,5 @@
-import CurrentDebate from './CurrentDebate';
+import DebateAttendees from './DebateAttendees';
 import CurrentDebateContainer from './CurrentDebateContainer';
 
-export { CurrentDebate };
+export { DebateAttendees };
 export default CurrentDebateContainer;
