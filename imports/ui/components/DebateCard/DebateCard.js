@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 const DebateCard = ({ debateData }) => (
   <div className="debate-card-wrapper">
-    <Card>
+    <Card className="debate-card">
       <CardHeader
         title={debateData.question}
         subtitle={debateData.location}
