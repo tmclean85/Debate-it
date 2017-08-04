@@ -6,18 +6,20 @@ import { Link } from 'react-router-dom';
 
 const DebateCard = ({ debateData }) => (
   <div className="debate-card-wrapper">
-    <Card>
-      <CardHeader
-        title={debateData.question}
-        subtitle={debateData.location}
-      />
-      <div className="debate-card-middle-wrapper">
-        <CardTitle
-          title={debateData.start}
-          subtitle={debateData.end}
+    <Link to={'/currentDebate'}>
+      <Card>
+        <CardHeader
+          title={debateData.question}
+          subtitle={debateData.location}
         />
-      </div>  
-    </Card>
+        <div className="debate-card-middle-wrapper">
+          <CardTitle
+            title={debateData.start}
+            subtitle={debateData.end}
+          />
+        </div>  
+      </Card>
+    </Link>
   </div>  
 );
 
