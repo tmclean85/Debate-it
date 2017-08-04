@@ -1,4 +1,5 @@
 import { Mongo } from 'meteor/mongo';
+// import { Debates } from './schemas/debates';
 
 export const Organizations = new Mongo.Collection('organizations');
 export const Users = new Mongo.Collection('users');

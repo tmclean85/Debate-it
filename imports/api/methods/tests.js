@@ -5,6 +5,7 @@ import {
   Debates,
   UserAtDebate
 } from './../publications';
+// import { Debates } from '../schemas/debates'
 
 if (Meteor.isServer) {
 

@@ -1,4 +1,4 @@
-// export const Debates = new Mongo.Collection('debates');
+export const Debates = new Mongo.Collection('debates');
 
 // Debates.schema = new DebatesSchema({
 //   question: {type: String, optional: false},
