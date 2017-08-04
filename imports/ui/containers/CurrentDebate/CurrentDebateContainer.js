@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Tabs, Tab} from 'material-ui/Tabs';
-import {List, ListItem} from 'material-ui/List';
+import {List, ListItem } from 'material-ui/List';
 import { ToggleCheckBox, ToggleCheckBoxOutlineBlank } from 'material-ui/svg-icons';
 import Avatar from 'material-ui/Avatar';
 import Subheader from 'material-ui/Subheader';
@@ -15,8 +15,13 @@ import { Organizations,
 import './styles';
 
 class CurrentDebateContainer extends Component {
-  
+ 
+
+
   render() {
+
+     const { users } = this.props;
+
     return (
       <div className="current-debate-wrapper">
         <Tabs
@@ -31,21 +36,15 @@ class CurrentDebateContainer extends Component {
           <Tab label="ATTENDEES" value="b">
               <List>
                 <Subheader>People in Attendance</Subheader>
-                {/* mapping function goes here */}
-                <ListItem
-                  primaryText="Brendan Lim"
-                  leftAvatar={<Avatar src="" />}
-                  rightIcon={<ToggleCheckBox />}
-                />
+                 {users.map(user =>
+                    (<DebateAttendees userData={user} icon={<ToggleCheckBox />} />)
+                  )}
               </List>
               <List>
                 <Subheader>People Enroute</Subheader>
-                <ListItem
-                  primaryText="Brendan Dim"
-                  leftAvatar={<Avatar src="" />}
-                  rightIcon={<ToggleCheckBoxOutlineBlank />}
-                />
-              {/* <DebateAttendees /> */}
+                {users.map(user =>
+                    (<DebateAttendees userData={user} icon={<ToggleCheckBoxOutlineBlank />} />)
+                  )}
             </List>
           </Tab>
         </Tabs>
