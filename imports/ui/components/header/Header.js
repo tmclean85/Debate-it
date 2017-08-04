@@ -1,14 +1,26 @@
 import React from 'react';
 import AppBar from 'material-ui/AppBar';
 import RaisedButton from 'material-ui/RaisedButton';
+import IconButton from 'material-ui/IconButton';
+
+import './styles.css';
+// import logo from '../../../images/debate-logo.png';
 
 const Header = () => (
   <div>
     <AppBar
           showMenuIconButton={false}
-          title="\'BATE IT!"
+          title="BATE IT"
     >
-      <RaisedButton label="BATE IT" primary={true} />
+      <RaisedButton label="My Profile" primary={true} buttonStyle={{
+        height: '3.75rem',
+        width: '8rem'
+      }} />
+      <RaisedButton label="Log In" secondary={true} buttonStyle={{
+        height: '3.75rem',
+        width: '8rem'        
+      }} 
+      />      
     </AppBar >
   </div>
 );
