@@ -1,3 +1,3 @@
-import PlinioTests from './test.js';
+import Tests from './Tests.js';
 
-export default PlinioTests;
+export default Tests;

@@ -13,29 +13,29 @@
 //   /*
 //   In this version, only Red and no crud
 //   */
-//   db.organizations.insert({
-//     name: "Red Academy",
-//     address: "1490 W Broadway #200, Vancouver, BC V6H 4E8"
-//   });
+  // db.organizations.insert({
+  //   name: "Red Academy",
+  //   address: "1490 W Broadway #200, Vancouver, BC V6H 4E8"
+  // });
 
 
-//   db.users.insert({
-//     name: 'Charlie',
-//     email: 'charlie@test.com',
-//     bio: 'I am becoming an app developer and will make stuff in the internet', 
-//     goodPoints: 99,
-//     wins: 1,
-//     losses: 0,
-//   })
+  // db.users.insert({
+  //   name: 'Charlie',
+  //   email: 'charlie@test.com',
+  //   bio: 'I am becoming an app developer and will make stuff in the internet', 
+  //   goodPoints: 99,
+  //   wins: 1,
+  //   losses: 0,
+  // })
 
-//   db.users.insert({
-//     name: 'Trevor',
-//     email: 'trevor@test.com',
-//     bio: 'I am becoming an app developer and will make things in the internet',
-//     goodPoints: 98,
-//     wins: 1,
-//     losses: 0
-//   })
+  // db.users.insert({
+  //   name: 'Trevor',
+  //   email: 'trevor@test.com',
+  //   bio: 'I am becoming an app developer and will make things in the internet',
+  //   goodPoints: 98,
+  //   wins: 1,
+  //   losses: 0
+  // })
 
 //   // Plinio is iser 3
 
