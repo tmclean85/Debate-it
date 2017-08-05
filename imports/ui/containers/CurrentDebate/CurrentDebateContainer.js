@@ -4,7 +4,7 @@ import {List, ListItem } from 'material-ui/List';
 import { ToggleCheckBox, ToggleCheckBoxOutlineBlank } from 'material-ui/svg-icons';
 import Avatar from 'material-ui/Avatar';
 import Subheader from 'material-ui/Subheader';
-//import DebateDetails from './DebateDetails';
+import DebateDetails from './DebateDetails';
 import DebateAttendees from './DebateAttendees';
 import { createContainer } from 'meteor/react-meteor-data';
 import { Organizations,
@@ -25,25 +25,34 @@ class CurrentDebateContainer extends Component {
     return (
       <div className="current-debate-wrapper">
         <Tabs
-          value={"b"}
+          value={"a"}
           //onChange={this.handleChange}
         >
           <Tab label="DETAILS" value="a">
             <div>
               {/* <DebateDetails /> */}
+              <DebateDetails />
             </div>
           </Tab>
           <Tab label="ATTENDEES" value="b">
               <List>
                 <Subheader>People in Attendance</Subheader>
                  {users.map(user =>
-                    (<DebateAttendees userData={user} icon={<ToggleCheckBox />} />)
+                    (<DebateAttendees 
+                      userData={user} 
+                      icon={<ToggleCheckBox />} 
+                      key={user._id}
+                    />)
                   )}
               </List>
               <List>
                 <Subheader>People Enroute</Subheader>
                 {users.map(user =>
-                    (<DebateAttendees userData={user} icon={<ToggleCheckBoxOutlineBlank />} />)
+                    (<DebateAttendees 
+                      userData={user} 
+                      icon={<ToggleCheckBoxOutlineBlank />} 
+                      key={user._id}
+                    />)
                   )}
             </List>
           </Tab>
