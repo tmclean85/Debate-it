@@ -8,3 +8,19 @@
     margin-bottom: 12px;
     font-weight: 400;
 }
+
+.debators-wrapper {
+    display: flex;
+    width: 100%;
+}
+
+.debators-wrapper > * {
+    margin: .5em;
+}
+
+.debate-title-wrapper {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
