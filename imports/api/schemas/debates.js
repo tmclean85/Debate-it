@@ -14,3 +14,4 @@ export const Debates = new Mongo.Collection('debates');
 //   start: {type: String, optional: true},
 //   end: {type: String, optional: true}
 // });
+

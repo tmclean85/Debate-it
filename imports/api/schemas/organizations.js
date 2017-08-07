@@ -1,1 +1,1 @@
-// export const Organizations = new Mongo.Collection('organizations');
+export const Organizations = new Mongo.Collection('organizations');

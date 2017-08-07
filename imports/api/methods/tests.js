@@ -1,11 +1,9 @@
 import { Mongo } from 'meteor/mongo';
-import {
-  Organizations,
-  Users,
-  Debates,
-  UserAtDebate
-} from './../publications';
-// import { Debates } from '../schemas/debates'
+
+import { Debates } from '../schemas/debates';
+import { Organizations } from '../schemas/organizations';
+import { Users, userInit } from '../schemas/users';
+import { UserAtDebate } from '../schemas/user-at-debate';
 
 if (Meteor.isServer) {
 
@@ -33,8 +31,8 @@ if (Meteor.isServer) {
 
         Organizations.remove({});
         Organizations.insert({
-          name: "Red Academy",
-          address: "1490 W Broadway #200, Vancouver, BC V6H 4E8"
+          name: 'Red Academy',
+          address: '1490 W Broadway #200, Vancouver, BC V6H 4E8'
         });
 
         UserAtDebate.remove({});
@@ -49,23 +47,9 @@ if (Meteor.isServer) {
           goodPointsNo: 2
         });
 
+        console.log('will reset users');
         Users.remove({});
-        Users.insert({
-          name: 'Charlie',
-          email: 'charlie@test.com',
-          bio: 'I am becoming an app developer and will make stuff in the internet', 
-          goodPoints: 99,
-          wins: 1,
-          losses: 0,
-        });
-        Users.insert({
-          name: 'Trevor',
-          email: 'trevor@test.com',
-          bio: 'I am becoming an app developer and will make things in the internet',
-          goodPoints: 98,
-          wins: 1,
-          losses: 0
-        });
+        userInit.forEach(item => Users.insert(item));
 
         return 'ok';
 

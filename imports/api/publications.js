@@ -1,10 +1,12 @@
 import { Mongo } from 'meteor/mongo';
-// import { Debates } from './schemas/debates';
 
-export const Organizations = new Mongo.Collection('organizations');
-export const Users = new Mongo.Collection('users');
-export const Debates = new Mongo.Collection('debates');
-export const UserAtDebate = new Mongo.Collection('userAtDebate');
+import { Debates } from './schemas/debates';
+import { Organizations } from './schemas/organizations';
+import { Users } from './schemas/users';
+import { UserAtDebate } from './schemas/user-at-debate';
+
+// TODO: Remove in secure api
+export { Debates, Organizations, Users, UserAtDebate };
 
 if (Meteor.isServer) {
 

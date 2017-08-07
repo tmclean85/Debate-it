@@ -1,1 +1,1 @@
-// export const UserAtDebate = new Mongo.Collection('userAtDebate');
+export const UserAtDebate = new Mongo.Collection('userAtDebate');
