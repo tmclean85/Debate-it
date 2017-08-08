@@ -21,7 +21,7 @@ const DebateCard = ({ debateData }) => (
 
       <ListItem 
         primaryText={debateData.question} 
-        secondaryText={debateData.start}
+        secondaryText={debateData.start.toISOString()}
         leftIcon={<Chat />}
       />
       </Paper>

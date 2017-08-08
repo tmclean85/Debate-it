@@ -1,0 +1,31 @@
+.debate-interface-page {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.debate-interface-wrapper {
+  display: flex;
+  width: 50%;
+  height: 25rem;
+  margin-top: 3rem;
+}
+
+.debate-interface-card {
+  display: flex;
+  width: 100%;
+}
+
+.debate-interface-header {
+  display: flex;
+  justify-content: center;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+
+.debate-interface-header h1 {
+  text-align: center;
+}
