@@ -1,9 +1,9 @@
 import { Mongo } from 'meteor/mongo';
 
-import { Debates } from '../schemas/debates';
-import { Organizations } from '../schemas/organizations';
+import { Debates, debatesInit } from '../schemas/debates';
+import { Organizations, organizationsInit } from '../schemas/organizations';
 import { Users, userInit } from '../schemas/users';
-import { UserAtDebate } from '../schemas/user-at-debate';
+import { UserAtDebate, userAtDebateInit } from '../schemas/user-at-debate';
 
 if (Meteor.isServer) {
 
@@ -14,38 +14,13 @@ if (Meteor.isServer) {
       try {
 
         Debates.remove({});
-        Debates.insert({
-          question: 'Will the world end next year', 
-          yesUser_id: '1', 
-          yesBecause: 'The world it so more messed up then Noahs time a the flood should have already came and will/should happen at eny moment, certainly before the end of this year',
-          noUser_id: '2',
-          noBecause: 'The world was a mess since the down of time and will always be',
-          organization: { 
-            name: 'Red Academy', 
-            address: '1490 W Broadway #200, Vancouver, BC V6H 4E8'
-          }, 
-          location: 'Kitchen in the second floor',
-          start: '2017-09-01 19:00:00', 
-          end: '2017-09-02 20:00:00'
-        });
+        debatesInit.forEach(item => Debates.insert(item));
 
         Organizations.remove({});
-        Organizations.insert({
-          name: 'Red Academy',
-          address: '1490 W Broadway #200, Vancouver, BC V6H 4E8'
-        });
+        Organizations.insert(organizationsInit[0]);
 
         UserAtDebate.remove({});
-        UserAtDebate.insert({
-          user_id: '3',
-          debate_id: '1',
-          confByYes: true, 
-          confByNo: true, 
-          vote: false, 
-          because: 'was allways messy so will not end', 
-          goodPointsYes: 3,
-          goodPointsNo: 2
-        });
+        userAtDebateInit.forEach(item => UserAtDebate.insert(item));
 
         console.log('will reset users');
         Users.remove({});
