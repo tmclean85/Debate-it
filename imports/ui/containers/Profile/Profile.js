@@ -23,9 +23,9 @@ const Profile = () => {
           </div>
           <div className="profile-meta-box">
             <List>
-              <ListItem primaryText="Wins" secondaryText="3" leftIcon={<Check />} />
-              <ListItem primaryText="Losses" secondaryText="5" leftIcon={<Close />} />
-              <ListItem primaryText="Good Points" secondaryText="12" leftIcon={<Star />} />          
+              <ListItem disabled={true} primaryText="Wins" secondaryText="3" leftIcon={<Check />} />
+              <ListItem disabled={true} primaryText="Losses" secondaryText="5" leftIcon={<Close />} />
+              <ListItem disabled={true} primaryText="Good Points" secondaryText="12" leftIcon={<Star />} />          
             </List>  
           </div>
             <div className="profile-bio-box">
