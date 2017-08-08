@@ -7,6 +7,7 @@ import PlinioTests from '../containers/PlinioTests';
 import CurrentDebate from '../containers/CurrentDebate';
 import Layout from '../components/Layout';
 import Profile from '../containers/Profile';
+import NotFound from '../containers/NotFound';
 
 
 const App = props => (
@@ -17,7 +18,8 @@ const App = props => (
               <Route exact path="/" component={Home} />
               <Route path="/plinio" component={PlinioTests} />
               <Route path="/currentDebate" component={CurrentDebate} /> 
-               <Route path="/profile" component={Profile} /> 
+              <Route path="/profile" component={Profile} /> 
+              <Route component={NotFound} />
             </Layout>
             {/* <Route component={NotFound} /> */}
           </Switch>
