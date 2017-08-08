@@ -15,4 +15,5 @@
 .profile-main-box {
   display: flex;
   flex-flow: row nowrap;
+  padding: 1rem;
 }
