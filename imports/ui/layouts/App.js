@@ -29,6 +29,7 @@ const App = props => (
             </Layout>
           </Switch>
     </Router>
+    </Provider>
   </MuiThemeProvider>
 );
 
