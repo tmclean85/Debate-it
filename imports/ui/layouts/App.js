@@ -6,6 +6,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import PlinioTests from '../containers/PlinioTests';
 import CurrentDebate from '../containers/CurrentDebate';
 import Layout from '../components/Layout';
+import Profile from '../containers/Profile';
 
 
 const App = props => (
@@ -16,6 +17,7 @@ const App = props => (
               <Route exact path="/" component={Home} />
               <Route path="/plinio" component={PlinioTests} />
               <Route path="/currentDebate" component={CurrentDebate} /> 
+               <Route path="/myprofile" component={Profile} /> 
             </Layout>
             {/* <Route component={NotFound} /> */}
           </Switch>
