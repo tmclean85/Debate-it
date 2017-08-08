@@ -1,3 +1,3 @@
-import Tests from './Tests';
+import Home from './Home';
 
-export default Tests;
+export default Home;

@@ -123,5 +123,6 @@ if (Meteor.isServer) {
     }
   });
 
-}
+  // Home
 
+}
