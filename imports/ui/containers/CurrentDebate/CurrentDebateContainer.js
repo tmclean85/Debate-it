@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import {Tabs, Tab} from 'material-ui/Tabs';
 import {List, ListItem } from 'material-ui/List';
 import { ToggleCheckBox, ToggleCheckBoxOutlineBlank } from 'material-ui/svg-icons';
@@ -12,6 +13,7 @@ import { Organizations,
          Debates,
          UserAtDebate  
 } from '../../../api/publications';
+import { changeTab } from '../../../redux/modules/debates';
 import './styles';
 
 class CurrentDebateContainer extends Component {
@@ -25,8 +27,8 @@ class CurrentDebateContainer extends Component {
     return (
       <div className="current-debate-wrapper">
         <Tabs
-          value={"a"}
-          //onChange={this.handleChange}
+          value={this.props.tabValue}
+          onChange={this.changeTab}
         >
           <Tab label="DETAILS" value="a">
             <div>
@@ -63,7 +65,13 @@ class CurrentDebateContainer extends Component {
 };
 
 
-export default createContainer(() => {
+function mapStateFromProps(state) {
+    return {
+      tabValue: state.debates.tabValue
+    };
+}
+
+const currentDebateContainer = createContainer(() => {
   Meteor.subscribe('debates');
   Meteor.subscribe('users');
   Meteor.subscribe('userAtDebate');
@@ -77,3 +85,4 @@ export default createContainer(() => {
   };
 }, CurrentDebateContainer);
 
+export default connect(mapStateFromProps)(currentDebateContainer);
