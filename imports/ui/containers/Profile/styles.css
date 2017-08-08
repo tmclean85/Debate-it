@@ -3,13 +3,6 @@
   width: 35%;
 }
 
-.layout-content {
-  display: flex;
-  justify-content: center;
-  align-items: center;  
-  padding-top: 5rem;
-}
-
 .profile-main-box {
   display: flex;
   flex-flow: row nowrap;
