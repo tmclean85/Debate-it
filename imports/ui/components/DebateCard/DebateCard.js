@@ -29,20 +29,6 @@ const DebateCard = ({ debateData }) => (
 
     </List>  
   </div>  
-
-
-  // <div className="debate-card-wrapper">
-  //   <Link to='/currentdebate'>
-  //   <Paper className="debate-paper" style={style} zDepth={4} >
-  //     <div>
-  //       <h1><span className="debate-card-bold">Topic:</span> {debateData.question}</h1>
-  //       <h1><span className="debate-card-bold">Location:</span> {debateData.location}</h1>
-  //       <h1><span className="debate-card-bold">Start time:</span> {debateData.start}</h1>
-  //       <h1><span className="debate-card-bold">Finish time:</span> {debateData.end}</h1>
-  //     </div>  
-  //   </Paper>  
-  //   </Link>
-  // </div>
 );
 
 
