@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Header from '../Header';
+import Footer from '../Footer';
 
 const Layout = ({ children }) => (
   <div className="layout-wrapper">
@@ -11,7 +12,7 @@ const Layout = ({ children }) => (
       {children}
     </div>
     <div className="layout-footer">
-      <p className="layout-footer"> &copy; Copyright 2017 'BATE IT!!</p>
+      <p> &copy; Copyright 2017 'BATE IT!!</p>
     </div>
   </div>
 );

@@ -1,20 +1,22 @@
+
 .debate-card-wrapper {
-  height: auto;
   display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-between;
-  padding: 2rem;
-  border: 1rem solid #00BCD4;
+  width: 100%;
+  justify-content: center;
 }
 
-.debate-card-main-info {
-  min-width: 50%;
+.DebateCardList-wrapper {
+  display: flex;
+  justify-content: center;
+  flex-flow: column nowrap;
 }
 
-.debate-card-meta-info {
-  min-width: 50%;
-}
+ .debate-paper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} 
 
-.debate-card-bold {
-  font-weight: bold;
+.debate-list {
+  height: 5rem;
 }

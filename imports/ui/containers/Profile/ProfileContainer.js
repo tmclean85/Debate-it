@@ -1,9 +1,20 @@
 import { createContainer } from 'meteor/react-meteor-data';
+import React, { Component } from 'react';
 import { Organizations,
          Users,
          Debates,
          UserAtDebate
 } from '../../../api/publications';
+import Profile from './Profile';
+
+class ProfileContainer extends Component {
+  render() {
+    return (
+        <Profile 
+        />
+    )
+  }
+}
 
 export default createContainer(() => {
   Meteor.subscribe('debates');
