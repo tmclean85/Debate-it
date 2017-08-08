@@ -1,11 +1,12 @@
 import React from 'react';
-// import  AncientDebate from '../../../images/debate404.jpg';
+import './styles.css';
 
 const NotFound = () => (
-  <div>
-    {/* <img src={AncientDebate} alt="debate-image" /> */}
-    <h1>404.</h1>
-  </div>
+  <div className="not-found-page">
+    <div className="not-found-wrapper">
+    </div>
+    <h1>Page Not Found</h1>
+  </div>  
 );
 
 
