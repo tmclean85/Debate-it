@@ -22,7 +22,6 @@ if (Meteor.isServer) {
         UserAtDebate.remove({});
         userAtDebateInit.forEach(item => UserAtDebate.insert(item));
 
-        console.log('will reset users');
         Users.remove({});
         userInit.forEach(item => Users.insert(item));
 

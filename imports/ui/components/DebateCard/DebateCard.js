@@ -12,8 +12,8 @@ const DebateCard = ({ debateData }) => (
         <h1><span className="debate-card-bold">Location:</span> {debateData.location}</h1>
       </div>
       <div className="debate-card-meta-info">
-        <h1><span className="debate-card-bold">Start time:</span> {debateData.start}</h1>
-        <h1><span className="debate-card-bold">Finish time:</span> {debateData.end}</h1>
+        <h1><span className="debate-card-bold">Start time:</span> {debateData.start.toISOString()}</h1>
+        <h1><span className="debate-card-bold">Finish time:</span> {debateData.end.toISOString()}</h1>
       </div>  
   </div>
 );
