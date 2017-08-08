@@ -19,9 +19,8 @@ const App = props => (
               <Route path="/plinio" component={PlinioTests} />
               <Route path="/currentDebate" component={CurrentDebate} /> 
               <Route path="/profile" component={Profile} /> 
-              <Route component={NotFound} />
+              {/* <Route component={NotFound} /> */}
             </Layout>
-            {/* <Route component={NotFound} /> */}
           </Switch>
     </Router>
   </MuiThemeProvider>
