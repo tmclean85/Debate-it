@@ -9,6 +9,8 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import PlinioTests from '../containers/PlinioTests';
 import CurrentDebate from '../containers/CurrentDebate';
 import Layout from '../components/Layout';
+import Profile from '../containers/Profile';
+import NotFound from '../containers/NotFound';
 
 
 injectTapEventPlugin();
@@ -16,17 +18,17 @@ injectTapEventPlugin();
 const App = props => (
   <MuiThemeProvider>
     <Provider store={store}>
-      <Router>
-            <Switch>
-              <Layout>
-                <Route exact path="/" component={Home} />
-                <Route path="/plinio" component={PlinioTests} />
-                <Route path="/currentDebate" component={CurrentDebate} /> 
-              </Layout>
-              {/* <Route component={NotFound} /> */}
-            </Switch>
-      </Router>
-    </Provider>
+    <Router>
+          <Switch>
+            <Layout>
+              <Route exact path="/" component={Home} />
+              <Route path="/plinio" component={PlinioTests} />
+              <Route path="/currentDebate" component={CurrentDebate} /> 
+              <Route path="/profile" component={Profile} /> 
+               <Route path="/404" component={NotFound} /> 
+            </Layout>
+          </Switch>
+    </Router>
   </MuiThemeProvider>
 );
 
