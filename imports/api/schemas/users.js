@@ -1,4 +1,4 @@
-export const Users = new Mongo.Collection('users');
+export const Users = new Mongo.Collection('users2');
 
 export const userInit = [
   {

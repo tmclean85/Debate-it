@@ -12,24 +12,23 @@ import Layout from '../components/Layout';
 import Profile from '../containers/Profile';
 import NotFound from '../containers/NotFound';
 
-
 injectTapEventPlugin();
 
 const App = props => (
-  <MuiThemeProvider>
-    <Provider store={store}>
-    <Router>
-          <Switch>
-            <Layout>
-              <Route exact path="/" component={Home} />
-              <Route path="/plinio" component={PlinioTests} />
-              <Route path="/currentDebate" component={CurrentDebate} /> 
-              <Route path="/profile" component={Profile} /> 
-               <Route path="/404" component={NotFound} /> 
-            </Layout>
-          </Switch>
-    </Router>
-    </Provider>
+    <MuiThemeProvider>
+      <Provider store={store}>  
+        <Router>
+              <Switch>
+                <Layout>
+                  <Route exact path="/" component={Home} />
+                  <Route path="/plinio" component={PlinioTests} />
+                  <Route path="/currentDebate" component={CurrentDebate} /> 
+                  <Route path="/profile" component={Profile} /> 
+                  <Route path="/404" component={NotFound} /> 
+                </Layout>
+              </Switch>
+        </Router>
+      </Provider>
   </MuiThemeProvider>
 );
 
