@@ -17,7 +17,7 @@ const App = props => (
               <Route exact path="/" component={Home} />
               <Route path="/plinio" component={PlinioTests} />
               <Route path="/currentDebate" component={CurrentDebate} /> 
-               <Route path="/myprofile" component={Profile} /> 
+               <Route path="/profile" component={Profile} /> 
             </Layout>
             {/* <Route component={NotFound} /> */}
           </Switch>

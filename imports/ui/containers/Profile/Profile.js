@@ -13,20 +13,25 @@ const Profile = () => {
   return (
   <div className="profile-wrapper">
     <Card>
-      <div className="profile-main-box">      
-        <Avatar src="" /> 
+      <div className="profile-main-box">
+        <Avatar size={100} src="" />
         <CardHeader
-          title="User's Name"
-          subtitle="User's Interests"
+          title="Trevor McLean"
+          subtitle="Politics, Technology, Travel"
         />
-      </div>   
+      </div>
       <div className="profile-meta-box">
         <List>
-          <ListItem primaryText="Wins" leftIcon={<Check />} />
-          <ListItem primaryText="Losses" leftIcon={<Close />} />
-          <ListItem primaryText="Good Points" leftIcon={<Star />} />          
+          <ListItem primaryText="Wins" secondaryText="3" leftIcon={<Check />} />
+          <ListItem primaryText="Losses" secondaryText="5" leftIcon={<Close />} />
+          <ListItem primaryText="Good Points" secondaryText="12" leftIcon={<Star />} />          
         </List>  
-      </div>  
+      </div>
+        <div className="profile-bio-box">
+          <CardText>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          </CardText>  
+        </div>    
     </Card>  
   </div>  
   )
