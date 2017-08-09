@@ -16,7 +16,7 @@ export function DebateReducer(state = initialState, action) {
     case CHANGE_TAB:
         return {
             ...state,
-            value: action.payload
+            tabValue: action.payload
         };
     default:
         return state;
