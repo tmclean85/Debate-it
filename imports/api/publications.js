@@ -1,4 +1,5 @@
 import { Mongo } from 'meteor/mongo';
+import { Meteor } from 'meteor/meteor';
 
 import { Debates } from './schemas/debates';
 import { Organizations } from './schemas/organizations';
@@ -62,7 +63,7 @@ if (Meteor.isServer) {
 
   // users
 
-  Meteor.publish('users', function usersPublication() {
+  Meteor.publish('users', function users2Publication() {
     // Provisory
     return Users.find();
   })
@@ -122,7 +123,8 @@ if (Meteor.isServer) {
       }
     }
   });
-
-  // Home
-
+  
+  Meteor.publish('users.list', function() {
+    return Meteor.users.find({});
+  });
 }

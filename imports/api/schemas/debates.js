@@ -43,7 +43,7 @@ export const debatesInit = [
     end: new Date(2017, 7, 9, 13, 00)
   },
   {
-    question: 'Should scientists mix human cells with animals?', 
+    question: 'Should scientists mix human cells with animals', 
     yesUser_id: '1', 
     yesBecause: ' Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. In convallis. Fusce suscipit libero eget elit. Praesent vitae arcu tempor neque lacinia pretium.',
     noUser_id: '3',

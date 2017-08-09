@@ -1,4 +1,4 @@
-export const Users = new Mongo.Collection('users');
+export const Users = new Mongo.Collection('users2');
 
 export const userInit = [
   {
@@ -85,7 +85,7 @@ export const userInit = [
   {
     _id: '10',
     name: 'Christopher Anderson',
-    email: '@example.com',
+    email: 'christopher@example.com',
     bio: 'Praesent in mauris eu tortor porttitor accumsan. Mauris suscipit, ligula sit amet pharetra semper, nibh ante cursus purus',
     goodPoints: 0,
     wins: 0,
@@ -94,7 +94,7 @@ export const userInit = [
   {
     _id: '11',
     name: 'Paul Jackson',
-    email: '@example.com',
+    email: 'paul@example.com',
     bio: 'Etiam posuere quam ac quam. Maecenas aliquet accumsan leo. Nullam dapibus fermentum ipsum. Etiam quis quam. Integer lacinia.',
     goodPoints: 0,
     wins: 0,
@@ -103,7 +103,7 @@ export const userInit = [
   {
     _id: '12',
     name: 'Mark White',
-    email: '@example.com',
+    email: 'mark@example.com',
     bio: 'I am a marketing profesisonal and like to convnce people to by my things',
     goodPoints: 0,
     wins: 0,
@@ -112,7 +112,7 @@ export const userInit = [
   {
     _id: '13',
     name: 'Donald Harris',
-    email: '@example.com',
+    email: 'donald@example.com',
     bio: 'I am a finance profesiosnal and like to handle other people money',
     goodPoints: 0,
     wins: 0,
@@ -121,7 +121,7 @@ export const userInit = [
   {
     _id: '14',
     name: 'George Martin',
-    email: '@example.com',
+    email: 'george@example.com',
     bio: 'I am a designer and like to make nice things',
     goodPoints: 0,
     wins: 0,
@@ -130,7 +130,7 @@ export const userInit = [
   {
     _id: '15',
     name: 'Kenneth Thompson',
-    email: '@example.com',
+    email: 'kenneth@example.com',
     bio: 'Im am a psicologyst and like to understand why people do what they do',
     goodPoints: 0,
     wins: 0,

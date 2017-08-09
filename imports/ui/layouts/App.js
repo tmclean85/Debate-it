@@ -15,7 +15,6 @@ import DebateCreate from '../containers/DebateCreate';
 import DebateInterface from '../containers/DebateInterface';
 import DebateResults from '../containers/DebateResults';
 
-
 injectTapEventPlugin();
 
 const App = props => (
