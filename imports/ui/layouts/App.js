@@ -12,6 +12,7 @@ import Layout from '../components/Layout';
 import Profile from '../containers/Profile';
 import NotFound from '../containers/NotFound';
 import DebateInterface from '../containers/DebateInterface';
+import DebateResults from '../containers/DebateResults';
 
 
 injectTapEventPlugin();
@@ -28,6 +29,7 @@ const App = props => (
               <Route path="/profile" component={Profile} />
               <Route path="/interface" component={DebateInterface} />
               <Route path="/404" component={NotFound} />
+              <Route path="/results" component={DebateResults} />
             </Layout>
           </Switch>
     </Router>

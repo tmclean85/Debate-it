@@ -1,0 +1,48 @@
+
+.debate-results-page {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.debate-results-wrapper {
+  margin-top: 3rem;
+  width: 75%;
+}
+
+.debate-results-card {
+  padding: 3rem;
+}
+
+.results-header {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
+
+.results-meta-box {
+  display: flex;
+  height: 14rem;
+  width: 100%;
+  margin-bottom: 3rem;
+}
+
+.results-meta-winner {
+  align-items: center;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  width: 50%;
+}
+
+.results-meta-loser {
+  align-items: center;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;  
+  width: 50%;
+}
+
+.results-attendees-box {
+  margin-bottom: 3rem;
+}

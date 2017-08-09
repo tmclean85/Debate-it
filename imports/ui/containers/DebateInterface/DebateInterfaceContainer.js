@@ -4,7 +4,6 @@ import Avatar from 'material-ui/Avatar';
 import SelectField from 'material-ui/SelectField';
 import RaisedButton from 'material-ui/RaisedButton';
 import MenuItem from 'material-ui/MenuItem';
-import Masonry from 'react-masonry-component';
 import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
 
 import { Organizations,
@@ -25,8 +24,7 @@ class DebateInterfaceContainer extends Component {
   handleChange = (event, index, value) => this.setState({value});
 
   render() {
-     const { users } = this.props;
-
+    const { users } = this.props;
     return (
     <div className="debate-interface-page">
       <div className="debate-interface-wrapper">
