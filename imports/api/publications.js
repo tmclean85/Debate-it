@@ -18,43 +18,6 @@ if (Meteor.isServer) {
     return Debates.find();
   })
 
-  Meteor.methods({
-    'debate.insert'(item) {
-
-      try {
-        /*
-        Validation
-          item.question;
-          item.yesUser_id;
-          item.yesBecause;
-          item.noUser_id;
-          item.noBecause;
-          item.organization.name;
-          item.location;
-          item.start;
-          item.end;
-        */
-
-        return Debates.insert({
-          question: item.question, 
-          yesUser_id: item.yesUser_id, 
-          yesBecause: item.yesBecause,
-          noUser_id: item.noUser_id,
-          noBecause: item.noBecause,
-          organization: { 
-            name: item.organization.name, 
-            address: 'get from organizations'
-          }, 
-          location: item.location,
-          start: item.start, 
-          end: item.end
-        });
-      } catch(e) {
-          throw new Meteor.Error(e);
-      }
-      }
-  })
-
   // organizations
 
   Meteor.publish('organizations', function organizationPublication() {
@@ -67,27 +30,6 @@ if (Meteor.isServer) {
     // Provisory
     return Users.find();
   })
-
-  Meteor.methods({
-    'user.insert'(item) {
-      try {
-        /*
-        Validation
-          item.name;
-          item.email;
-          item.bio;
-        */
-
-        return Users.insert({
-          name: item.name,
-          email: item.email,
-          bio: item.bio
-        });
-      } catch(e) {
-        throw new Meteor.Error(e);
-      }
-    }
-  });
 
   // userAtDebate
 

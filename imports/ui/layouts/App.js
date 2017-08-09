@@ -32,6 +32,7 @@ const App = props => (
               <Route path="/interface" component={DebateInterface} />
               <Route path="/404" component={NotFound} />
               <Route path="/results" component={DebateResults} />
+              <Route path="/createdebate" component={DebateCreate} />
               <Route path="/signup" component={SignUp} />
               <Route path="/login" component={Login} /> 
             </Layout>
