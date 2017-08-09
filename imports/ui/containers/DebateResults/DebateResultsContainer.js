@@ -15,6 +15,7 @@ import './styles.css';
 class DebateResultsContainer extends Component {
   render() {
     const { users } = this.props;
+    const { userAtDebate } = this.props;
     return (
       <div className="debate-results-page">
         <div className="debate-results-wrapper">
