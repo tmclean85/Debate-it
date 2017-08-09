@@ -1,4 +1,5 @@
 import { allReset, allInsertOne } from './helpers/all';
+import { userLogin } from './helpers/user';
 
 // All
 
@@ -13,3 +14,12 @@ Meteor.methods({
     allInsertOne();
   }
 });
+
+Meteor.methods({
+  'user.login'(form) {
+    userLogin({
+      email: 'james@test.com',
+      password: '1q2w3e'
+    });
+  }
+})

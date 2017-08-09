@@ -12,8 +12,6 @@ export function allReset() {
 
   try {
 
-    organizationsReset();
-    
     Organizations.remove({});
     Organizations.insert(organizationsInit[0]);
     
@@ -38,6 +36,8 @@ export function allReset() {
 export function allInsertOne() {
 
   try {
+
+    //organizationsInsert(null);
 
     Debates.insert({
       question: 'test', 
