@@ -28,11 +28,10 @@ class CurrentDebateContainer extends Component {
       <div className="current-debate-wrapper">
         <Tabs
           value={this.props.tabValue}
-          onChange={this.changeTab}
+          onChange={(value) => this.props.dispatch(changeTab(value))}
         >
           <Tab label="DETAILS" value="a">
             <div>
-              {/* <DebateDetails /> */}
               <DebateDetails />
             </div>
           </Tab>

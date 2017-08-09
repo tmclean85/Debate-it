@@ -11,6 +11,7 @@ import CurrentDebate from '../containers/CurrentDebate';
 import Layout from '../components/Layout';
 import Profile from '../containers/Profile';
 import NotFound from '../containers/NotFound';
+import DebateCreate from '../containers/DebateCreate';
 import DebateInterface from '../containers/DebateInterface';
 import DebateResults from '../containers/DebateResults';
 

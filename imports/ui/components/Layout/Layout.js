@@ -1,7 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Header from '../Header';
 import Footer from '../Footer';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import ContentAdd from 'material-ui/svg-icons/content/add';
+import './styles.css';
 
 const Layout = ({ children }) => (
   <div className="layout-wrapper">
@@ -10,6 +14,11 @@ const Layout = ({ children }) => (
     </div>
     <div className="layout-content">
       {children}
+      <Link to={'/createdebate'}>
+        <FloatingActionButton className="create-debate-button" secondary>
+            <ContentAdd />
+        </FloatingActionButton>
+      </Link>
     </div>
     <div className="layout-footer">
       <p> &copy; Copyright 2017 'BATE IT!!</p>

@@ -1,0 +1,84 @@
+.stepForm-wrapper h2 {
+    background: #00BCD4;
+    padding: .25em .5em;
+    color: white;
+}
+.debate-details-wrapper {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.debate-details-wrapper h2 {
+    width: 15%;
+    min-width: 100px;
+}
+
+.debate-debators-wrapper {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.debate-debators {
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.debate-debators > * {
+    margin: .5rem;
+}
+
+.debate-reasoning-wrapper {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+
+.debate-reasoning-wrapper > * {
+    margin: .5rem;
+    width: 80%;
+}
+
+.debate-reasons {
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: center;
+    padding: .5rem;
+}
+
+.details {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+}
+
+.details > * {
+    margin: 0 .5rem 0 0;
+}
+
+.argument-choice {
+    display: flex;
+    flex-flow: column nowrap;
+    width: 100%;
+}
+
+.argument-choice > * {
+    margin: .5rem;
+}
+
+.text-input-wrapper {
+    border: 1px solid gray;
+    padding: .25em;
+}
+
+.text-input-wrapper > * {
+    width: 100% !important;
+}
