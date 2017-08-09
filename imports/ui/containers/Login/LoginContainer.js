@@ -1,9 +1,19 @@
 import { createContainer } from 'meteor/react-meteor-data';
+import React, { Component } from 'react';
 import { Organizations,
          Users,
          Debates,
          UserAtDebate  
 } from '../../../api/publications';
+import Login from './Login';
+
+class LoginContainer extends Component {
+  render() {
+    return (
+      <Login />
+    );
+  }
+};
 
 export default createContainer(() => {
   Meteor.subscribe('debates');
@@ -16,6 +26,6 @@ export default createContainer(() => {
     debates: Debates.find().fetch(),
     users: Users.find().fetch(),
     userAtDebate: UserAtDebate.find().fetch(),
-    organizations: Urganizations.find().fetch()
+    organizations: Organizations.find().fetch()
   };
 }, LoginContainer);

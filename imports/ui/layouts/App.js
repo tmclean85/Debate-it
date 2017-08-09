@@ -15,6 +15,7 @@ import DebateCreate from '../containers/DebateCreate';
 import DebateInterface from '../containers/DebateInterface';
 import DebateResults from '../containers/DebateResults';
 import SignUp from '../containers/SignUp';
+import Login from '../containers/Login';
 
 injectTapEventPlugin();
 
@@ -31,7 +32,8 @@ const App = props => (
               <Route path="/interface" component={DebateInterface} />
               <Route path="/404" component={NotFound} />
               <Route path="/results" component={DebateResults} />
-               <Route path="/signup" component={SignUp} /> 
+              <Route path="/signup" component={SignUp} />
+              <Route path="/login" component={Login} /> 
             </Layout>
           </Switch>
     </Router>
