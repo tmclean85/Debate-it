@@ -1,5 +1,6 @@
 import React from 'react';
 import TextField from 'material-ui/TextField';
+import { Link } from 'react-router-dom';
 import RaisedButton from 'material-ui/RaisedButton';
 import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
 import './styles.css';
@@ -10,15 +11,15 @@ const Login = () => (
       <form name="login">
         <CardHeader
           title="LOG IN"
-          subtitle="Please provide your name and e-mail" 
+          subtitle="Please provide your e-mail and password" 
         />
         <div className="login-main">
           <TextField
-            floatingLabelText="Name"
+            floatingLabelText="Email"
             floatingLabelFixed={true}
           /><br />
           <TextField
-            floatingLabelText="Email"
+            floatingLabelText="Password"
             floatingLabelFixed={true}
           /><br />
           <RaisedButton
@@ -29,7 +30,20 @@ const Login = () => (
             label="Log In"
           />           
         </div>
-      </form>        
+      </form>    
+      <CardHeader
+        title="Not already a member?"
+        subtitle="Sign up now!"
+      />    
+      <Link to="/signup">
+        <RaisedButton
+          buttonStyle={{
+            height: '2.75rem',
+            width: '8rem'        
+          }}
+          label="Sign Up"
+        />           
+      </Link>          
     </Card>
   </div>  
 );
