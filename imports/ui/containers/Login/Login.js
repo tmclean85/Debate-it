@@ -5,29 +5,34 @@ import RaisedButton from 'material-ui/RaisedButton';
 import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
 import './styles.css';
 
-const Login = () => (
+const Login = ({ login }) => (
   <div className="login-page">
     <Card className="login-card">
-      <form name="login">
+      <form onSubmit={login} autoComplete="off">
         <CardHeader
           title="LOG IN"
           subtitle="Please provide your e-mail and password" 
         />
         <div className="login-main">
           <TextField
+            label="Email"
             floatingLabelText="Email"
             floatingLabelFixed={true}
           /><br />
           <TextField
+            label="Password"
             floatingLabelText="Password"
             floatingLabelFixed={true}
           /><br />
           <RaisedButton
+            primary 
+            type="submit"
+            onTouchTap={() => Meteor.loginWithPassword({Email}, {Password})}           
             buttonStyle={{
               height: '2.75rem',
               width: '8rem'        
             }} 
-            label="Log In"
+            label="LogIn"
           />           
         </div>
       </form>    
