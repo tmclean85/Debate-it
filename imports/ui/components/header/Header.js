@@ -36,7 +36,16 @@ const Header = () => (
         height: '3.75rem',
         width: '8rem'        
       }} />
-    </Link>        
+    </Link>     
+    <RaisedButton 
+      label="Log Out" 
+      secondary={true} 
+      buttonStyle={{
+        height: '3.75rem',
+        width: '8rem'        
+      }}
+      onTouchTap={() => Meteor.logout()}                  
+    />       
     </AppBar >
   </div>
 );
