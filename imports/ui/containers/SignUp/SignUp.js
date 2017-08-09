@@ -30,7 +30,7 @@ const SignUp = () => (
         </div>  
         <RaisedButton
           buttonStyle={{
-            height: '3.75rem',
+            height: '2.75rem',
             width: '8rem'        
           }} 
           label="Sign Up!"
