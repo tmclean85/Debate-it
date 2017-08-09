@@ -21,6 +21,10 @@ const SignUp = () => (
             floatingLabelText="Email"
             floatingLabelFixed={true}
           /><br />
+          <TextField
+            floatingLabelText="Password"
+            floatingLabelFixed={true}
+          /><br />          
         </div>
         <div className="sign-up-meta">
           <TextField
@@ -35,7 +39,7 @@ const SignUp = () => (
           }}
           label="Sign Up!"
         />      
-      </form>      
+      </form>  
     </Card>  
   </div>  
 );
