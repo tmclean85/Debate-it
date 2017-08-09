@@ -32,7 +32,7 @@ const SignUp = () => (
           buttonStyle={{
             height: '2.75rem',
             width: '8rem'        
-          }} 
+          }}
           label="Sign Up!"
         />      
       </form>      
