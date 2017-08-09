@@ -1,7 +1,14 @@
 import { allReset, allInsertOne } from './helpers/all';
-import { userLogin } from './helpers/user';
+import { debateInsert } from './helpers/debates';
 
 // All
+
+Meteor.methods({
+  'debate.insert'(item) {
+    console.log('will insert debate, publ', item);
+    debateInsert(item);
+  }
+});
 
 Meteor.methods({
   'test.reset'(item) {
@@ -14,12 +21,3 @@ Meteor.methods({
     allInsertOne();
   }
 });
-
-Meteor.methods({
-  'user.login'(form) {
-    userLogin({
-      email: 'james@test.com',
-      password: '1q2w3e'
-    });
-  }
-})

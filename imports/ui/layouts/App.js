@@ -30,6 +30,7 @@ const App = props => (
               <Route path="/interface" component={DebateInterface} />
               <Route path="/404" component={NotFound} />
               <Route path="/results" component={DebateResults} />
+              <Route path="/createdebate" component={DebateCreate} />
             </Layout>
           </Switch>
     </Router>

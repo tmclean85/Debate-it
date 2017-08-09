@@ -5,7 +5,7 @@ import { Organizations, organizationsInit } from '../schemas/organizations';
 import { Users, userInit } from '../schemas/users';
 import { UserAtDebate, userAtDebateInit } from '../schemas/user-at-debate';
 
-import { organizationsReset } from '../helpers/organization';
+import { debateInsert } from '../helpers/debates';
 import { usersReset, userTestInsert } from '../helpers/user';
 
 export function allReset() {
@@ -14,7 +14,7 @@ export function allReset() {
 
     Organizations.remove({});
     Organizations.insert(organizationsInit[0]);
-    
+
     usersReset();
 
     Users.remove({});
@@ -37,7 +37,19 @@ export function allInsertOne() {
 
   try {
 
-    //organizationsInsert(null);
+    debateInsert({
+      question: 'test', 
+      yesUser_id: '1', 
+      yesBecause: 'test test test',
+      noUser_id: '2',
+      noBecause: 'test test test test',
+      organization: { 
+        name: 'Red'
+      }, 
+      location: 'Kitchen',
+      start: '2017-09-01 19:00:00', 
+      end: '2017-09-02 20:00:00'
+    });
 
     Debates.insert({
       question: 'test', 
