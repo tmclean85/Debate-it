@@ -1,23 +1,44 @@
 import { allReset, allInsertOne } from './helpers/all';
 import { debateInsert } from './helpers/debates';
+import { userInsert } from './helpers/user';
 
 // All
 
 Meteor.methods({
   'debate.insert'(item) {
-    console.log('will insert debate, publ', item);
-    debateInsert(item);
+    debateInsert({
+      question: item.question,
+      yesUser_id: item.yesUser_id,
+      yesBecause: item.yesBecause,
+      noUser_id: item.noUser_id,
+      noBecause: item.noBecause,
+      location: item.location,
+      start: item.start,
+      end: item.end
+    });
   }
 });
 
 Meteor.methods({
-  'test.reset'(item) {
+  'test.reset'() {
     allReset();
   }
 });
 
 Meteor.methods({
-  'test.insertOne'(item) {
+  'test.insertOne'() {
     allInsertOne();
   }
 });
+
+Meteor.methods({
+  'user.insert'(item) {
+    userInsert({
+      email: item.email,
+      password: item.password,
+      name: item.name,
+      bio: item.bio
+    });
+  }
+});
+

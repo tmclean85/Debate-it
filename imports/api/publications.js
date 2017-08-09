@@ -31,27 +31,6 @@ if (Meteor.isServer) {
     return Users.find();
   })
 
-  Meteor.methods({
-    'user.insert'(item) {
-      try {
-        /*
-        Validation
-          item.name;
-          item.email;
-          item.bio;
-        */
-
-        return Users.insert({
-          name: item.name,
-          email: item.email,
-          bio: item.bio
-        });
-      } catch(e) {
-        throw new Meteor.Error(e);
-      }
-    }
-  });
-
   // userAtDebate
 
   Meteor.publish('userAtDebate', function userAtDebatePublication() {

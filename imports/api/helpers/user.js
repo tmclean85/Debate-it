@@ -1,5 +1,18 @@
 import { Meteor } from 'meteor/meteor';
 
+
+export function userInsert(item) {
+  
+  Accounts.createUser({
+    email : item.email,
+    password : item.password,
+    profile: {
+      name: item.name,
+      bio: item.bio
+    }
+  });  
+}
+
 export function userTestInsert() {
 
   const count = Meteor.users.find({}).count() + 1;

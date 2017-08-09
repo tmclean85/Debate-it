@@ -214,7 +214,12 @@ class Tests extends Component {
 
         <RaisedButton
           label="Add debate"
-          primary onClick={() => Meteor.call('debate.insert', { question: 'Why all this!'},
+          primary onClick={() => Meteor.call('user.insert', {
+              email: 'myself@example.com',
+              password: '1q2w3e',
+              name: 'myself really',
+              bio: 'hjklhjklh lhk jlh hlhjklhklh hjklhjkl'
+            },
             (error, result) => {
             if (error) {
               console.log('error', error);

@@ -15,14 +15,12 @@ export function debateInsert(item) {
       item.yesBecause;
       item.noUser_id;
       item.noBecause;
-      item.organization.name;
       item.location;
       item.start;
       item.end;
     */
 
     const org = Organizations.find({}).fetch()[0];
-    console.log(org);
 
     return Debates.insert({
       question: item.question, 
