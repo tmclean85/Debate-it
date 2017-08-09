@@ -8,6 +8,9 @@ const styles = {
     fieldStyle: {
         width: '70%'
     },
+    fullWidth: {
+        width: '100%'
+    },
     errorStyle: {
         color: blueGrey900,
         position: 'absolute',

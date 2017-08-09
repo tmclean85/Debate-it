@@ -12,8 +12,8 @@
 
 .debate-details-wrapper h2 {
     width: 15%;
+    min-width: 100px;
 }
-
 
 .debate-debators-wrapper {
     display: flex;
@@ -77,4 +77,8 @@
 .text-input-wrapper {
     border: 1px solid gray;
     padding: .25em;
+}
+
+.text-input-wrapper > * {
+    width: 100% !important;
 }

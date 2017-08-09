@@ -162,7 +162,8 @@ const DebateCreate = ({ dispatch, stepIndex, userData }) => {
                                 <div className="text-input-wrapper">
                                     <ValidatedTextField
                                         type="input"
-                                        rows={3}
+                                        rows={2}
+                                        fullWidth={true}
                                     />
                                 </div>
                             </div>
@@ -171,7 +172,8 @@ const DebateCreate = ({ dispatch, stepIndex, userData }) => {
                                 <div className="text-input-wrapper">
                                     <ValidatedTextField
                                         type="input"
-                                        rows={3}
+                                        rows={2}
+                                        fullWidth={true}
                                     />
                                 </div>
                             </div>
