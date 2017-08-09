@@ -80,7 +80,7 @@ class Tests extends Component {
     });
   }
 
-  handleLogin = (() => {
+  handleLogin = () => {
     Meteor.call('user.login', {}, (error, result) => {
       if (error) {
         console.log('error', error);
