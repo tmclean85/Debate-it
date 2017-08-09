@@ -5,12 +5,12 @@ import { Organizations,
          Debates,
          UserAtDebate  
 } from '../../../api/publications';
-import Login from './Login';
+import SignUp from './SignUp';
 
-class LoginContainer extends Component {
+class SignUpContainer extends Component {
   render() {
     return (
-      <Login />
+      <SignUp />
     );
   }
 };
@@ -28,4 +28,4 @@ export default createContainer(() => {
     userAtDebate: UserAtDebate.find().fetch(),
     organizations: Organizations.find().fetch()
   };
-}, LoginContainer);
+}, SignUpContainer);

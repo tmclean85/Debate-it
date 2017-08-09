@@ -8,11 +8,22 @@ import { Link } from 'react-router-dom';
 import './styles.css';
 // import logo from '../../../images/debate-logo.png';
 
+function handleTouchTap() {
+  window.location.href = '/';
+}
+
+const styles = {
+  title: {
+    cursor: 'pointer',
+  },
+};
+
 const Header = () => (
   <div>
     <AppBar
+          onTitleTouchTap={handleTouchTap}
           showMenuIconButton={false}
-          title="BATE IT"
+          title={<span style={styles.title}>'Bate It</span>}
     >
     <Link to='/profile'>
       <RaisedButton label="My Profile" primary={true} buttonStyle={{
@@ -20,11 +31,21 @@ const Header = () => (
         width: '8rem'
       }} />
     </Link>  
+    <Link to='/login'>
       <RaisedButton label="Log In" secondary={true} buttonStyle={{
         height: '3.75rem',
         width: '8rem'        
-      }} 
-      />      
+      }} />
+    </Link>     
+    <RaisedButton 
+      label="Log Out" 
+      secondary={true} 
+      buttonStyle={{
+        height: '3.75rem',
+        width: '8rem'        
+      }}
+      onTouchTap={() => Meteor.logout()}                  
+    />       
     </AppBar >
   </div>
 );
