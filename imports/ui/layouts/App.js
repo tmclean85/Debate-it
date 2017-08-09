@@ -12,6 +12,8 @@ import Layout from '../components/Layout';
 import Profile from '../containers/Profile';
 import NotFound from '../containers/NotFound';
 import DebateCreate from '../containers/DebateCreate';
+import DebateInterface from '../containers/DebateInterface';
+import DebateResults from '../containers/DebateResults';
 
 
 injectTapEventPlugin();
@@ -24,10 +26,11 @@ const App = props => (
             <Layout>
               <Route exact path="/" component={Home} />
               <Route path="/plinio" component={PlinioTests} />
-              <Route path="/currentDebate" component={CurrentDebate} />
-              <Route path="/createdebate" component={DebateCreate} /> 
-              <Route path="/profile" component={Profile} /> 
-               <Route path="/404" component={NotFound} /> 
+              <Route path="/currentDebate" component={CurrentDebate} /> 
+              <Route path="/profile" component={Profile} />
+              <Route path="/interface" component={DebateInterface} />
+              <Route path="/404" component={NotFound} />
+              <Route path="/results" component={DebateResults} />
             </Layout>
           </Switch>
     </Router>
