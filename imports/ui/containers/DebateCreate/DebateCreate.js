@@ -41,11 +41,12 @@ const DebateCreate = ({ dispatch, stepIndex, userData }) => {
                     label={(step === 3) ? 'Confirm' : 'Next'}
                     disableTouchRipple
                     disableFocusRipple
+                    secondary
                     onTouchTap={(step === 3) ? () => handleSubmit() : () => dispatch(stepForward(step))}
                     style={{ marginRight: 12 }}
                 />
                 {step > 0 && (
-                    <FlatButton
+                    <RaisedButton
                         label="Back"
                         disabled={stepIndex === 0}
                         disableTouchRipple
@@ -61,6 +62,7 @@ const DebateCreate = ({ dispatch, stepIndex, userData }) => {
     return (
         <div
             style={{ maxWidth: 800, maxHeight: 500, margin: 'auto' }}
+            className="stepForm-wrapper"
         >
             <Stepper
                 activeStep={stepIndex}
@@ -72,28 +74,30 @@ const DebateCreate = ({ dispatch, stepIndex, userData }) => {
                     <StepContent>
                         <div className="debate-details-wrapper">
                             <div className="details">
-                            <p>Question: </p>
+                            <h2>Question</h2>
                             <ValidatedTextField
                                 label="Question"
                                 type="input"
+                                fullWidth={false}
                             />
                             </div>
                             <div className="details">
-                                <p>Location: </p>
+                                <h2>Location</h2>
                             <ValidatedTextField
                                 label="Location"
                                 type="input"
+                                fullWidth={false}
                             />
                             </div>
                             <div className="details">
-                            <p>Start time: </p>
+                            <h2>Start time</h2>
                                 <TextField
                                     disabled
                                     hintText={Moment().format("h:mm a")}
                                 />
                             </div>
                             <div className="details">
-                                <p>Duration: </p>
+                                <h2>Duration</h2>
                                 <DropDownMenu
                                     value="10 Minutes"
                                 >
@@ -114,9 +118,9 @@ const DebateCreate = ({ dispatch, stepIndex, userData }) => {
                 <Step>
                     <StepLabel>Who's Taking Part?</StepLabel>
                     <StepContent>
-                        <div className="debate-details-wrapper">
+                        <div className="debate-debators-wrapper">
                             <div className="argument-choice">
-                                <h1>Which Side Are You Taking?</h1>
+                                <h2>Which Side Are You Taking?</h2>
                                 <RadioButtonGroup name="chooseChoose" defaultSelected="Yes">
                                     <RadioButton
                                         value="Yes"
@@ -131,7 +135,7 @@ const DebateCreate = ({ dispatch, stepIndex, userData }) => {
                                     </RadioButtonGroup>
                             </div>
                             <div className="argument-choice">
-                                <h1>Who is Your Opponent?</h1>
+                                <h2>Who is Your Opponent?</h2>
                                 <SelectField
                                     hintText={'Select Opponent'}
                                 >
@@ -155,19 +159,21 @@ const DebateCreate = ({ dispatch, stepIndex, userData }) => {
                         <div className="debate-reasoning-wrapper">
                             <div>
                                 <h2>Agreer's Argument...</h2>
-                                <ValidatedTextField
-                                    label="Reason"
-                                    type="input"
-                                    rows={3}
-                                />
+                                <div className="text-input-wrapper">
+                                    <ValidatedTextField
+                                        type="input"
+                                        rows={3}
+                                    />
+                                </div>
                             </div>
                             <div>
                                 <h2>Disagreer's Argument...</h2>
-                                <ValidatedTextField
-                                    label="Reason"
-                                    type="input"
-                                    rows={3}
-                                />
+                                <div className="text-input-wrapper">
+                                    <ValidatedTextField
+                                        type="input"
+                                        rows={3}
+                                    />
+                                </div>
                             </div>
                         </div>
                         {renderStepActions(2)}
@@ -176,7 +182,7 @@ const DebateCreate = ({ dispatch, stepIndex, userData }) => {
                 <Step>
                     <StepLabel>Confirm Things</StepLabel>
                     <StepContent>
-                        <p>Great! If you are happy with everything, tap the button.</p>
+                        <h3>Great! If you are happy with everything, tap the button.</h3>
                         {renderStepActions(3)}
                     </StepContent>
                 </Step>

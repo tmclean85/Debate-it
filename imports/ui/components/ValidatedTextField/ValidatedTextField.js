@@ -6,7 +6,7 @@ import { blueGrey900, white } from 'material-ui/styles/colors';
 
 const styles = {
     fieldStyle: {
-        width: '100%'
+        width: '70%'
     },
     errorStyle: {
         color: blueGrey900,
@@ -21,7 +21,7 @@ const styles = {
     }
 };
 
-const ValidatedTextField = ({ label, type, floatingLabel, onChangeAction, rows }) => (
+const ValidatedTextField = ({ label, type, floatingLabel, onChangeAction, rows, fullWidth }) => (
     <TextField
         style={styles.fieldStyle}
         hintText={label}
@@ -33,6 +33,7 @@ const ValidatedTextField = ({ label, type, floatingLabel, onChangeAction, rows }
         onChange={(e) => onChangeAction(e)}
         multiLine
         rows={rows}
+        fullWidth={fullWidth}
     />
 );
 
