@@ -1,3 +1,4 @@
+import { Meteor } from 'meteor/meteor';
 import React, { Component } from 'react';
 import { createContainer } from 'meteor/react-meteor-data';
 
@@ -28,6 +29,7 @@ class Tests extends Component {
       debatesOpen: false,
       organizationsOpen: false,
       usersOpen: false,
+      users1Open: false,
       userAtDebateOpen: false,
     };
   }
@@ -48,6 +50,10 @@ class Tests extends Component {
     this.setState({usersOpen: true});
   };
 
+  handleUser1Open = () => {
+    this.setState({users1Open: true});
+  };
+
   handleUserAtDebateOpen = () => {
     this.setState({userAtDebateOpen: true});
   };
@@ -57,6 +63,7 @@ class Tests extends Component {
       debatesOpen: false,
       organizationsOpen: false,
       usersOpen: false,
+      users1Open: false,
       userAtDebateOpen: false,
 
       modalOpen: ''
@@ -64,7 +71,7 @@ class Tests extends Component {
   };
 
   handleReset = () => {
-    Meteor.call('all.reset', (error, result) => {
+    Meteor.call('test.reset', (error, result) => {
       if (error) {
         console.log('error', error);
         return;
@@ -74,7 +81,7 @@ class Tests extends Component {
   }
 
   handleInsertOne = () => {
-    Meteor.call('all.insertOne', (error, result) => {
+    Meteor.call('test.insertOne', (error, result) => {
       if (error) {
         console.log('error', error);
         return;
@@ -82,6 +89,7 @@ class Tests extends Component {
       console.log('insert done');
     });
   }
+
   render() {
 
     const actions = [
@@ -102,6 +110,10 @@ class Tests extends Component {
 
     const userList = this.props.users.map(item => (
       <li key={item._id}>{item._id} - {item.name}</li>    
+    ));
+
+    const user1List = this.props.users1.map(item => (
+      <li key={item._id}>{item._id} - {item.emails[0].address}</li>    
     ));
 
     const userAtDebateList = this.props.userAtDebate.map(item => (
@@ -131,6 +143,10 @@ class Tests extends Component {
             <tr>
               <td>Users</td>
               <td><RaisedButton label="Detail" onClick={this.handleUserOpen} /></td>
+            </tr>
+            <tr>
+              <td>Users1</td>
+              <td><RaisedButton label="Detail" onClick={this.handleUser1Open} /></td>
             </tr>
             <tr>
               <td>User at debate</td>
@@ -173,6 +189,17 @@ class Tests extends Component {
         </Dialog>
       
         <Dialog
+          title="Users1"
+          actions={actions}
+          modal={true}
+          open={this.state.users1Open}
+        >
+          <ul>
+            { user1List }
+          </ul> 
+        </Dialog>
+
+        <Dialog
           title="User at debate"
           actions={actions}
           modal={true}
@@ -191,13 +218,15 @@ class Tests extends Component {
 export default createContainer(() => {
   Meteor.subscribe('debates');
   Meteor.subscribe('users');
+  Meteor.subscribe('users.list');
   Meteor.subscribe('userAtDebate');
   Meteor.subscribe('organizations');
   
   return {
     debates: Debates.find().fetch(),
     users: Users.find().fetch(),
+    users1: Meteor.users.find({}).fetch(),
     userAtDebate: UserAtDebate.find().fetch(),
-    organizations: Organizations.find().fetch()
+    organizations: Organizations.find({}).fetch()
   };
 }, Tests);
