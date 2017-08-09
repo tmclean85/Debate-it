@@ -1,5 +1,5 @@
-import CreateDebate from './CreateDebate';
-import CreateDebateContainer from './CreateDebateContainer';
+import DebateCreate from './DebateCreate';
+import DebateCreateContainer from './DebateCreateContainer';
 
 export { DebateCreate };
 export default DebateCreateContainer;
