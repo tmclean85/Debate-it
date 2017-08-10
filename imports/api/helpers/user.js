@@ -1,11 +1,8 @@
 import { Meteor } from 'meteor/meteor';
 
-// export function userLogged() {
-
-//   const user = Meteor.users.find({}).fetch()[0];
-//   console.log(user);
-//   return user;
-// }
+export function userGetAll() {
+  return Meteor.users.find({});
+}
 
 export function userInsert(item) {
   

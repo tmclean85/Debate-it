@@ -1,6 +1,7 @@
 import { allReset, allInsertOne } from './helpers/all';
 import { debateInsert } from './helpers/debates';
 import { userInsert, userList } from './helpers/user';
+import { unsertUserAtDebate } from './helpers/user-at-debate';
 
 // All
 
@@ -18,6 +19,8 @@ Meteor.methods({
     });
   }
 });
+
+// Users
 
 Meteor.methods({
   'test.reset'() {
@@ -42,12 +45,15 @@ Meteor.methods({
   }
 });
 
+// UsersAtDebate
+
 Meteor.methods({
-  'user.getLogged'() {
-    return {
-      id: '1',
-      name: 'what I want when I want'
-    }
+  'userAtDebate.insert'(item) {
+    return userAtDebateInsert({
+      user_id: item.user_id,
+      debate_id: item.debate_id
+    });
   }
-});
+})
+
 

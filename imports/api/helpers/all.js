@@ -39,7 +39,7 @@ export function allInsertOne() {
 
     debateInsert({
       question: 'test', 
-      yesUser_id: '1', 
+      yesUser_id: '1',
       yesBecause: 'test test test',
       noUser_id: '2',
       noBecause: 'test test test test',
