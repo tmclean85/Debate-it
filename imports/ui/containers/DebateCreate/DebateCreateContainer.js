@@ -14,7 +14,7 @@ import './styles.css';
 class DebateCreateContainer extends Component {
 
   componentDidMount() {
-    this.props.dispatch(setStartTime(Moment()));
+    this.props.dispatch(setStartTime(Moment().toDate()));
   }
 
   convertDurationToEndTime(duration) {
@@ -22,7 +22,7 @@ class DebateCreateContainer extends Component {
       if (duration === `${i} Minutes`) {
         const end = Moment(this.props.data.start);
         end.add(i, 'm');
-        this.props.dispatch(setEndTime(end));
+        this.props.dispatch(setEndTime(end.toDate()));
       }
     }
   }
@@ -32,7 +32,28 @@ class DebateCreateContainer extends Component {
   }
 
   onSubmit() {
-    // add meteor method here 
+    //e.preventDefault();
+    const { data } = this.props;
+    const question = data.question;
+    const yesUser_id = data.yesUser_id;
+    const yesBecause = data.yesBecause;
+    const noUser_id = data.noUser_id;
+    const noBecause = data.noBecause;
+    const location = data.location;
+    const start = data.start;
+    const end = data.end;
+
+    Meteor.call('debate.insert', {
+      question,
+      yesUser_id,
+      yesBecause,
+      noUser_id,
+      noBecause,
+      location,
+      start,
+      end
+    }
+    );
   }
 
   onInvalid() {

@@ -10,7 +10,11 @@ import Star from 'material-ui/svg-icons/toggle/star';
 
 import './styles.css';
 
-const Profile = () => {
+const Profile = ({userLogged, userData}) => {
+  const user = (userLogged || {profile: {}});
+  const data = (userData || {});
+  console.log("component", userLogged)
+  console.log(data);
   return (
     <div className="profile-page">  
       <div className="profile-wrapper">
@@ -18,7 +22,7 @@ const Profile = () => {
           <div className="profile-main-box">
             <Avatar size={100} src="" />
             <CardHeader
-              title="Trevor McLean"
+              title={user.profile.name}
               subtitle="Politics, Technology, Travel"
             />
           </div>
