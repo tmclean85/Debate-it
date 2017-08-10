@@ -16,7 +16,7 @@ const style = {
 const DebateCard = ({ debateData }) => (
   <div className="debate-card-wrapper">
     <List className="debate-list">
-       <Link to='/currentdebate'>
+       <Link to={`/debate/${debateData._id}`}>
        <Paper className="debate-paper" style={style} zDepth={4} >
 
       <ListItem 

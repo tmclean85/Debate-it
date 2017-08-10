@@ -13,17 +13,17 @@ import { Organizations,
          Debates,
          UserAtDebate  
 } from '../../../api/publications';
+import Loader from '../../components/Loader';
 import { changeTab } from '../../../redux/modules/debates';
 import './styles';
 
 class CurrentDebateContainer extends Component {
- 
-
 
   render() {
+    const users = this.props.users;
+    const debate = this.props.debates[0];
 
-     const { users } = this.props;
-
+    if (!debate) return <Loader />;
     return (
       <div className="current-debate-wrapper">
         <Tabs
@@ -32,7 +32,7 @@ class CurrentDebateContainer extends Component {
         >
           <Tab label="DETAILS" value="a">
             <div>
-              <DebateDetails />
+              <DebateDetails debateData={debate} />
             </div>
           </Tab>
           <Tab label="ATTENDEES" value="b">
@@ -70,14 +70,15 @@ function mapStateFromProps(state) {
     };
 }
 
-const currentDebateContainer = createContainer(() => {
+
+const currentDebateContainer = createContainer(( params ) => {
   Meteor.subscribe('debates');
   Meteor.subscribe('users');
   Meteor.subscribe('userAtDebate');
   Meteor.subscribe('organizations');
-  
+
   return {
-    debates: Debates.find().fetch(),
+    debates: Debates.find({ _id: params.match.params.id }).fetch(),
     users: Users.find().fetch(),
     userAtDebate: UserAtDebate.find().fetch(),
     organizations: Organizations.find().fetch()
