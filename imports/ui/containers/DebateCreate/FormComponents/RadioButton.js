@@ -9,17 +9,17 @@ const styles = {
     }
 };
 
-const RadioButtonInput = ({ value, onChange }) => (
+const RadioButtonInput = ({ value, onChange, state }) => (
     <RadioButtonGroup
         onChange={(e) => onChange(e.target.value)}
     >
         <RadioButton
-            value="Yes"
+            value="8" //set this to current user_id
             label="I Agree!"
             style={styles.radioButton}
         />
         <RadioButton
-            value="No"
+            value="8" //set this to empty string
             label="I Disagree!"
             style={styles.radioButton}
         />

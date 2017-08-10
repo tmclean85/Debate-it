@@ -32,7 +32,7 @@ class DebateCreateContainer extends Component {
   }
 
   onSubmit() {
-    console.log(`Submitting ${this.props.data}`);
+    // add meteor method here 
   }
 
   onInvalid() {
@@ -46,8 +46,8 @@ class DebateCreateContainer extends Component {
         data={this.props.data}
         getValue={getValue}
         onChange={this.onChangeHandler.bind(this)}
-        onInvalid={this.onInvalid}
-        onSubmit={this.onSubmit}
+        onInvalid={this.onInvalid.bind(this)}
+        onSubmit={this.onSubmit.bind(this)}
         convertDuration={this.convertDurationToEndTime.bind(this)}
       />
     );

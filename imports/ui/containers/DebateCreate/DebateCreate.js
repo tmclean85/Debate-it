@@ -9,42 +9,23 @@ import {
     StepLabel,
     StepContent
 } from 'material-ui/Stepper';
-import TextField from 'material-ui/TextField';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import RadioButtonInput from './FormComponents/RadioButton';
 import TextInput from './FormComponents/TextInput';
-import SelectMenu from './FormComponents/DropMenu';
+import SelectDrop from './FormComponents/SelectDrop';
+import SelectDebators from './FormComponents/SelectDebators';
 import { stepForward, stepBackward } from '../../../redux/modules/create';
 import './styles.css';
 
 const styles = {
     block: {
         maxWidth: 250,
-    },
-    radioButton: {
-        marginBottom: 16,
-        fontSize: 14
     }
 };
 
-{/* <DropDownMenu
-    value="10 Minutes"
->
-    {timeValues.map(time => (
-        <MenuItem
-            key={time}
-            insetChildren
-            value={time}
-            primaryText={time}
-        />
-    ))}
-</DropDownMenu> */}
-
-const timeValues = ["10 Minutes", "20 Minutes", "30 Minutes", "40 Minutes",
-        "50 Minutes", "60 Minutes", "70 Minutes", "80 Minutes", "90 Minutes"];
-
 const DebateCreate = ({ dispatch, stepIndex, userData, convertDuration }) => {
+
 
     function renderStepActions(step) {
         return (
@@ -102,18 +83,9 @@ const DebateCreate = ({ dispatch, stepIndex, userData, convertDuration }) => {
                                 </div>
                                 <div className="details">
                                     <h2>Duration</h2>
-                                    <SelectField
-                                        value="10 Minutes"
-                                        onChange={(event, index, values) => convertDuration(values)}
-                                    >
-                                        {timeValues.map(time => (
-                                            <MenuItem
-                                                key={time}
-                                                value={time}
-                                                primaryText={time}
-                                            />
-                                        ))}
-                                    </SelectField>
+                                    <SelectDrop
+                                        onChange={convertDuration}
+                                    />
                                 </div>
                             </div>
                             {renderStepActions(0)}
@@ -124,23 +96,18 @@ const DebateCreate = ({ dispatch, stepIndex, userData, convertDuration }) => {
                         <StepContent>
                             <div className="debate-debators-wrapper">
                                 <div className="argument-choice">
-                                    <h2>Which Side Are You Taking?</h2>
-                                    <RadioButtonInput name="form.side" />
+                                    <h2>Who is Arguing for Yes?</h2>
+                                    <SelectDebators
+                                        name={'form.yesUser_id'}
+                                        userData={userData}
+                                    />
                                 </div>
                                 <div className="argument-choice">
-                                    <h2>Who is Your Opponent?</h2>
-                                    <SelectField
-                                        hintText={'Select Opponent'}
-                                    >
-                                        {userData.map(user => (
-                                            <MenuItem
-                                                key={user._id}
-                                                insetChildren
-                                                value={user}
-                                                primaryText={user.name}
-                                            />
-                                        ))}
-                                    </SelectField>
+                                    <h2>Who is Arguing For No?</h2>
+                                    <SelectDebators
+                                        name={'form.noUser_id'}
+                                        userData={userData}
+                                    />
                                 </div>
                             </div>
                             {renderStepActions(1)}
