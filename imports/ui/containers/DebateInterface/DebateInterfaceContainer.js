@@ -9,9 +9,9 @@ import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'm
 import { Organizations,
          Users,
          Debates,
-         UserAtDebate  
+         UserAtDebate
 } from '../../../api/publications';
-import DebateAttendees from '../CurrentDebate/DebateAttendees';
+import Attendees from '../../components/Attendees';
 
 import './styles.css';
 
@@ -44,7 +44,7 @@ class DebateInterfaceContainer extends Component {
         </div>    
         <div className="interface-attendees-box">
           {users.map(user =>
-            (<DebateAttendees
+            (<Attendees
               userData={user}
               key={user._id}
             />)
