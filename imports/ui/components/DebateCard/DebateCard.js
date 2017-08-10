@@ -3,6 +3,7 @@ import Paper from 'material-ui/Paper';
 import Chat from 'material-ui/svg-icons/communication/chat';
 import {List, ListItem} from 'material-ui/List';
 import { Link } from 'react-router-dom';
+import Moment from 'moment';
 import './styles.css';
 
 const style = {
@@ -20,8 +21,10 @@ const DebateCard = ({ debateData }) => (
        <Paper className="debate-paper" style={style} zDepth={4} >
 
       <ListItem 
-        primaryText={debateData.question} 
-        secondaryText="start time"
+        primaryText={`${debateData.question}?`}
+        secondaryText={`
+          ${Moment(debateData.start).format("h:mm a")} - ${Moment(debateData.end).format("h:mm a")}
+        `}
         leftIcon={<Chat />}
       />
       </Paper>

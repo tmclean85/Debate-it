@@ -23,8 +23,8 @@ export default createContainer(() => {
   Meteor.subscribe('organizations');
   
   return {
-    debates: Debates.find({}).fetch(),
-    users: Users.find().fetch(),
+    debates: Debates.find().fetch(),
+    //users: Users.find().fetch(),
     userAtDebate: UserAtDebate.find().fetch(),
     organizations: Organizations.find().fetch()
   };
