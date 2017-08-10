@@ -79,18 +79,7 @@ class Tests extends Component {
       console.log('reset done');
     });
   }
-
-  handleLogin = (() => {
-    Meteor.call('user.login', {}, (error, result) => {
-      if (error) {
-        console.log('error', error);
-        return;
-      }
-      console.log('login done');
-    });
-  }
   
-
   handleInsertOne = () => {
     Meteor.call('test.insertOne', (error, result) => {
       if (error) {
@@ -220,10 +209,6 @@ class Tests extends Component {
             { userAtDebateList }
           </ul> 
         </Dialog>
-
-        <h2>login</h2>
-        
-        <RaisedButton label="Login" primary onClick={() => this.handleLogin()} />
 
       </div>
     );
