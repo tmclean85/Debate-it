@@ -1,4 +1,3 @@
-import DebatorScreen from './DebatorScreen';
 import DebatorScreenContainer from './DebatorScreenContainer';
 
 export { DebatorScreen };

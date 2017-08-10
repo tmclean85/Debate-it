@@ -1,0 +1,38 @@
+.debator-page {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.debator-card {
+  display: flex;
+  width: 75%;
+  padding: 1.5rem;
+  margin-top: 3rem;
+  margin-bottom: 5rem;
+  justify-content: center;  
+  flex-flow: column nowrap;
+  border: 1px solid grey;
+  box-shadow: 10px 10px 5px 0px rgba(156,156,156,1);  
+}
+
+ .check-in-box {
+  display: flex;
+  flex-flow: column wrap;
+  height: 20rem;
+  width: 100%;
+} 
+
+.debator-card-header {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  flex-flow: column nowrap;
+}
+
+.debator-good-points-box {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+
+}
