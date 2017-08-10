@@ -12,7 +12,7 @@ import { Organizations,
          UserAtDebate  
 } from '../../../api/publications';
 import DebateAttendees from '../CurrentDebate/DebateAttendees';
-        
+
 import './styles.css';
 
 
@@ -24,7 +24,9 @@ class DebateInterfaceContainer extends Component {
   handleChange = (event, index, value) => this.setState({value});
 
   render() {
-    const { users } = this.props;
+    const users = this.props.users;
+    const vote = this.props.userAtDebate
+    console.log(vote)
     return (
     <div className="debate-interface-page">
       <div className="debate-interface-wrapper">
@@ -43,8 +45,9 @@ class DebateInterfaceContainer extends Component {
         <div className="interface-attendees-box">
           {users.map(user =>
             (<DebateAttendees 
-              userData={user} 
+              userData={user}
               key={user._id}
+              voteData={vote}
             />)
           )}           
         </div>  
@@ -93,7 +96,7 @@ export default createContainer(() => {
   
   return {
     debates: Debates.find().fetch(),
-    users: Users.find().fetch(),
+    users: Meteor.users.find().fetch(),
     userAtDebate: UserAtDebate.find().fetch(),
     organizations: Organizations.find().fetch()
   };

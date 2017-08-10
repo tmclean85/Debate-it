@@ -3,9 +3,11 @@ import { ListItem } from 'material-ui/List';
 import { ToggleCheckBox, ToggleCheckBoxOutlineBlank } from 'material-ui/svg-icons';
 import Avatar from 'material-ui/Avatar';
 
-const DebateAttendees = ({ userData, icon }) => (
+const DebateAttendees = ({ userData, voteData, icon }) => (
     <ListItem
-        primaryText={userData.name}
+        primaryText={userData.profile.name}
+        // TODO: Access user-specific because values
+        secondaryText={voteData[0].because}
         leftAvatar={<Avatar src="" />}
         rightIcon={icon}
     />
