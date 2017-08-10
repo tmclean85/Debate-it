@@ -11,10 +11,7 @@ import Star from 'material-ui/svg-icons/toggle/star';
 import './styles.css';
 
 const Profile = ({userLogged, userData}) => {
-  const user = (userLogged || {profile: {}});
-  const data = (userData || {});
-  console.log("component", userLogged)
-  console.log(data);
+  const loggedInUser = (userLogged || {profile: {}, emails: [{}]});
   return (
     <div className="profile-page">  
       <div className="profile-wrapper">
@@ -22,8 +19,8 @@ const Profile = ({userLogged, userData}) => {
           <div className="profile-main-box">
             <Avatar size={100} src="" />
             <CardHeader
-              title={user.profile.name}
-              subtitle="Politics, Technology, Travel"
+              title={loggedInUser.profile.name}
+              subtitle={loggedInUser.emails[0].address}
             />
           </div>
           <div className="profile-meta-box">
@@ -35,12 +32,12 @@ const Profile = ({userLogged, userData}) => {
           </div>
             <div className="profile-bio-box">
               <CardText>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-              </CardText>  
-            </div>    
-        </Card>  
+                <p>{loggedInUser.profile.bio}</p>
+              </CardText>
+            </div>
+        </Card>
       </div>
-    </div>  
+    </div>
   )
 }
 
