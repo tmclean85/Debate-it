@@ -42,3 +42,12 @@ Meteor.methods({
   }
 });
 
+Meteor.methods({
+  'user.getLogged'() {
+    return {
+      id: '1',
+      name: 'what I want when I want'
+    }
+  }
+});
+
