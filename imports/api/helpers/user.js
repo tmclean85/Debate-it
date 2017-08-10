@@ -1,13 +1,28 @@
 import { Meteor } from 'meteor/meteor';
 
-export function userLogin(form) {
-  console.log('will login');
+// export function userLogged() {
+
+//   const user = Meteor.users.find({}).fetch()[0];
+//   console.log(user);
+//   return user;
+// }
+
+export function userInsert(item) {
+  
+  Accounts.createUser({
+    email : item.email,
+    password : item.password,
+    profile: {
+      name: item.name,
+      bio: item.bio
+    }
+  });  
 }
 
 export function userTestInsert() {
 
   const count = Meteor.users.find({}).count() + 1;
-  console.log(count);
+
   Accounts.createUser({
     email : 'login'+count+'@example.com',
     password : '1q2w3e',

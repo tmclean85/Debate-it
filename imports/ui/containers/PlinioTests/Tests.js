@@ -18,6 +18,7 @@ import { Organizations,
          Debates,
          UserAtDebate
 } from '../../../api/publications';
+import { UsersProfile } from '../../../api/publications';
 
 import './styles.css';
 
@@ -79,6 +80,7 @@ class Tests extends Component {
       console.log('reset done');
     });
   }
+
   
   handleInsertOne = () => {
     Meteor.call('test.insertOne', (error, result) => {
@@ -118,7 +120,10 @@ class Tests extends Component {
 
     const userAtDebateList = this.props.userAtDebate.map(item => (
       <li key={item.user_id+'-'+item.debate_id}>{item.user_id} - {item.debate_id}</li>    
-    ));      
+    ));
+
+    console.log('usersProfile');
+    console.log(this.props.usersProfile);
 
     return (
       <div className="tests">
@@ -212,6 +217,9 @@ class Tests extends Component {
 
       </div>
     );
+
+    // Meteor.loginWithPassword('john@example.com', '1q2w3e')
+    // Meteor.logout()
   }
 }
 
@@ -219,6 +227,7 @@ export default createContainer(() => {
   Meteor.subscribe('debates');
   Meteor.subscribe('users');
   Meteor.subscribe('users.list');
+  Meteor.subscribe('users.profile');
   Meteor.subscribe('userAtDebate');
   Meteor.subscribe('organizations');
   
@@ -226,6 +235,7 @@ export default createContainer(() => {
     debates: Debates.find().fetch(),
     users: Users.find().fetch(),
     users1: Meteor.users.find({}).fetch(),
+    userLogged: Meteor.call('user.insert'()),
     userAtDebate: UserAtDebate.find().fetch(),
     organizations: Organizations.find({}).fetch()
   };
