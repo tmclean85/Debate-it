@@ -2,7 +2,7 @@ import React from 'react';
 import Moment from 'moment';
 import { Form } from 'neoform';
 
-import { RaisedButton, FlatButton, SelectField, MenuItem } from 'material-ui';
+import { RaisedButton, FlatButton, SelectField, MenuItem, TextField } from 'material-ui';
 import {
     Step,
     Stepper,
@@ -24,7 +24,7 @@ const styles = {
     }
 };
 
-const DebateCreate = ({ dispatch, stepIndex, userData, convertDuration }) => {
+const DebateCreate = ({ dispatch, stepIndex, userData, convertDuration, onSubmit }) => {
 
 
     function renderStepActions(step) {
@@ -35,7 +35,7 @@ const DebateCreate = ({ dispatch, stepIndex, userData, convertDuration }) => {
                     disableTouchRipple
                     disableFocusRipple
                     secondary
-                    onTouchTap={(step === 3) ? () => handleSubmit() : () => dispatch(stepForward(step))}
+                    onTouchTap={(step === 3) ? () => onSubmit() : () => dispatch(stepForward(step))}
                     style={{ marginRight: 12 }}
                 />
                 {step > 0 && (
