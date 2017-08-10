@@ -7,20 +7,16 @@ import { Debates } from '../../../api/publications';
 class TestHome extends Component {
 
   render() {
-
     return (
-      <div>
-        <h2>Test home</h2>
-
-      </div>
-    )
+      <Home debateData={this.props.debates}/>
+    );
   }
 }
 
 export default createContainer(() => {
-  Meteor.subscribe('users.list');
+  Meteor.subscribe('debates.list');
 
   return {
-    users: Meteor.users.find({}).fetch()
+    users: Meteor.debates.find({}).fetch()
   };
 }, TestHome);

@@ -9,7 +9,6 @@ import Home from './Home';
 
 class HomeContainer extends Component {
 
-
   render() {
     return (
       <Home debateData={this.props.debates}/>
@@ -23,9 +22,8 @@ export default createContainer(() => {
   Meteor.subscribe('userAtDebate');
   Meteor.subscribe('organizations');
   
-  
   return {
-    debates: Debates.find().fetch(),
+    debates: Debates.find({}).fetch(),
     users: Users.find().fetch(),
     userAtDebate: UserAtDebate.find().fetch(),
     organizations: Organizations.find().fetch()

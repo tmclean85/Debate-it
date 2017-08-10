@@ -14,11 +14,9 @@ import {
 } from 'material-ui/Table';
 
 import { Organizations,
-         Users,
          Debates,
          UserAtDebate
 } from '../../../api/publications';
-import { UsersProfile } from '../../../api/publications';
 
 import './styles.css';
 
@@ -30,7 +28,6 @@ class Tests extends Component {
       debatesOpen: false,
       organizationsOpen: false,
       usersOpen: false,
-      users1Open: false,
       userAtDebateOpen: false,
     };
   }
@@ -51,10 +48,6 @@ class Tests extends Component {
     this.setState({usersOpen: true});
   };
 
-  handleUser1Open = () => {
-    this.setState({users1Open: true});
-  };
-
   handleUserAtDebateOpen = () => {
     this.setState({userAtDebateOpen: true});
   };
@@ -64,7 +57,6 @@ class Tests extends Component {
       debatesOpen: false,
       organizationsOpen: false,
       usersOpen: false,
-      users1Open: false,
       userAtDebateOpen: false,
 
       modalOpen: ''
@@ -92,6 +84,10 @@ class Tests extends Component {
     });
   }
 
+  handleInsertUser = () => {
+    console.log('will insert');
+  }
+
   render() {
 
     const actions = [
@@ -114,16 +110,9 @@ class Tests extends Component {
       <li key={item._id}>{item._id} - {item.name}</li>    
     ));
 
-    const user1List = this.props.users1.map(item => (
-      <li key={item._id}>{item._id} - {item.emails[0].address}</li>    
-    ));
-
     const userAtDebateList = this.props.userAtDebate.map(item => (
       <li key={item.user_id+'-'+item.debate_id}>{item.user_id} - {item.debate_id}</li>    
     ));
-
-    console.log('usersProfile');
-    console.log(this.props.usersProfile);
 
     return (
       <div className="tests">
@@ -148,10 +137,6 @@ class Tests extends Component {
             <tr>
               <td>Users</td>
               <td><RaisedButton label="Detail" onClick={this.handleUserOpen} /></td>
-            </tr>
-            <tr>
-              <td>Users1</td>
-              <td><RaisedButton label="Detail" onClick={this.handleUser1Open} /></td>
             </tr>
             <tr>
               <td>User at debate</td>
@@ -192,17 +177,6 @@ class Tests extends Component {
             { userList }
           </ul> 
         </Dialog>
-      
-        <Dialog
-          title="Users1"
-          actions={actions}
-          modal={true}
-          open={this.state.users1Open}
-        >
-          <ul>
-            { user1List }
-          </ul> 
-        </Dialog>
 
         <Dialog
           title="User at debate"
@@ -215,6 +189,17 @@ class Tests extends Component {
           </ul> 
         </Dialog>
 
+        <RaisedButton
+          label="Insert user"
+          primary={true}
+          onClick={() => this.handleInsertUser({
+            email: 'myself@example.com',
+            password: '1q2w3e',
+            name: 'myself really',
+            bio: 'hjlhjl hjk jkl hjk hjkl jklhjkl hjl hjl'
+          })}
+        />
+
       </div>
     );
 
@@ -225,16 +210,13 @@ class Tests extends Component {
 
 export default createContainer(() => {
   Meteor.subscribe('debates');
-  Meteor.subscribe('users');
-  Meteor.subscribe('users.list');
-  Meteor.subscribe('users.profile');
   Meteor.subscribe('userAtDebate');
+  Meteor.subscribe('users');
   Meteor.subscribe('organizations');
   
   return {
     debates: Debates.find().fetch(),
-    users: Users.find().fetch(),
-    users1: Meteor.users.find({}).fetch(),
+    users: Meteor.users.find().fetch(),
     userAtDebate: UserAtDebate.find().fetch(),
     organizations: Organizations.find({}).fetch()
   };

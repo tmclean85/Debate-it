@@ -1,5 +1,3 @@
-export const Users = new Mongo.Collection('users2');
-
 export const userInit = [
   {
     _id: '1',
