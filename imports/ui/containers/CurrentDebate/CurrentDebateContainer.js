@@ -79,7 +79,7 @@ const currentDebateContainer = createContainer(( params ) => {
 
   return {
     debates: Debates.find({ _id: params.match.params.id }).fetch(),
-    users: Users.find().fetch(),
+    users: Meteor.users.find().fetch(),
     userAtDebate: UserAtDebate.find().fetch(),
     organizations: Organizations.find().fetch()
   };

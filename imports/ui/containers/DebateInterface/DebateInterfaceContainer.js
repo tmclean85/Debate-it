@@ -44,10 +44,9 @@ class DebateInterfaceContainer extends Component {
         </div>    
         <div className="interface-attendees-box">
           {users.map(user =>
-            (<DebateAttendees 
+            (<DebateAttendees
               userData={user}
               key={user._id}
-              voteData={vote}
             />)
           )}           
         </div>  
