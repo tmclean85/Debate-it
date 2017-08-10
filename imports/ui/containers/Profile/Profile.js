@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import Avatar from 'material-ui/Avatar';
+import Gravatar from 'react-gravatar';
 import {List, ListItem} from 'material-ui/List';
 import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
 import Close from 'material-ui/svg-icons/navigation/close';
@@ -17,7 +17,7 @@ const Profile = ({userLogged, userData}) => {
       <div className="profile-wrapper">
         <Card>
           <div className="profile-main-box">
-            <Avatar size={100} src="" />
+            <Gravatar size={100} email={loggedInUser.emails[0].address} />
             <CardHeader
               title={loggedInUser.profile.name}
               subtitle={loggedInUser.emails[0].address}
