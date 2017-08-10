@@ -264,7 +264,6 @@ export default createContainer(() => {
     debates: Debates.find().fetch(),
     users: Users.find().fetch(),
     users1: Meteor.users.find({}).fetch(),
-    usersProfile: UsersProfile.find({}).fetch(),
     userLogged: Meteor.call('user.insert'()),
     userAtDebate: UserAtDebate.find().fetch(),
     organizations: Organizations.find({}).fetch()

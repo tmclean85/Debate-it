@@ -1,6 +1,6 @@
 import { allReset, allInsertOne } from './helpers/all';
 import { debateInsert } from './helpers/debates';
-import { userInsert } from './helpers/user';
+import { userInsert, userList } from './helpers/user';
 
 // All
 
