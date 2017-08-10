@@ -81,15 +81,6 @@ class Tests extends Component {
     });
   }
 
-  handleLogin = () => {
-    Meteor.call('user.login', {}, (error, result) => {
-      if (error) {
-        console.log('error', error);
-        return;
-      }
-      console.log('login done');
-    });
-  }
   
   handleInsertOne = () => {
     Meteor.call('test.insertOne', (error, result) => {
@@ -223,26 +214,6 @@ class Tests extends Component {
             { userAtDebateList }
           </ul> 
         </Dialog>
-
-        <h2>Profile</h2>
-
-        <RaisedButton
-          label="Add debate"
-          primary onClick={() => Meteor.call('user.insert', {
-              email: 'myself@example.com',
-              password: '1q2w3e',
-              name: 'myself really',
-              bio: 'hjklhjklh lhk jlh hlhjklhklh hjklhjkl'
-            },
-            (error, result) => {
-            if (error) {
-              console.log('error', error);
-              return;
-            }
-            console.log('insert done');
-          })
-          }
-        />
 
       </div>
     );
