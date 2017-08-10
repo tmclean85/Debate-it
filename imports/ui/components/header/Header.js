@@ -8,10 +8,6 @@ import { Link } from 'react-router-dom';
 import './styles.css';
 // import logo from '../../../images/debate-logo.png';
 
-function handleTouchTap() {
-  window.location.href = '/';
-}
-
 const styles = {
   title: {
     cursor: 'pointer',
@@ -21,9 +17,8 @@ const styles = {
 const Header = () => (
   <div>
     <AppBar
-          onTitleTouchTap={handleTouchTap}
           showMenuIconButton={false}
-          title={<span style={styles.title}>'Bate It</span>}
+          title={<span style={styles.title, styles.link}><Link to="/">'Bate It</Link></span>}
     >
     <Link to='/profile'>
       <RaisedButton label="My Profile" primary={true} buttonStyle={{
