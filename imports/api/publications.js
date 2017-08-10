@@ -1,6 +1,8 @@
 import { Mongo } from 'meteor/mongo';
 import { Meteor } from 'meteor/meteor';
 
+// import { userLogged } from './helpers/user';
+
 import { Debates } from './schemas/debates';
 import { Organizations } from './schemas/organizations';
 import { Users } from './schemas/users';
@@ -8,6 +10,8 @@ import { UserAtDebate } from './schemas/user-at-debate';
 
 // TODO: Remove in secure api
 export { Debates, Organizations, Users, UserAtDebate };
+
+const UserProfile = new Mongo.Collection(null);
 
 if (Meteor.isServer) {
 
@@ -29,6 +33,10 @@ if (Meteor.isServer) {
   Meteor.publish('users', function users2Publication() {
     // Provisory
     return Users.find();
+  })
+
+  Meteor.publish('users.profile', function users2Publication() {
+    return UsersProfile.find({});
   })
 
   // userAtDebate

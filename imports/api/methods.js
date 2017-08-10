@@ -1,6 +1,6 @@
 import { allReset, allInsertOne } from './helpers/all';
 import { debateInsert } from './helpers/debates';
-import { userInsert } from './helpers/user';
+import { userInsert, userList } from './helpers/user';
 
 // All
 
@@ -39,6 +39,15 @@ Meteor.methods({
       name: item.name,
       bio: item.bio
     });
+  }
+});
+
+Meteor.methods({
+  'user.getLogged'() {
+    return {
+      id: '1',
+      name: 'what I want when I want'
+    }
   }
 });
 
