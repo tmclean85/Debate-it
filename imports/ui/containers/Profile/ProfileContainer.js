@@ -12,7 +12,6 @@ class ProfileContainer extends Component {
   render() {
     const thisUser = this.props.userLogged;
     const userData = this.props.users;
-    // console.log(userData)
     return (
         <Profile 
           userLogged={ thisUser }
