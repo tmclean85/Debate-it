@@ -1,7 +1,7 @@
 import { allReset, allInsertOne } from './helpers/all';
 import { debateInsert } from './helpers/debates';
 import { userInsert, userList } from './helpers/user';
-import { unsertUserAtDebate } from './helpers/user-at-debate';
+import { userAtDebateInsert } from './helpers/user-at-debate';
 
 // All
 
@@ -54,7 +54,7 @@ Meteor.methods({
 Meteor.methods({
   'userAtDebate.insert'(item) {
     // TODO: To be used in a component to be determined, when someone signs up for a deabte
-    return userAtDebateInsert({
+    userAtDebateInsert({
       user_id: item.user_id,
       debate_id: item.debate_id
     });

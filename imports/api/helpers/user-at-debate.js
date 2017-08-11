@@ -1,7 +1,8 @@
-import { Debate } from '../schemas/debates';
-import { userGetAll } from './user';
+//import { Debate } from '../schemas/debates';
+//import { userGetAll } from './user';
+import { UserAtDebate } from '../schemas/user-at-debate';
 
-export function userAtDebateInsert() {
+export function userAtDebateInsert(item) {
 
   try {
 
@@ -11,9 +12,9 @@ export function userAtDebateInsert() {
       item.debate_id;
     */
 
-    const users = userGetAll();
+    //const users = userGetAll();
 
-    return userAtDebate.insert({
+    return UserAtDebate.insert({
       user_id: item.user_id,
       debate_id: item.debate_id,
       confByYes: false, 
