@@ -35,9 +35,9 @@ export function usersReset () {
   const array = getResetArray();
 
   Meteor.users.remove({});
+  
   array.forEach(item => {
-      Accounts.createUser({
-      _id: item._id,
+    Accounts.createUser({
       email : item.email,
       password : '1q2w3e',
       profile: {
@@ -46,6 +46,7 @@ export function usersReset () {
       }
     });
   });
+  return true;
 }
 
 function getResetArray() {

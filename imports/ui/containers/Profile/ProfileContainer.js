@@ -12,13 +12,10 @@ class ProfileContainer extends Component {
   render() {
     const thisUser = this.props.userLogged;
     const userData = this.props.users;
-    console.log("container", thisUser)
+    // console.log(userData)
     return (
         <Profile 
           userLogged={ thisUser }
-          userData={ userData }
-            
-          
         />
     )
   }
@@ -34,7 +31,7 @@ export default createContainer(() => {
   return {
     userLogged: Meteor.users.find({_id: Meteor.userId()}).fetch()[0],
     // debates: Debates.find().fetch(),
-    users: Users.find().fetch(),
+    users: Meteor.users.find().fetch(),
     // userAtDebate: UserAtDebate.find().fetch(),
     // organizations: Organizations.find().fetch()
   };

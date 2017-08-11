@@ -7,6 +7,7 @@ import { unsertUserAtDebate } from './helpers/user-at-debate';
 
 Meteor.methods({
   'debate.insert'(item) {
+    // For DebateCreate component
     debateInsert({
       question: item.question,
       yesUser_id: item.yesUser_id,
@@ -24,18 +25,21 @@ Meteor.methods({
 
 Meteor.methods({
   'test.reset'() {
+    // For Test component
     allReset();
   }
 });
 
 Meteor.methods({
   'test.insertOne'() {
+    // For Test component
     allInsertOne();
   }
 });
 
 Meteor.methods({
   'user.insert'(item) {
+    // For SignUp component
     userInsert({
       email: item.email,
       password: item.password,
@@ -49,6 +53,7 @@ Meteor.methods({
 
 Meteor.methods({
   'userAtDebate.insert'(item) {
+    // TODO: To be used in a component to be determined, when someone signs up for a deabte
     return userAtDebateInsert({
       user_id: item.user_id,
       debate_id: item.debate_id

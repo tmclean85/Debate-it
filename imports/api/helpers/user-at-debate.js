@@ -18,6 +18,7 @@ export function userAtDebateInsert() {
       debate_id: item.debate_id,
       confByYes: false, 
       confByNo: false,
+      attended: false,
       vote: null, 
       because: '', 
       goodPointsYes: 0,

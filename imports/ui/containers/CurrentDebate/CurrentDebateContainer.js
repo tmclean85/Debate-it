@@ -87,7 +87,9 @@ const currentDebateContainer = createContainer(( props ) => {
   Meteor.subscribe('organizations');
 
   return {
+
     debates: Debates.find({ _id: props.match.params.id }).fetch(),
+
     users: Meteor.users.find().fetch(),
     userAtDebate: UserAtDebate.find().fetch(),
     organizations: Organizations.find().fetch()

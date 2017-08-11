@@ -2,7 +2,7 @@ import { Meteor } from 'meteor/meteor';
 
 import { Debates, debatesInit } from '../schemas/debates';
 import { Organizations, organizationsInit } from '../schemas/organizations';
-import { Users, userInit } from '../schemas/users';
+import { Users, userGetAll, userInit } from '../schemas/users';
 import { UserAtDebate, userAtDebateInit } from '../schemas/user-at-debate';
 
 import { debateInsert } from '../helpers/debates';
@@ -14,14 +14,26 @@ export function allReset() {
 
     Organizations.remove({});
     Organizations.insert(organizationsInit[0]);
-
-    usersReset();
-
-    Users.remove({});
-    userInit.forEach(item => Users.insert(item));    
     
+    usersReset();
+      
     Debates.remove({});
-    debatesInit.forEach(item => Debates.insert(item));
+    // console.log('hi1');
+    // const users = new Mongo.Collection('users');
+    // console.log('hi2');
+    // const usrList = users.find();
+    // console.log('hi3');
+    // console.log('usrList',usrList);
+    debatesInit.forEach(item => Debates.insert({
+      question: item.question,
+      yesUser_id: 0,
+      yesBecause: item.yesBecause,
+      noUser_id: 0,
+      noBecause: item.noBecause,
+      location: item.location,
+      start: item.start,
+      end: item.end
+    }));
 
     UserAtDebate.remove({});
     userAtDebateInit.forEach(item => UserAtDebate.insert(item));
