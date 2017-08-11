@@ -2,11 +2,14 @@ import { Meteor } from 'meteor/meteor';
 import { Debates } from '../schemas/debates';
 import { Organizations } from '../schemas/organizations';
 
+export function debateGetIdByNum(i) {
+  const id = Debates.find({}).fetch()[i]._id;
+  return id;
+}
+
 export function debateInsert(item) {
 
   try {
-
-    console.log('will insert debate help', item);
 
     /*
     Validation

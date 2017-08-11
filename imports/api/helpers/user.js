@@ -1,7 +1,14 @@
 import { Meteor } from 'meteor/meteor';
 
 export function userGetAll() {
+
   return Meteor.users.find({});
+}
+
+export function userGetIdByNum(i) {
+
+  const id = Meteor.users.find({}).fetch()[i]._id;
+  return id;
 }
 
 export function userInsert(item) {
@@ -32,10 +39,9 @@ export function userAddTest() {
 
 export function usersReset () {
 
-  const array = getResetArray();
-
   Meteor.users.remove({});
-  
+
+  const array = getResetArray();
   array.forEach(item => {
     Accounts.createUser({
       email : item.email,
@@ -46,7 +52,6 @@ export function usersReset () {
       }
     });
   });
-  return true;
 }
 
 function getResetArray() {
