@@ -24,21 +24,21 @@ const App = props => (
   <MuiThemeProvider>
     <Provider store={store}>
     <Router>
-          <Switch>
-            <Layout>
-              <Route exact path="/" component={Home} />
-              <Route path="/plinio" component={PlinioTests} />
-              <Route exact path="/debate/:id" component={CurrentDebate} /> 
-              <Route path="/profile" component={Profile} />
-              <Route path="/interface" component={DebateInterface} />
-              <Route path="/404" component={NotFound} />
-              <Route path="/results" component={DebateResults} />
-              <Route path="/createdebate" component={DebateCreate} />
-              <Route path="/signup" component={SignUp} />
-              <Route path="/login" component={Login} /> 
-              <Route path="/debatorscreen" component={DebatorScreen} />
-            </Layout>
-          </Switch>
+      <Switch>
+        <Layout>
+          <Route exact path="/" component={Home} />
+          <Route path="/plinio" component={PlinioTests} />
+          <Route exact path="/debate/:id" component={CurrentDebate} /> 
+          <Route path="/profile" component={Profile} />
+          <Route path="/interface" component={DebateInterface} />
+          <Route path="/404" component={NotFound} />
+          <Route path="/results" component={DebateResults} />
+          <Route path="/createdebate" component={DebateCreate} />
+          <Route path="/signup" component={SignUp} />
+          <Route path="/login" component={Login} /> 
+          <Route path="/debatorscreen" component={DebatorScreen} />
+        </Layout>
+      </Switch>
     </Router>
     </Provider>
   </MuiThemeProvider>
