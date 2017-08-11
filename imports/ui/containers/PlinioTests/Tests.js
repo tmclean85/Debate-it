@@ -15,7 +15,8 @@ import {
 
 import { Organizations,
          Debates,
-         UserAtDebate
+         UserAtDebate,
+         debateWithAttendees
 } from '../../../api/publications';
 
 import './styles.css';
@@ -85,7 +86,7 @@ class Tests extends Component {
   }
 
   handleInsertUser = (item) => {
-        Meteor.call('user.insert', item, (error, result) => {
+    Meteor.call('user.insert', item, (error, result) => {
       if (error) {
         console.log('error', error);
         return;
@@ -94,9 +95,26 @@ class Tests extends Component {
     });
   }
 
+  // handleLastCall = (id) => {
+  //       Meteor.call('debateWithAttendees', id, (error, result) => {
+  //     if (error) {
+  //       console.log('error', error);
+  //       return;
+  //     }
+  //     console.log('success', result);
+  //   });
+  // }
+
   render() {
 
-    const UserProfile = new Mongo.Collection(null);
+    let myDebates = Meteor.call('debates.getProfileList', 2, (error, result) => {
+      if (error) {
+        console.log('error', error);
+        return;
+      }
+      console.log('success', result);
+
+    });
 
     const actions = [
       <RaisedButton
@@ -122,6 +140,7 @@ class Tests extends Component {
       <li key={item.user_id+'-'+item.debate_id}>{item.user_id} - {item.debate_id}</li>    
     ));
 
+    console.log(this.props.debateWithAttendees);
     return (
       <div className="tests">
         <h2>Tests</h2>
@@ -197,7 +216,7 @@ class Tests extends Component {
           </ul> 
         </Dialog>
 
-        <RaisedButton
+        {/* <RaisedButton
           label="Insert user"
           primary={true}
           onClick={() => this.handleInsertUser({
@@ -206,7 +225,7 @@ class Tests extends Component {
             name: 'myself really',
             bio: 'hjlhjl hjk jkl hjk hjkl jklhjkl hjl hjl'
           })}
-        />
+        /> */}
 
       </div>
     );
@@ -221,11 +240,15 @@ export default createContainer(() => {
   Meteor.subscribe('userAtDebate');
   Meteor.subscribe('users');
   Meteor.subscribe('organizations');
+  Meteor.subscribe('debateWithAttendees');
+  // const subDebAtt = Meteor.subscribe('debateWithAttendees', 1);
+  // const listDebAtt = Meteor.subscribe('debateWithAttendees', 1).find().fetch();
   
   return {
     debates: Debates.find().fetch(),
     users: Meteor.users.find().fetch(),
     userAtDebate: UserAtDebate.find().fetch(),
     organizations: Organizations.find().fetch()
+    // debateWithAttendees: debateWithAttendees.find().fetch()
   };
 }, Tests);

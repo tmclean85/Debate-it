@@ -1,5 +1,5 @@
 import { allReset, allInsertOne } from './helpers/all';
-import { debateInsert, debateUpdate } from './helpers/debates';
+import { debateInsert, debateUpdate, debateProfileGet } from './helpers/debates';
 import { userInsert, userList, userUpdate } from './helpers/user';
 import { userAtDebateInsert, userAtDebateVote } from './helpers/user-at-debate';
 
@@ -57,7 +57,7 @@ Meteor.methods({
 Meteor.methods({
   'userAtDebate.insert'(item) {
     // TODO: To be used in a component to be determined, when someone signs up for a deabte
-    return userAtDebateInsert({
+    userAtDebateInsert({
       user_id: item.user_id,
       debate_id: item.debate_id
     });
@@ -124,9 +124,7 @@ Meteor.methods({
 })
 
 Meteor.methods({
-  'userAtDebate.vote'(debateId, vote, loggedId) {
-    // TODO: implement and test
-    // Vote can be true=yes, false=no or null=abstain
-    return userAtDebateVote(debateId, vote, loggedId);
+  'debates.getProfileList'(id) {
+    return debateProfileGet(id);
   }
 })

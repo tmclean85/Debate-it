@@ -3,13 +3,9 @@ import { UserAtDebate }  from '../schemas/user-at-debate';
 import { userGetById, userGetIdByNum } from './user';
 import { debateGetById, debateGetIdByNum } from './debates';
 
-
 export function userAtDebateInsert(item) {
 
   try {
-
-    if (!userGetById(item.userId)) throw 'user invalid';
-    if (!debateGetById(item.debate_Id)) throw 'debate invalid';
 
     return UserAtDebate.insert({
       user_id: item.user_id,

@@ -24,7 +24,7 @@ export default createContainer(() => {
   
   return {
     debates: Debates.find().fetch(),
-    users: Users.find().fetch(),
+    users: Meteor.users.find().fetch(),
     userAtDebate: UserAtDebate.find().fetch(),
     organizations: Organizations.find().fetch()
   };

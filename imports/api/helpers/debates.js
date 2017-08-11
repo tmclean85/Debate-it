@@ -1,13 +1,26 @@
 import { Meteor } from 'meteor/meteor';
 import { Debates } from '../schemas/debates';
 import { Organizations } from '../schemas/organizations';
+import { UserAtDebate } from '../schemas/user-at-debate';
 
 import { userGetById } from './user';
 
 export function debateGetById(id) {
   const debate = Debates.find({ _id: id }).fetch();
-  console.log('debateGetById', user);
   return debate;
+}
+
+export function debateProfileGet(userId) {
+
+    console.log('debateProfileGet was called');
+    const id = debateGetIdByNum(0);
+    let list = Debates.find({_id: id}).fetch()[0];
+    console.log(list);
+    list.yesUser = Accounts.users.find({_id: list.yesUser_id}).fetch()[0];
+    list.noUser = Accounts.users.find({_id: list.noUser_id}).fetch()[0];
+    list.attedeedList = UserAtDebate.find({ debate_id: id}).fetch();
+
+    return list;
 }
 
 export function debateGetIdByNum(i) {
