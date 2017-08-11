@@ -16,7 +16,7 @@ export function userInsert(item) {
   });  
 }
 
-export function userTestInsert() {
+export function userAddTest() {
 
   const count = Meteor.users.find({}).count() + 1;
 
