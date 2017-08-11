@@ -27,4 +27,11 @@
 
 .debate-time-wrapper {
     display: flex;
+    width: 100%;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
 }
+
+/* .position-header > img {
+    border-radius: 50%;
+} */

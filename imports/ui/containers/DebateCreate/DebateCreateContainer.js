@@ -7,7 +7,7 @@ import Moment from 'moment';
 import { setValue, getValue } from 'neoform-plain-object-helpers';
 import { captureFormInput, setStartTime, setEndTime } from '../../../redux/modules/create';
 import DebateCreate from './DebateCreate';
-import { Organizations, Users, Debates } from '../../../api/publications';
+import { Organizations, Debates } from '../../../api/publications';
 
 import './styles.css';
 
@@ -89,7 +89,7 @@ const debateCreateContainer = createContainer(() => {
 
   return {
     debates: Debates.find().fetch(),
-    users: Users.find().fetch(),
+    users: Meteor.users.find().fetch(),
     organizations: Organizations.find().fetch()
   };
 }, DebateCreateContainer);

@@ -9,7 +9,6 @@ import DebateDetails from './DebateDetails';
 import DebateAttendees from './DebateAttendees';
 import { createContainer } from 'meteor/react-meteor-data';
 import { Organizations,
-         Users,
          Debates,
          UserAtDebate  
 } from '../../../api/publications';
@@ -22,8 +21,13 @@ class CurrentDebateContainer extends Component {
   render() {
     const users = this.props.users;
     const debate = this.props.debates[0];
+    const yesUser = Meteor.users.find({ _id: "67goSz8AZTz8JE2wY" }).fetch();
+    const noUser = Meteor.users.find({ _id: "W6ksABKRMcrSxPvLz" }).fetch();
+    // remove this hardcoding after plinio has fixed
 
-    if (!debate) return <Loader />;
+    if (!debate || !yesUser || !noUser) {
+      return <Loader />;
+    } else {
     return (
       <div className="current-debate-wrapper">
         <Tabs
@@ -32,7 +36,11 @@ class CurrentDebateContainer extends Component {
         >
           <Tab label="DETAILS" value="a">
             <div>
-              <DebateDetails debateData={debate} />
+              <DebateDetails 
+                debateData={debate}
+                yesUserData={yesUser[0]}
+                noUserData={noUser[0]} 
+              />
             </div>
           </Tab>
           <Tab label="ATTENDEES" value="b">
@@ -60,6 +68,7 @@ class CurrentDebateContainer extends Component {
         </Tabs>
       </div>
     );
+    }
   }
 };
 
@@ -71,14 +80,16 @@ function mapStateFromProps(state) {
 }
 
 
-const currentDebateContainer = createContainer(( params ) => {
+const currentDebateContainer = createContainer(( props ) => {
   Meteor.subscribe('debates');
   Meteor.subscribe('users');
   Meteor.subscribe('userAtDebate');
   Meteor.subscribe('organizations');
 
   return {
-    debates: Debates.find({ _id: params.match.params.id }).fetch(),
+
+    debates: Debates.find({ _id: props.match.params.id }).fetch(),
+
     users: Meteor.users.find().fetch(),
     userAtDebate: UserAtDebate.find().fetch(),
     organizations: Organizations.find().fetch()
