@@ -7,6 +7,7 @@ import { userAtDebateInsert, userAtDebateVote } from './helpers/user-at-debate';
 
 Meteor.methods({
   'debate.insert'(item) {
+    console.log(will )
     // For DebateCreate component
     debateInsert({
       question: item.question,
