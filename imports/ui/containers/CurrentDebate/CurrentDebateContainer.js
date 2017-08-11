@@ -33,8 +33,11 @@ class CurrentDebateContainer extends Component {
 
   render() {
     const users = this.props.users;
-    const usersAtDebate = this.props.userAtDebate;
+    const usersAtDebate = this.props.usersAtDebate;
     const debate = this.props.debates[0];
+    const attendingUsers = this.props.attendingUsers;
+
+    console.log(attendingUsers);
     // remove this hardcoding after plinio has fixed
 
     if (!debate) {
@@ -108,7 +111,18 @@ const currentDebateContainer = createContainer((props) => {
     users: Meteor.users.find().fetch(),
     yesUser: Meteor.users.find({ "profile.name": "James Smith" }).fetch(),
     noUser: Meteor.users.find({ "profile.name": "Michael Jones" }).fetch(),
-    userAtDebate: UserAtDebate.find({ debate_id: "1" }).fetch(), //change this to props match as above
+    attendingUsers: Meteor.userAtDebate.aggregate([
+      {
+        $lookup:
+        {
+          from: "users",
+          localField: "_id",
+          foreignField: "user_id",
+          as: "profile-information"
+        }
+      }
+    ]),
+    usersAtDebate: UserAtDebate.find({ debate_id: props.match.params.id }).fetch(), //change this to props match as above
     organizations: Organizations.find().fetch()
   };
 }, CurrentDebateContainer);
