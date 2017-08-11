@@ -84,11 +84,19 @@ class Tests extends Component {
     });
   }
 
-  handleInsertUser = () => {
-    console.log('will insert');
+  handleInsertUser = (item) => {
+        Meteor.call('user.insert', item, (error, result) => {
+      if (error) {
+        console.log('error', error);
+        return;
+      }
+      console.log('user inserted', result);
+    });
   }
 
   render() {
+
+    const UserProfile = new Mongo.Collection(null);
 
     const actions = [
       <RaisedButton
@@ -218,6 +226,6 @@ export default createContainer(() => {
     debates: Debates.find().fetch(),
     users: Meteor.users.find().fetch(),
     userAtDebate: UserAtDebate.find().fetch(),
-    organizations: Organizations.find({}).fetch()
+    organizations: Organizations.find().fetch()
   };
 }, Tests);
