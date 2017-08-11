@@ -5,7 +5,7 @@ import Avatar from 'material-ui/Avatar';
 
 const DebateAttendees = ({ userData, icon }) => (
     <ListItem
-        primaryText={userData.name}
+        primaryText={userData.profile.name}
         leftAvatar={<Avatar src="" />}
         rightIcon={icon}
     />

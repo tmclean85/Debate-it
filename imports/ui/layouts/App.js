@@ -16,6 +16,7 @@ import DebateInterface from '../containers/DebateInterface';
 import DebateResults from '../containers/DebateResults';
 import SignUp from '../containers/SignUp';
 import Login from '../containers/Login';
+import DebatorScreen from '../containers/DebatorScreen';
 
 injectTapEventPlugin();
 
@@ -27,7 +28,7 @@ const App = props => (
             <Layout>
               <Route exact path="/" component={Home} />
               <Route path="/plinio" component={PlinioTests} />
-              <Route path="/currentDebate" component={CurrentDebate} /> 
+              <Route exact path="/debate/:id" component={CurrentDebate} /> 
               <Route path="/profile" component={Profile} />
               <Route path="/interface" component={DebateInterface} />
               <Route path="/404" component={NotFound} />
@@ -35,6 +36,7 @@ const App = props => (
               <Route path="/createdebate" component={DebateCreate} />
               <Route path="/signup" component={SignUp} />
               <Route path="/login" component={Login} /> 
+              <Route path="/debatorscreen" component={DebatorScreen} />
             </Layout>
           </Switch>
     </Router>

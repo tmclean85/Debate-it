@@ -9,10 +9,10 @@ import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'm
 import { Organizations,
          Users,
          Debates,
-         UserAtDebate  
+         UserAtDebate
 } from '../../../api/publications';
-import DebateAttendees from '../CurrentDebate/DebateAttendees';
-        
+import Attendees from '../../components/Attendees';
+
 import './styles.css';
 
 
@@ -24,7 +24,9 @@ class DebateInterfaceContainer extends Component {
   handleChange = (event, index, value) => this.setState({value});
 
   render() {
-    const { users } = this.props;
+    const users = this.props.users;
+    const vote = this.props.userAtDebate
+    console.log(vote)
     return (
     <div className="debate-interface-page">
       <div className="debate-interface-wrapper">
@@ -42,8 +44,8 @@ class DebateInterfaceContainer extends Component {
         </div>    
         <div className="interface-attendees-box">
           {users.map(user =>
-            (<DebateAttendees 
-              userData={user} 
+            (<Attendees
+              userData={user}
               key={user._id}
             />)
           )}           
@@ -93,7 +95,7 @@ export default createContainer(() => {
   
   return {
     debates: Debates.find().fetch(),
-    users: Users.find().fetch(),
+    users: Meteor.users.find().fetch(),
     userAtDebate: UserAtDebate.find().fetch(),
     organizations: Organizations.find().fetch()
   };

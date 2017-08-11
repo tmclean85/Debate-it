@@ -2,63 +2,59 @@ import React from 'react';
 import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
 import Subheader from 'material-ui/Subheader';
 import Divider from 'material-ui/Divider';
+import Moment from 'moment';
 import RaisedButton from 'material-ui/RaisedButton';
 import Paper from 'material-ui/Paper';
 import Avatar from 'material-ui/Avatar';
 import './styles';
 
-const DebateAttendees = () => (
+const DebateDetails = ({ debateData }) => (
     <Card>
+        {console.log(debateData)}
         <div className="debate-title-wrapper">
             <div>
-                <Subheader>LOCATION: IN THE KITCHEN</Subheader>
+                <div className="debate-time-wrapper">
+                    <Subheader>{`START: ${Moment(debateData.start).format("h:mm a")}`}</Subheader>
+                    <Subheader>{`END: ${Moment(debateData.end).format("h:mm a")}`}</Subheader>
+                </div>
                 <Divider />
-                <Subheader>DURATION: 35 MINUTES</Subheader>
+                <Subheader>{`LOCATION: ${debateData.location.toUpperCase()}`}</Subheader>
             </div>
-
             <CardActions>
                 <RaisedButton label="JOIN" primary />
             </CardActions>
         </div>
         <CardTitle
-            title="Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-                    Donec vulputate interdum sollicitudin."
+            title={`${debateData.question}?`}
         />
         <div className="debators-wrapper">
             <Paper zDepth={1}>
                 <CardHeader
-                    title="URL Avatar"
+                    title={`${debateData.yesUser_id}`}
                     avatar="images/jsa-128.jpg"
                 >
                     YES because...
                 </CardHeader>
                 <CardText>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-                    Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
-                    Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
+                    {`${debateData.yesBecause}`}
                 </CardText>
             </Paper>
             <Paper zDepth={1}>
                 <CardHeader
-                    title="URL Avatar"
+                    title={`${debateData.yesUser_id}`}
                     avatar="images/jsa-128.jpg"
                 >
                     NO because...
                 </CardHeader>
                 <CardText>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-                    Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
-                    Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
+                    {`${debateData.noBecause}`}
                 </CardText>
             </Paper>
         </div>
     </Card>
 );
 
-export default DebateAttendees;
+export default DebateDetails;
 
 
 
