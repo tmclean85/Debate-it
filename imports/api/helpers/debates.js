@@ -18,6 +18,7 @@ export function debateInsert(item) {
       item.location;
       item.start;
       item.end;
+      item.closed;
     */
 
     const org = Organizations.find({}).fetch()[0];
@@ -34,7 +35,8 @@ export function debateInsert(item) {
       }, 
       location: item.location,
       start: item.start, 
-      end: item.end
+      end: item.end,
+      closed: false
     });
 
   } catch(e) {

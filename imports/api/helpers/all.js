@@ -32,7 +32,8 @@ export function allReset() {
       noBecause: item.noBecause,
       location: item.location,
       start: item.start,
-      end: item.end
+      end: item.end,
+      closed: false
     }));
 
     UserAtDebate.remove({});
@@ -60,7 +61,8 @@ export function allInsertOne() {
       }, 
       location: 'Kitchen',
       start: '2017-09-01 19:00:00', 
-      end: '2017-09-02 20:00:00'
+      end: '2017-09-02 20:00:00',
+      closed: false
     });
 
     Debates.insert({
@@ -75,7 +77,8 @@ export function allInsertOne() {
       }, 
       location: 'Kitchen',
       start: '2017-09-01 19:00:00', 
-      end: '2017-09-02 20:00:00'
+      end: '2017-09-02 20:00:00',
+      closed: false
     });
 
     UserAtDebate.insert({
