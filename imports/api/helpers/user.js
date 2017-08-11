@@ -1,7 +1,20 @@
 import { Meteor } from 'meteor/meteor';
 
 export function userGetAll() {
+
   return Meteor.users.find({});
+}
+
+export function userGetById(id) {
+  const user = Meteor.users.find({ _id: id }).fetch();
+  console.log('userGetById', user);
+  return user;
+}
+
+export function userGetIdByNum(i) {
+
+  const id = Meteor.users.find({}).fetch()[i]._id;
+  return id;
 }
 
 export function userInsert(item) {
@@ -16,7 +29,18 @@ export function userInsert(item) {
   });  
 }
 
-export function userTestInsert() {
+export function userUpdate(name, bio, id)  {
+  try {
+    Meteor.users.update(id, {$set: {'profile.name': name, 'profile.bio': bio}});
+  } catch(e) {
+    console.log('error at userUpdate', e);
+    throw new Meteor.Error('error at userUpdate', e);
+  }
+} 
+
+// Tests
+
+export function userAddTest() {
 
   const count = Meteor.users.find({}).count() + 1;
 
@@ -32,10 +56,9 @@ export function userTestInsert() {
 
 export function usersReset () {
 
-  const array = getResetArray();
-
   Meteor.users.remove({});
-  
+
+  const array = getResetArray();
   array.forEach(item => {
     Accounts.createUser({
       email : item.email,
@@ -46,7 +69,6 @@ export function usersReset () {
       }
     });
   });
-  return true;
 }
 
 function getResetArray() {
