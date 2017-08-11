@@ -12,8 +12,8 @@ export function userAtDebateInsert(item) {
     if (!debateGetById(item.debate_Id)) throw 'debate invalid';
 
     return UserAtDebate.insert({
-      user_id: userGetIdByNum(item.user_id),
-      debate_id: debateGetIdByNum(item.debate_id),
+      user_id: item.user_id,
+      debate_id: item.debate_id,
       confByYes: false, 
       confByNo: false,
       attended: false,
