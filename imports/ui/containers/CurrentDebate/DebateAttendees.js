@@ -6,8 +6,8 @@ import Gravatar from 'react-gravatar';
 
 const DebateAttendees = ({ userData, icon }) => (
     <ListItem
-        primaryText={userData.profile.name}
-        leftAvatar={<Gravatar email={userData.emails[0].address} />}
+        //primaryText={userData}
+        //leftAvatar={<Gravatar email={userData.emails[0].address} />}
         rightIcon={icon}
     />
 );

@@ -54,7 +54,7 @@ Meteor.methods({
 Meteor.methods({
   'userAtDebate.insert'(item) {
     // TODO: To be used in a component to be determined, when someone signs up for a deabte
-    return userAtDebateInsert({
+    userAtDebateInsert({
       user_id: item.user_id,
       debate_id: item.debate_id
     });

@@ -3,7 +3,6 @@ import { UserAtDebate }  from '../schemas/user-at-debate';
 import { userGetById, userGetIdByNum } from './user';
 import { debateGetById, debateGetIdByNum } from './debates';
 
-
 export function userAtDebateInsert(item) {
 
   try {

@@ -9,7 +9,7 @@ import Paper from 'material-ui/Paper';
 import Avatar from 'material-ui/Avatar';
 import './styles';
 
-const DebateDetails = ({ debateData, yesUserData, noUserData  }) => (
+const DebateDetails = ({ debateData, yesUserData, noUserData, joinDebateSubmit  }) => (
     <Card>
         <div className="debate-title-wrapper">
             <div>
@@ -21,7 +21,11 @@ const DebateDetails = ({ debateData, yesUserData, noUserData  }) => (
                 <Subheader>{`LOCATION: ${debateData.location.toUpperCase()}`}</Subheader>
             </div>
             <CardActions>
-                <RaisedButton label="JOIN" primary />
+                <RaisedButton 
+                    label="JOIN" 
+                    primary
+                    onTouchTap={() => joinDebateSubmit()} 
+                />
             </CardActions>
         </div>
         <CardTitle
@@ -31,8 +35,8 @@ const DebateDetails = ({ debateData, yesUserData, noUserData  }) => (
             <Paper zDepth={1}>
                 <CardHeader
                     className="position-header"
-                    title={`${yesUserData.profile.name}`}
-                    avatar={<Gravatar email={yesUserData.emails[0].address} />}
+                    //title={`${yesUserData.profile.name}`}
+                    //avatar={<Gravatar email={yesUserData.emails[0].address} />}
                 >
                     YES because...
                 </CardHeader>
@@ -43,8 +47,8 @@ const DebateDetails = ({ debateData, yesUserData, noUserData  }) => (
             <Paper zDepth={1}>
                 <CardHeader
                     className="position-header"
-                    title={`${noUserData.profile.name}`}
-                    avatar={<Gravatar email={noUserData.emails[0].address} />}
+                    //title={`${noUserData.profile.name}`}
+                    //avatar={<Gravatar email={noUserData.emails[0].address} />}
                 >
                     NO because...
                 </CardHeader>
