@@ -1,6 +1,7 @@
 import React from 'react';
 import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
 import Subheader from 'material-ui/Subheader';
+import Gravatar from 'react-gravatar';
 import Divider from 'material-ui/Divider';
 import Moment from 'moment';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -8,14 +9,13 @@ import Paper from 'material-ui/Paper';
 import Avatar from 'material-ui/Avatar';
 import './styles';
 
-const DebateDetails = ({ debateData }) => (
+const DebateDetails = ({ debateData, yesUserData, noUserData  }) => (
     <Card>
-        {console.log(debateData)}
         <div className="debate-title-wrapper">
             <div>
                 <div className="debate-time-wrapper">
-                    <Subheader>{`START: ${Moment(debateData.start).format("h:mm a")}`}</Subheader>
-                    <Subheader>{`END: ${Moment(debateData.end).format("h:mm a")}`}</Subheader>
+                    <Subheader>{`START: ${Moment(debateData.start).format("h:mma")}`}</Subheader>
+                    <Subheader>{`END: ${Moment(debateData.end).format("h:mma")}`}</Subheader>
                 </div>
                 <Divider />
                 <Subheader>{`LOCATION: ${debateData.location.toUpperCase()}`}</Subheader>
@@ -30,8 +30,9 @@ const DebateDetails = ({ debateData }) => (
         <div className="debators-wrapper">
             <Paper zDepth={1}>
                 <CardHeader
-                    title={`${debateData.yesUser_id}`}
-                    avatar="images/jsa-128.jpg"
+                    className="position-header"
+                    title={`${yesUserData.profile.name}`}
+                    avatar={<Gravatar email={yesUserData.emails[0].address} />}
                 >
                     YES because...
                 </CardHeader>
@@ -41,8 +42,9 @@ const DebateDetails = ({ debateData }) => (
             </Paper>
             <Paper zDepth={1}>
                 <CardHeader
-                    title={`${debateData.yesUser_id}`}
-                    avatar="images/jsa-128.jpg"
+                    className="position-header"
+                    title={`${noUserData.profile.name}`}
+                    avatar={<Gravatar email={noUserData.emails[0].address} />}
                 >
                     NO because...
                 </CardHeader>
