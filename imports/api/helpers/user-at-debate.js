@@ -1,17 +1,15 @@
 import { UserAtDebate }  from '../schemas/user-at-debate';
 
-import { userGetIdByNum } from './user';
-import { debateGetIdByNum } from './debates';
+import { userGetById, userGetIdByNum } from './user';
+import { debateGetById, debateGetIdByNum } from './debates';
 
-export function userAtDebateInsert() {
+
+export function userAtDebateInsert(item) {
 
   try {
 
-    /*
-    Validation
-      item.user_id;
-      item.debate_id;
-    */
+    if (!userGetById(item.userId)) throw 'user invalid';
+    if (!debateGetById(item.debate_Id)) throw 'debate invalid';
 
     return UserAtDebate.insert({
       user_id: userGetIdByNum(item.user_id),
@@ -28,8 +26,73 @@ export function userAtDebateInsert() {
   } catch(e) {
     throw new Meteor.Error(e);
   }
-
 }
+
+export function userAtDebateGetByIds(userId, debateId) {
+  
+  try {
+
+    item = UserAtDebate.find({ user_id: userId, debate_id: debateId })
+    return item;
+
+  } catch(e) {
+    console.log(e)
+    throw new Meteor.Error(e);
+  } 
+}
+
+export function userAtDebateConfirm(userId, debateId, loggedId) {
+  
+  try {
+    const debate = debateGetById(debateId);
+    if (!debate) throw 'debate invalid';
+
+    const old = userAtDebateGetByIds(userId, debateId);
+
+    if (debate.yesUser_id === loggedId) {
+      UserAtDebate.update({user_id: loggedId, debate_id: debateId}, { ...old, confByYes: true}); // QUESTION: Can I do this?
+    } else if (debate.noUser_id === loggedId) {
+      UserAtDebate.update({user_id: loggedId, debate_id: debateId}, { ...old, confByNo: true}); // QUESTION: Can I do this?
+    } else {
+      throw 'confirmer invalid';
+    }
+    
+  } catch(e) {
+    console.log(e)
+    throw new Meteor.Error(e);
+  } 
+}
+
+export function userAtDebateRemove(debateId, loggedId) {
+
+  try {
+    
+    UserAtDebate.remove({ _debate_id: debateId, user_id: loggedId });
+
+  } catch(e) {
+    console.log(e)
+    throw new Meteor.Error(e);
+  }
+}
+
+export function userAtDebateVote(debateId, vote, loggedId) {
+
+  try {
+
+    if (vote !== true && vote !== false && vote !== null) throw 'vote invalid';
+    if (!userGetById(loggedId)) throw 'user invalid';
+    
+    const old = debateGetById(debateId);
+    if (!old) throw 'debate invalid';
+
+    UserAtDebate.update({user_id: loggedId, debate_id: debateId}, { ...old, vote: vote}); // QUESTION: Can I do this?
+  } catch(e) {
+    console.log('userAtDebateVote', e)
+    throw new Meteor.Error('userAtDebateVote', e);
+  }
+}
+
+// Test
 
 export function userAtDebateReset() {
 

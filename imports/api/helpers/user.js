@@ -5,6 +5,12 @@ export function userGetAll() {
   return Meteor.users.find({});
 }
 
+export function userGetById(id) {
+  const user = Meteor.users.find({ _id: id }).fetch();
+  console.log('userGetById', user);
+  return user;
+}
+
 export function userGetIdByNum(i) {
 
   const id = Meteor.users.find({}).fetch()[i]._id;
@@ -22,6 +28,17 @@ export function userInsert(item) {
     }
   });  
 }
+
+export function userUpdate(name, bio, id)  {
+  try {
+    Meteor.users.update(id, {$set: {'profile.name': name, 'profile.bio': bio}});
+  } catch(e) {
+    console.log('error at userUpdate', e);
+    throw new Meteor.Error('error at userUpdate', e);
+  }
+} 
+
+// Tests
 
 export function userAddTest() {
 

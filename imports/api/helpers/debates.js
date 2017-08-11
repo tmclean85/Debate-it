@@ -2,6 +2,14 @@ import { Meteor } from 'meteor/meteor';
 import { Debates } from '../schemas/debates';
 import { Organizations } from '../schemas/organizations';
 
+import { userGetById } from './user';
+
+export function debateGetById(id) {
+  const debate = Debates.find({ _id: id }).fetch();
+  console.log('debateGetById', user);
+  return debate;
+}
+
 export function debateGetIdByNum(i) {
   const id = Debates.find({}).fetch()[i]._id;
   return id;
@@ -10,19 +18,9 @@ export function debateGetIdByNum(i) {
 export function debateInsert(item) {
 
   try {
-
-    /*
-    Validation
-      item.question;
-      item.yesUser_id;
-      item.yesBecause;
-      item.noUser_id;
-      item.noBecause;
-      item.location;
-      item.start;
-      item.end;
-      item.closed;
-    */
+    
+    if (!userGetById(item.yesUser_id)) throw 'user invalid';
+    if (!userGetById(item.noUser_id)) throw 'user invalid';
 
     const org = Organizations.find({}).fetch()[0];
 
@@ -44,11 +42,59 @@ export function debateInsert(item) {
 
   } catch(e) {
     console.log('error at help', e);
-      throw new Meteor.Error(e);
+    throw new Meteor.Error(e);
   }
 }
 
-export function debatesReset() {
+export function debateRemove(debateId, loggedId) {
+  try {
+    const old = Debates.find({_id: debateId}).fetch();
+    if (!old) throw 'debate being updated not found';
+    if (loggedId !== old.yesUser_id && loggedId !== old.noUser_id) throw 'invalid user at debate update';
+
+    Debates.remove({_id: debateId});
+
+  } catch(e) {
+    console.log('error at debateUpdate', e);
+    throw new Meteor.Error(e);
+  }
+}
+
+export function debateUpdate(form, loggedId) {
+
+  try {
+
+    const old = Debates.find({_id: form._id}).fetch();
+    if (!old) throw 'debate being updated not found';
+    if (loggedId !== old.yesUser_id && loggedId !== old.noUser_id) throw 'invalid user at debate update';
+
+    Debate.update(
+      { _id: form._id },
+      {
+        question: form.question, 
+        yesUser_id: old.yesUser_id, 
+        yesBecause: form.yesBecause,
+        noUser_id: old.noUser_id,
+        noBecause: form.noBecause,
+        organization: { 
+          name: old.name,
+          address: old.address
+        }, 
+        location: form.location,
+        start: form.start, 
+        end: form.end,
+        closed: old.closed
+      }
+    )
+  } catch(e) {
+    console.log('error at debateUpdate', e);
+    throw new Meteor.Error(e);
+  }
+}
+
+// Tests
+
+export function debateReset() {
 
     Debates.remove({});
     console.log('debates removed');

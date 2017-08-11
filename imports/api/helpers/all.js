@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 
 import { organizationsReset } from '../helpers/organizations';
-import { debatesReset, debateAddTest } from '../helpers/debates';
+import { debateReset, debateAddTest } from '../helpers/debates';
 import { usersReset, userAddTest } from '../helpers/user';
 import { userAtDebateReset, userAtDebateAddTest } from '../helpers/user-at-debate';
 
@@ -11,7 +11,7 @@ export function allReset() {
 
     organizationsReset();
     usersReset();
-    debatesReset();
+    debateReset();
     userAtDebateReset();
 
   } catch(e) {
