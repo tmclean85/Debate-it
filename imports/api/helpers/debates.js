@@ -24,7 +24,6 @@ export function debateProfileGet(userId) {
     item.name = user.profile.name;
     item.email = user.emails[0].address;
   });
- 
   return list;
 }
 
