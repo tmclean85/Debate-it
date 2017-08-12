@@ -6,13 +6,14 @@ import { usersReset, userAddTest } from '../helpers/user';
 import { userAtDebateReset, userAtDebateAddTest } from '../helpers/user-at-debate';
 
 export function allReset() {
-
+ 
   try {
 
     organizationsReset();
     usersReset();
     debateReset();
     userAtDebateReset();
+    Meteor.logout();
 
   } catch(e) {
     console.log('error', e);

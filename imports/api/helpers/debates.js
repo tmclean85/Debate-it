@@ -174,7 +174,7 @@ function getResetArray() {
       },
       {
         question: 'Is GMO safe', 
-        yesUser_id: 1, 
+        yesUser_id: 2, 
         yesBecause: 'Maecenas lorem. Pellentesque pretium lectus id turpis. Etiam sapien elit, consequat eget, tristique non, venenatis quis, ante. Fusce wisi. Phasellus faucibus molestie nisl. Fusce eget urna. ',
         noUser_id: 3,
         noBecause: 'Integer imperdiet lectus quis justo. Integer tempor. Vivamus ac urna vel leo pretium faucibus. Mauris elementum mauris vitae tortor. In dapibus augue non sapien. Aliquam ante. ',
@@ -189,7 +189,7 @@ function getResetArray() {
       },
       {
         question: 'Will the Large Hadron Collider destroy earth', 
-        yesUser_id: 2, 
+        yesUser_id: 4, 
         yesBecause: 'Fusce suscipit libero eget elit. Praesent vitae arcu tempor neque lacinia pretium. Morbi imperdiet, mauris ac auctor dictum, nisl ligula egestas nulla, et sollicitudin sem purus in lacus.',
         noUser_id: 3,
         noBecause: 'Nulla accumsan, elit sit amet varius semper, nulla mauris mollis quam, tempor suscipit diam nulla vel leo. Etiam commodo dui eget wisi. Donec iaculis gravida nulla. Donec quis nibh',
@@ -204,9 +204,9 @@ function getResetArray() {
       },
       {
         question: 'Should scientists mix human cells with animals', 
-        yesUser_id: 1, 
+        yesUser_id: 4, 
         yesBecause: ' Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. In convallis. Fusce suscipit libero eget elit. Praesent vitae arcu tempor neque lacinia pretium.',
-        noUser_id: 3,
+        noUser_id: 2,
         noBecause: 'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. In convallis. Fusce suscipit libero eget elit. Praesent vitae arcu tempor neque lacinia pretium. ',
         organization: { 
           name: 'Red Academy', 
@@ -218,4 +218,5 @@ function getResetArray() {
         closed: false
       }
     ];
+
 }

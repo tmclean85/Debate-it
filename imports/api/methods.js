@@ -1,6 +1,6 @@
 import { allReset, allInsertOne } from './helpers/all';
 import { debateInsert, debateUpdate, debateProfileGet } from './helpers/debates';
-import { userGetProfile, userInsert, userList, userUpdate } from './helpers/user';
+import { userGetProfile, userInsert, userList, userUpdate, userRecalcScore } from './helpers/user';
 import { userAtDebateInsert, userAtDebateVote } from './helpers/user-at-debate';
 
 // Debates
@@ -8,7 +8,7 @@ import { userAtDebateInsert, userAtDebateVote } from './helpers/user-at-debate';
 Meteor.methods({
   'debate.insert'(item) {
     // TODO: retest
-    console.log(will )
+
     // For DebateCreate component
     debateInsert({
       question: item.question,
@@ -65,6 +65,13 @@ Meteor.methods({
     return userGetProfile(id);
   }
 })
+
+Meteor.methods({
+  'user.recalcscore'(id) {
+    return userRecalcScore(id);
+  }
+})
+
 
 // UsersAtDebate
 
