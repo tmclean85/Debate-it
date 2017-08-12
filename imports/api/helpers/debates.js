@@ -11,15 +11,19 @@ export function debateGetById(id) {
 }
 
 
-export function debateProfileGet(id) {
-  
-  //const id = debateGetIdByNum(0); // This line only exists when testing
+export function debateProfileGet(userId) {
+
+  const id = debateGetIdByNum(0); // This line only exists when testing
   let list = Debates.find({_id: id}).fetch()[0];
-  
+
   list.yesUser = Meteor.users.find({_id: list.yesUser_id}).fetch()[0];
   list.noUser = Meteor.users.find({_id: list.noUser_id}).fetch()[0];
   list.attedeeList = UserAtDebate.find({ debate_id: id}).fetch();
-  list.attedeeList.forEach(item => {item.name = Meteor.users.find({_id: item.user_id}).fetch()[0].profile.name });
+  list.attedeeList.forEach(item => {
+    const user = Meteor.users.find({_id: item.user_id}).fetch()[0];
+    item.name = user.profile.name;
+    item.email = user.emails[0].address;
+  });
  
   return list;
 }
