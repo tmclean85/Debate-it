@@ -1,0 +1,21 @@
+.debateCardList-wrapper {
+    width: 100%;
+}
+
+.debate-header {
+    font-size:  1.4rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.current {
+    margin: 1% 0 0 3%;
+    color: #FF4081;
+    
+}
+
+.past {
+    text-align: right;
+    margin: 1% 3% 0 0;
+    color: #00BCD4;
+}

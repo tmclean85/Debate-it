@@ -32,24 +32,26 @@ class CurrentDebateContainer extends Component {
   }
 
   componentDidMount() {
-    Meteor.call('debates.getProfile', this.props.match.params.id, (error, result) => {
-      if (error) {
-        console.log('error', error);
-        return;
-      }
-        console.log(result);
-        this.props.dispatch(mapDebateInfoToState(result));
-        this.props.dispatch(loading(false));
-    })
+    // Meteor.call('debates.getProfile', this.props.match.params.id, (error, result) => {
+    //   if (error) {
+    //     console.log('error', error);
+    //     return;
+    //   }
+    //     console.log(result);
+    //     this.props.dispatch(mapDebateInfoToState(result));
+    //     this.props.dispatch(loading(false));
+    // })
   }
-
+  
   render() {
     const users = this.props.users;
     const usersAtDebate = this.props.usersAtDebate;
     const debate = this.props.debates[0];
     const attendingUsers = this.props.attendingUsers;
+    const ow = Accounts.users.filter(user => user._id === debate.yesUser_id);
+    
 
-    if (this.props.loading) {
+    if (!debate) {
       return <Loader />;
     } else {
       return (
@@ -62,8 +64,8 @@ class CurrentDebateContainer extends Component {
               <div>
                 <DebateDetails
                   debateData={debate}
-                  yesUserData={this.props.debateInfo.yesUser}
-                  noUserData={this.props.debateInfo.noUser}
+                  //yesUserData={ow[0]}
+                  //noUserData={this.props.debateInfo.noUser}
                   joinDebateSubmit={this.joinDebateSubmit.bind(this)}
                 />
               </div>
