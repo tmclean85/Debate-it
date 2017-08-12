@@ -3,14 +3,8 @@ import { Mongo } from 'meteor/mongo';
 import { Debates } from '../schemas/debates';
 import { UserAtDebate } from '../schemas/user-at-debate';
 
-export function userGetAll() {
-
-  return Meteor.users.find({});
-}
-
 export function userGetById(id) {
   const user = Meteor.users.find({ _id: id }).fetch();
-  console.log('userGetById', user);
   return user;
 }
 
@@ -20,11 +14,6 @@ export function userGetIdByNum(i) {
   return id;
 }
 
-export function getUserById(userId) {
-  id = userGetIdByNum(1); // for tests, else id = userId
-  return Meteor.users.find({_id: id});
-} 
-
 export function userInsert(item) {
   
   Accounts.createUser({
@@ -32,7 +21,9 @@ export function userInsert(item) {
     password : item.password,
     profile: {
       name: item.name,
-      bio: item.bio
+      bio: item.bio,
+      wins: 0,
+      losses: 0
     }
   });  
 }
@@ -103,6 +94,7 @@ export function userRecalcScore() {
   Meteor.users.update( { _id: id }, { $set: { 'profile.wins': wins, 'profile.losses': losses  }} )
   console.log(Meteor.users.find({ _id: id }).fetch());
 }
+
 // Tests
 
 export function userAddTest() {
@@ -114,7 +106,9 @@ export function userAddTest() {
     password : '1q2w3e',
     profile: {
       name: 'user'+count,
-      bio: 'hjhjhjlh hjklhjklhj hjklhjklh hjlhjhjklhj'
+      bio: 'hjhjhjlh hjklhjklhj hjklhjklh hjlhjhjklhj',
+      wins: 0,
+      losses: 0
     }
   });
 }

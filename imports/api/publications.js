@@ -5,7 +5,6 @@ import { publishComposite } from 'meteor/reywood:publish-composite';
 import { Debates } from './schemas/debates';
 import { Organizations } from './schemas/organizations';
 import { UserAtDebate } from './schemas/user-at-debate';
-import { getUserById } from './helpers/user';
 
 import { debateGetIdByNum }  from './helpers/debates';
 

@@ -1,5 +1,5 @@
 import { Meteor } from 'meteor/meteor';
-import { Debates } from '../schemas/debates';
+import { Debates, DebateSchema } from '../schemas/debates';
 import { Organizations } from '../schemas/organizations';
 import { UserAtDebate } from '../schemas/user-at-debate';
 
@@ -36,9 +36,22 @@ export function debateGetIdByNum(i) {
 export function debateInsert(item) {
 
   try {
-    
-    if (!userGetById(item.yesUser_id)) throw 'user invalid';
-    if (!userGetById(item.noUser_id)) throw 'user invalid';
+
+    console.log('will insert', item);
+
+    isValid = DebateSchema.namedContext("myContext").validate(item);
+    Meteor.startup(function() {
+      Tracker.autorun(function() {
+        var context = DebateSchema.namedContext("myContext");
+        if (!context.isValid()) {
+          // console.log(context.invalidKeys());
+          throw new Meteor.Error('schema', context.invalidKeys())
+        }
+      });
+    });
+
+    if (!userGetById(item.yesUser_id)) throw new Meteor.Error('invalid yesUser', [ { name: 'yesUser_id', type: 'inexistent', value: null } ])
+    if (!userGetById(item.noUser_id)) throw new Meteor.Error('invalid noUser', [ { name: 'noUser_id', type: 'inexistent', value: null } ])
 
     const org = Organizations.find({}).fetch()[0];
 
@@ -60,7 +73,7 @@ export function debateInsert(item) {
 
   } catch(e) {
     console.log('error at help', e);
-    throw new Meteor.Error(e);
+    throw e;
   }
 }
 
