@@ -166,7 +166,7 @@ function getResetArray() {
     },
     {
       user_id: 2,
-      debate_id: 0,
+      debate_id: 1,
       confByYes: true, 
       confByNo: true,
       attended: true,

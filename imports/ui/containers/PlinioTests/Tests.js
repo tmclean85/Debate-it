@@ -74,7 +74,6 @@ class Tests extends Component {
     });
   }
 
-  
   handleInsertOne = () => {
     Meteor.call('test.insertOne', (error, result) => {
       if (error) {
@@ -106,14 +105,13 @@ class Tests extends Component {
   // }
 
   render() {
-
-    let myDebates = Meteor.call('debates.getProfile', 2, (error, result) => {
+  
+    Meteor.call('debates.getProfile', 1, (error, result) => {
       if (error) {
         console.log('error', error);
         return;
       }
       console.log('success', result);
-
     });
 
     const actions = [
@@ -127,7 +125,7 @@ class Tests extends Component {
     const debateList = this.props.debates.map(item => (
       <li key={item._id}>{item._id} - {item.question}?</li>    
     ));
-
+  
     const organizationList = this.props.organizations.map(item => (
       <li key={item._id}>{item._id} - {item.name}</li>    
     ));
@@ -241,14 +239,11 @@ export default createContainer(() => {
   Meteor.subscribe('users');
   Meteor.subscribe('organizations');
   Meteor.subscribe('debateWithAttendees');
-  // const subDebAtt = Meteor.subscribe('debateWithAttendees', 1);
-  // const listDebAtt = Meteor.subscribe('debateWithAttendees', 1).find().fetch();
   
   return {
     debates: Debates.find().fetch(),
     users: Meteor.users.find().fetch(),
     userAtDebate: UserAtDebate.find().fetch(),
     organizations: Organizations.find().fetch()
-    // debateWithAttendees: debateWithAttendees.find().fetch()
   };
 }, Tests);

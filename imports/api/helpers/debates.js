@@ -1,5 +1,5 @@
 import { Meteor } from 'meteor/meteor';
-import { Debates } from '../schemas/debates';
+import { Debates, DebateSchema } from '../schemas/debates';
 import { Organizations } from '../schemas/organizations';
 import { UserAtDebate } from '../schemas/user-at-debate';
 
@@ -10,16 +10,20 @@ export function debateGetById(id) {
   return debate;
 }
 
-export function debateProfileGet(id) {
-  
-  //const id = debateGetIdByNum(0); // This line only exists when testing
+
+export function debateProfileGet(userId) {
+
+  const id = debateGetIdByNum(0); // This line only exists when testing
   let list = Debates.find({_id: id}).fetch()[0];
-  
+
   list.yesUser = Meteor.users.find({_id: list.yesUser_id}).fetch()[0];
   list.noUser = Meteor.users.find({_id: list.noUser_id}).fetch()[0];
   list.attedeeList = UserAtDebate.find({ debate_id: id}).fetch();
-  list.attedeeList.forEach(item => {item.name = Meteor.users.find({_id: item.user_id}).fetch()[0] });
- 
+  list.attedeeList.forEach(item => {
+    const user = Meteor.users.find({_id: item.user_id}).fetch()[0];
+    item.name = user.profile.name;
+    item.email = user.emails[0].address;
+  });
   return list;
 }
 
@@ -31,9 +35,22 @@ export function debateGetIdByNum(i) {
 export function debateInsert(item) {
 
   try {
-    
-    if (!userGetById(item.yesUser_id)) throw 'user invalid';
-    if (!userGetById(item.noUser_id)) throw 'user invalid';
+
+    console.log('will insert', item);
+
+    isValid = DebateSchema.namedContext("myContext").validate(item);
+    Meteor.startup(function() {
+      Tracker.autorun(function() {
+        var context = DebateSchema.namedContext("myContext");
+        if (!context.isValid()) {
+          // console.log(context.invalidKeys());
+          throw new Meteor.Error('schema', context.invalidKeys())
+        }
+      });
+    });
+
+    if (!userGetById(item.yesUser_id)) throw new Meteor.Error('invalid yesUser', [ { name: 'yesUser_id', type: 'inexistent', value: null } ])
+    if (!userGetById(item.noUser_id)) throw new Meteor.Error('invalid noUser', [ { name: 'noUser_id', type: 'inexistent', value: null } ])
 
     const org = Organizations.find({}).fetch()[0];
 
@@ -55,7 +72,7 @@ export function debateInsert(item) {
 
   } catch(e) {
     console.log('error at help', e);
-    throw new Meteor.Error(e);
+    throw e;
   }
 }
 
@@ -169,7 +186,7 @@ function getResetArray() {
       },
       {
         question: 'Is GMO safe', 
-        yesUser_id: 1, 
+        yesUser_id: 2, 
         yesBecause: 'Maecenas lorem. Pellentesque pretium lectus id turpis. Etiam sapien elit, consequat eget, tristique non, venenatis quis, ante. Fusce wisi. Phasellus faucibus molestie nisl. Fusce eget urna. ',
         noUser_id: 3,
         noBecause: 'Integer imperdiet lectus quis justo. Integer tempor. Vivamus ac urna vel leo pretium faucibus. Mauris elementum mauris vitae tortor. In dapibus augue non sapien. Aliquam ante. ',
@@ -184,7 +201,7 @@ function getResetArray() {
       },
       {
         question: 'Will the Large Hadron Collider destroy earth', 
-        yesUser_id: 2, 
+        yesUser_id: 4, 
         yesBecause: 'Fusce suscipit libero eget elit. Praesent vitae arcu tempor neque lacinia pretium. Morbi imperdiet, mauris ac auctor dictum, nisl ligula egestas nulla, et sollicitudin sem purus in lacus.',
         noUser_id: 3,
         noBecause: 'Nulla accumsan, elit sit amet varius semper, nulla mauris mollis quam, tempor suscipit diam nulla vel leo. Etiam commodo dui eget wisi. Donec iaculis gravida nulla. Donec quis nibh',
@@ -199,9 +216,9 @@ function getResetArray() {
       },
       {
         question: 'Should scientists mix human cells with animals', 
-        yesUser_id: 1, 
+        yesUser_id: 4, 
         yesBecause: ' Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. In convallis. Fusce suscipit libero eget elit. Praesent vitae arcu tempor neque lacinia pretium.',
-        noUser_id: 3,
+        noUser_id: 2,
         noBecause: 'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. In convallis. Fusce suscipit libero eget elit. Praesent vitae arcu tempor neque lacinia pretium. ',
         organization: { 
           name: 'Red Academy', 
@@ -213,4 +230,5 @@ function getResetArray() {
         closed: false
       }
     ];
+
 }

@@ -22,3 +22,4 @@ accounts-ui-unstyled
 accounts-password
 meteorhacks:aggregate
 reywood:publish-composite
+aldeed:simple-schema
