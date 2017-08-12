@@ -1,6 +1,7 @@
 import { Mongo } from 'meteor/mongo';
 import { Meteor } from 'meteor/meteor';
 
+import { publishComposite } from 'meteor/reywood:publish-composite';
 import { Debates } from './schemas/debates';
 import { Organizations } from './schemas/organizations';
 import { UserAtDebate } from './schemas/user-at-debate';
@@ -27,4 +28,34 @@ if (Meteor.isServer) {
     return Meteor.users.find();
   })
 
-}
+
+//   Meteor.publishComposite('yesUser', function (yesUserId) {
+//     return [{
+//         find: function() {
+//             return Debates.find({ yesUser_id: yesUserId });
+//         },
+//         children: [{
+//             find: function(yesUser) {
+//                 return Meteor.users.find({ 
+//                     id: yesUser 
+//                 }, { 
+//                    fields: { 
+//                         "profile": 1
+//                    } 
+//                 });
+//             }
+//         }]
+//     }]
+// });
+// }
+
+// [
+//     {
+//       find(comment, post) {
+//         // Find user that authored comment.
+//         return Meteor.users.find(
+//           { _id: comment.authorId },
+//           { fields: { profile: 1 } });
+//       }
+//     }
+//   ]

@@ -10,15 +10,15 @@ export function debateGetById(id) {
   return debate;
 }
 
-export function debateProfileGet(userId) {
+export function debateProfileGet(id) {
   
-  const id = debateGetIdByNum(0); // This line only exists when testing
+  //const id = debateGetIdByNum(0); // This line only exists when testing
   let list = Debates.find({_id: id}).fetch()[0];
   
-  list.yesUser = Accounts.users.find({_id: list.yesUser_id}).fetch()[0];
-  list.noUser = Accounts.users.find({_id: list.noUser_id}).fetch()[0];
+  list.yesUser = Meteor.users.find({_id: list.yesUser_id}).fetch()[0];
+  list.noUser = Meteor.users.find({_id: list.noUser_id}).fetch()[0];
   list.attedeeList = UserAtDebate.find({ debate_id: id}).fetch();
-  list.attedeeList.forEach(item => {item.name = Accounts.users.find({_id: item.user_id}).fetch()[0].profile.name });
+  list.attedeeList.forEach(item => {item.name = Meteor.users.find({_id: item.user_id}).fetch()[0].profile.name });
  
   return list;
 }
