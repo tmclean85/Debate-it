@@ -8,6 +8,11 @@ import { Organizations,
 import SignUp from './SignUp';
 
 class SignUpContainer extends Component {
+
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     return (
       <SignUp />
@@ -23,8 +28,9 @@ export default createContainer(() => {
   
   
   return {
+    userLogged: Meteor.users.find({_id: Meteor.userId()}).fetch()[0],    
     debates: Debates.find().fetch(),
-    users: Users.find().fetch(),
+    users: Meteor.users.find().fetch(),
     userAtDebate: UserAtDebate.find().fetch(),
     organizations: Organizations.find().fetch()
   };
