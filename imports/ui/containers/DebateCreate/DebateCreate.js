@@ -9,11 +9,12 @@ import {
     StepLabel,
     StepContent
 } from 'material-ui/Stepper';
+import AutoComplete from 'material-ui/AutoComplete';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import RadioButtonInput from './FormComponents/RadioButton';
 import TextInput from './FormComponents/TextInput';
-import SelectDrop from './FormComponents/SelectDrop';
+import TimeDrop from './FormComponents/TimeDrop';
 import SelectDebators from './FormComponents/SelectDebators';
 import { stepForward, stepBackward } from '../../../redux/modules/create';
 import './styles.css';
@@ -24,7 +25,8 @@ const styles = {
     }
 };
 
-const DebateCreate = ({ dispatch, stepIndex, userData, convertDuration, onSubmit }) => {
+
+const DebateCreate = ({ dispatch, stepData, stepIndex, userData, onSubmit, data, captureYesDebator, captureNoDebator, setDuration }) => {
 
 
     function renderStepActions(step) {
@@ -83,8 +85,11 @@ const DebateCreate = ({ dispatch, stepIndex, userData, convertDuration, onSubmit
                                 </div>
                                 <div className="details">
                                     <h2>Duration</h2>
-                                    <SelectDrop
-                                        onChange={convertDuration}
+                                    <TimeDrop
+                                        name="form.end"
+                                        durationValue={stepData.duration}
+                                        data={data}
+                                        setDuration={setDuration}
                                     />
                                 </div>
                             </div>
@@ -100,6 +105,8 @@ const DebateCreate = ({ dispatch, stepIndex, userData, convertDuration, onSubmit
                                     <SelectDebators
                                         name={'form.yesUser_id'}
                                         userData={userData}
+                                        captureDebatorName={captureYesDebator}
+                                        debatorName={stepData.debatorYes}
                                     />
                                 </div>
                                 <div className="argument-choice">
@@ -107,6 +114,8 @@ const DebateCreate = ({ dispatch, stepIndex, userData, convertDuration, onSubmit
                                     <SelectDebators
                                         name={'form.noUser_id'}
                                         userData={userData}
+                                        captureDebatorName={captureNoDebator}
+                                        debatorName={stepData.debatorNo}
                                     />
                                 </div>
                             </div>
@@ -154,7 +163,8 @@ const DebateCreate = ({ dispatch, stepIndex, userData, convertDuration, onSubmit
 
 function mapStateToProps(state) {
     return {
-        stepIndex: state.create.step.stepIndex
+        stepIndex: state.create.step.stepIndex,
+        stepData: state.create.step
     };
 }
 

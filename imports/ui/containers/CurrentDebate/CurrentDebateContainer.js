@@ -15,7 +15,7 @@ import {
   Users
 } from '../../../api/publications';
 import Loader from '../../components/Loader';
-import { changeTab } from '../../../redux/modules/debates';
+import { changeTab, mapDebateInfoToState, loading } from '../../../redux/modules/debates';
 import './styles';
 
 class CurrentDebateContainer extends Component {
@@ -31,16 +31,32 @@ class CurrentDebateContainer extends Component {
     });
   }
 
+  // componentDidMount() {
+  //   Meteor.call('debates.getProfile', this.props.match.params.id, (error, result) => {
+  //     if (error) {
+  //       console.log('error', error);
+  //       return;
+  //     }
+  //       this.props.dispatch(mapDebateInfoToState(result));
+  //       this.props.dispatch(loading(false));
+  //   })
+  // }
+
   render() {
     const users = this.props.users;
     const usersAtDebate = this.props.usersAtDebate;
     const debate = this.props.debates[0];
     const attendingUsers = this.props.attendingUsers;
+    Meteor.call('debates.getProfile', this.props.match.params.id, (error, result) => {
+      if (error) {
+        console.log('error', error);
+        return;
+      }
+      this.props.dispatch(mapDebateInfoToState(result));
+      this.props.dispatch(loading(false));
+    })
 
-    console.log(attendingUsers);
-    // remove this hardcoding after plinio has fixed
-
-    if (!debate) {
+    if (this.props.loading) {
       return <Loader />;
     } else {
       return (
@@ -53,8 +69,8 @@ class CurrentDebateContainer extends Component {
               <div>
                 <DebateDetails
                   debateData={debate}
-                  yesUserData={this.props.yesUser[0]}
-                  noUserData={this.props.noUser[0]}
+                  yesUserData={this.props.debateInfo.yesUser}
+                  noUserData={this.props.debateInfo.noUser}
                   joinDebateSubmit={this.joinDebateSubmit.bind(this)}
                 />
               </div>
@@ -65,7 +81,7 @@ class CurrentDebateContainer extends Component {
                 {usersAtDebate.map(user =>
                   (user.attended) ?
                     (<DebateAttendees
-                      userData={this.props.yesUser[0]}
+                      //userData={this.props.yesUser[0]}
                       icon={<ToggleCheckBox />}
                       key={user._id}
                     />)
@@ -94,7 +110,9 @@ class CurrentDebateContainer extends Component {
 
 function mapStateFromProps(state) {
   return {
-    tabValue: state.debates.tabValue
+    tabValue: state.debates.tabValue,
+    debateInfo: state.debates.debateInfo,
+    loading: state.debates.loading
   };
 }
 
@@ -104,24 +122,13 @@ const currentDebateContainer = createContainer((props) => {
   Meteor.subscribe('users');
   Meteor.subscribe('userAtDebate');
   Meteor.subscribe('organizations');
+  // const yesUserId = "8g9Z2fqg7qeqRHn2E";
+  // Meteor.subscribe('yesUser', yesUserId);
 
   return {
     currentUserId: Meteor.userId(),
     debates: Debates.find({ _id: props.match.params.id }).fetch(),
     users: Meteor.users.find().fetch(),
-    yesUser: Meteor.users.find({ "profile.name": "James Smith" }).fetch(),
-    noUser: Meteor.users.find({ "profile.name": "Michael Jones" }).fetch(),
-    // attendingUsers: Meteor.userAtDebate.aggregate([
-    //   {
-    //     $lookup:
-    //     {
-    //       from: "users",
-    //       localField: "_id",
-    //       foreignField: "user_id",
-    //       as: "profile-information"
-    //     }
-    //   }
-    // ]),
     usersAtDebate: UserAtDebate.find({ debate_id: props.match.params.id }).fetch(), //change this to props match as above
     organizations: Organizations.find().fetch()
   };
