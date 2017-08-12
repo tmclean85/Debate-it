@@ -83,7 +83,7 @@ export function userAtDebateVote(debateId, vote, loggedId) {
 
     UserAtDebate.update({user_id: loggedId, debate_id: debateId}, { ...old, vote: vote}); // QUESTION: Can I do this?
   } catch(e) {
-    console.log('userAtDebateVote', e)
+    console.log(e)
     throw new Meteor.Error('userAtDebateVote', e);
   }
 }

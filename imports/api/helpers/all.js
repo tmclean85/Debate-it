@@ -16,7 +16,6 @@ export function allReset() {
     Meteor.logout();
 
   } catch(e) {
-    console.log('error', e);
     throw new Meteor.Error(e);
   }
 }
