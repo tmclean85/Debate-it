@@ -1,27 +1,35 @@
 const NEW_USER = 'NEW_USER';
 
 const initialState = {
-  user: {
     name: '',
     email: '',
     password: '',
-    bio: '',
-  }
+    bio: ''
 };
 
 export function addUser(name, email, password, bio) {
   return {
     type: NEW_USER,
-    payload: user
+    payload: { 
+      name,
+      email,
+      password,
+      bio
+     }
   }
 }
 
-function newUserReducer(state = initialState, action) {
+function NewUserReducer(state = initialState, action) {
   switch (action.type) {
     case NEW_USER:
       return {
         ...state,
-        user: action.payload
+        name: action.payload.name,
+        email: action.payload.email,
+        password: action.payload.password,
+        bio: action.payload.bio
       };
+      default:
+        return state;
   }
 }

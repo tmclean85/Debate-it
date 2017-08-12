@@ -1,40 +1,11 @@
 import React from 'react';
-import TextField from 'material-ui/TextField';
+import { Form } from 'neoform';
+import TextInput from './FormComponents/TextInput';
 import RaisedButton from 'material-ui/RaisedButton';
 import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
 import './styles.css';
 
-const SignUp = () => (
-
-  this.state = {
-        emailFieldValue: '',
-        passwordFieldValue: '',
-        nameFieldValue: '',
-        bioFieldValue: ''
-  },
-
-  // _handleTextFieldChange = (e) => {
-  //   this.setState({
-  //       emailFieldValue: e.target.value,
-  //       passwordFieldValue: e.target.value,
-  //       nameFieldValue: e.target.value,
-  //       bioFieldValye: e.target.value
-  //   });
-  // },
-
-  insertUser = () => {
-    const email = this.state.emailFieldValue
-    const password = this.state.passwordFieldValue
-    const name = this.state.nameFieldValue
-    const bio = this.state.bioFieldValue
-    Meteor.call('user.insert', {
-      email,
-      password,
-      name,
-      bio
-    })
-  },
-
+const SignUp = ({ email }) => (
 
   <div className="sign-up-form">
     <Card className="sign-up-card">
@@ -44,27 +15,27 @@ const SignUp = () => (
           subtitle="Sign up and create a profile!"
         />
         <div className="sign-up-main">
-          <TextField
-            value={this.state.nameFieldValue} 
+          <TextInput
+            value={email}
             onChange={this._handleTextFieldChange}
             floatingLabelText="Name"
             floatingLabelFixed={true}
           /><br />
-          <TextField
-            value={this.state.emailFieldValue} 
-            onChange={this._handleTextFieldChange}          
+          <TextInput
+            value={this.state.emailFieldValue}
+            onChange={this._handleTextFieldChange}
             floatingLabelText="Email"
             floatingLabelFixed={true}
           /><br />
           <TextField
-            value={this.state.passwordFieldValue} 
+            value={this.state.passwordFieldValue}
             onChange={this._handleTextFieldChange}
             floatingLabelText="Password"
             floatingLabelFixed={true}
           /><br />
         </div>
         <div className="sign-up-meta">
-          <TextField
+          <TextInput
             value={this.state.bioFieldValue}
             onChange={this._handleTextFieldChange}
             floatingLabelText="Biography"

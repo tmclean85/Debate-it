@@ -2,7 +2,7 @@ import React from 'react';
 import { Field } from 'neoform';
 import TextField from 'material-ui/TextField';
 
-const TextInput = ({ value, onChange, rows, disabled, hintText }) => (
+const TextInput = ({ floatingLabalText, value, onChange, rows, disabled, hintText }) => (
     <TextField
         type="input"
         value={value}
@@ -10,6 +10,7 @@ const TextInput = ({ value, onChange, rows, disabled, hintText }) => (
         rows={rows}
         disabled={disabled}
         hintText={hintText}
+        floatingLabelText={floatingLabelText}
     />
 );
 

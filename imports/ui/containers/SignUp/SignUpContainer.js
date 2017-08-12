@@ -1,5 +1,6 @@
 import { createContainer } from 'meteor/react-meteor-data';
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Organizations,
          Users,
          Debates,
@@ -9,18 +10,38 @@ import SignUp from './SignUp';
 
 class SignUpContainer extends Component {
 
-  constructor(props) {
-    super(props);
+  registerNewUser() {
+    const email = this.props.email;
+    const password = this.props.password;
+    const name = this.props.name;
+    const bio = this.props.bio;
+
+    Meteor.call('user.insert', {
+      email,
+      password,
+      name,
+      bio
+    });
   }
 
   render() {
     return (
-      <SignUp />
+      <SignUp 
+        email={this.props.email}/>
     );
   }
 };
 
-export default createContainer(() => {
+function mapStateFromProps(state) {
+  return {
+    name: state.register.name,
+    email: state.register.email,
+    password: state.register.password,
+    bio: state.register.bio
+  };
+}
+
+const signUpContainer = createContainer(() => {
   Meteor.subscribe('debates');
   Meteor.subscribe('users');
   Meteor.subscribe('userAtDebate');
@@ -35,3 +56,5 @@ export default createContainer(() => {
     organizations: Organizations.find().fetch()
   };
 }, SignUpContainer);
+
+export default connect(mapStateFromProps)(signUpContainer)

@@ -133,6 +133,7 @@ function StepReducer(state, action) {
 
 export function DebateCreateReducer(state = initialState, action) {
     switch (action.type) {
+
         case STEP_FORWARD:
         case STEP_BACKWARD:
         case SET_DURATION:
