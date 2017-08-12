@@ -28,34 +28,4 @@ if (Meteor.isServer) {
     return Meteor.users.find();
   })
 
-
-//   Meteor.publishComposite('yesUser', function (yesUserId) {
-//     return [{
-//         find: function() {
-//             return Debates.find({ yesUser_id: yesUserId });
-//         },
-//         children: [{
-//             find: function(yesUser) {
-//                 return Meteor.users.find({ 
-//                     id: yesUser 
-//                 }, { 
-//                    fields: { 
-//                         "profile": 1
-//                    } 
-//                 });
-//             }
-//         }]
-//     }]
-// });
-// }
-
-// [
-//     {
-//       find(comment, post) {
-//         // Find user that authored comment.
-//         return Meteor.users.find(
-//           { _id: comment.authorId },
-//           { fields: { profile: 1 } });
-//       }
-//     }
-//   ]
+}

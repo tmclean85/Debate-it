@@ -31,30 +31,23 @@ class CurrentDebateContainer extends Component {
     });
   }
 
-  // componentDidMount() {
-  //   Meteor.call('debates.getProfile', this.props.match.params.id, (error, result) => {
-  //     if (error) {
-  //       console.log('error', error);
-  //       return;
-  //     }
-  //       this.props.dispatch(mapDebateInfoToState(result));
-  //       this.props.dispatch(loading(false));
-  //   })
-  // }
+  componentDidMount() {
+    Meteor.call('debates.getProfile', this.props.match.params.id, (error, result) => {
+      if (error) {
+        console.log('error', error);
+        return;
+      }
+        console.log(result);
+        this.props.dispatch(mapDebateInfoToState(result));
+        this.props.dispatch(loading(false));
+    })
+  }
 
   render() {
     const users = this.props.users;
     const usersAtDebate = this.props.usersAtDebate;
     const debate = this.props.debates[0];
     const attendingUsers = this.props.attendingUsers;
-    Meteor.call('debates.getProfile', this.props.match.params.id, (error, result) => {
-      if (error) {
-        console.log('error', error);
-        return;
-      }
-      this.props.dispatch(mapDebateInfoToState(result));
-      this.props.dispatch(loading(false));
-    })
 
     if (this.props.loading) {
       return <Loader />;
@@ -81,7 +74,7 @@ class CurrentDebateContainer extends Component {
                 {usersAtDebate.map(user =>
                   (user.attended) ?
                     (<DebateAttendees
-                      //userData={this.props.yesUser[0]}
+                      //attendeeData={this.props.debateInfo.attedeeList}
                       icon={<ToggleCheckBox />}
                       key={user._id}
                     />)
@@ -122,8 +115,6 @@ const currentDebateContainer = createContainer((props) => {
   Meteor.subscribe('users');
   Meteor.subscribe('userAtDebate');
   Meteor.subscribe('organizations');
-  // const yesUserId = "8g9Z2fqg7qeqRHn2E";
-  // Meteor.subscribe('yesUser', yesUserId);
 
   return {
     currentUserId: Meteor.userId(),

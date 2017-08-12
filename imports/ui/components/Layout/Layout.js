@@ -22,8 +22,8 @@ const Layout = ({ children }) => (
         </FloatingActionButton>
       </Link>
     </div>
-    <div className="layout-footer">
-      <p> &copy; Copyright 2017 'BATE IT!!</p>
+    <div className="app-footer">
+      <p className="layout-footer"> &copy; Copyright 2017 'BATE IT!!</p>
     </div>
   </div>
 );
