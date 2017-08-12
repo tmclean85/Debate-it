@@ -10,6 +10,7 @@ import Star from 'material-ui/svg-icons/toggle/star';
 
 import './styles.css';
 
+
 const Profile = ({userLogged, userData}) => {
   const loggedInUser = (userLogged || {profile: {}, emails: [{}]});
   return (
