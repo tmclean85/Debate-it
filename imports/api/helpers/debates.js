@@ -1,13 +1,26 @@
 import { Meteor } from 'meteor/meteor';
 import { Debates } from '../schemas/debates';
 import { Organizations } from '../schemas/organizations';
+import { UserAtDebate } from '../schemas/user-at-debate';
 
 import { userGetById } from './user';
 
 export function debateGetById(id) {
   const debate = Debates.find({ _id: id }).fetch();
-  console.log('debateGetById', user);
   return debate;
+}
+
+export function debateProfileGet(userId) {
+  
+  const id = debateGetIdByNum(0); // This line only exists when testing
+  let list = Debates.find({_id: id}).fetch()[0];
+  
+  list.yesUser = Accounts.users.find({_id: list.yesUser_id}).fetch()[0];
+  list.noUser = Accounts.users.find({_id: list.noUser_id}).fetch()[0];
+  list.attedeeList = UserAtDebate.find({ debate_id: id}).fetch();
+  list.attedeeList.forEach(item => {item.name = Accounts.users.find({_id: item.user_id}).fetch()[0].profile.name });
+ 
+  return list;
 }
 
 export function debateGetIdByNum(i) {

@@ -5,6 +5,8 @@ import { Debates } from './schemas/debates';
 import { Organizations } from './schemas/organizations';
 import { UserAtDebate } from './schemas/user-at-debate';
 
+import { debateGetIdByNum }  from './helpers/debates';
+
 export { Debates, Organizations, UserAtDebate };
 
 if (Meteor.isServer) {

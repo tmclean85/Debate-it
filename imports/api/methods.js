@@ -1,5 +1,5 @@
 import { allReset, allInsertOne } from './helpers/all';
-import { debateInsert, debateUpdate } from './helpers/debates';
+import { debateInsert, debateUpdate, debateProfileGet } from './helpers/debates';
 import { userInsert, userList, userUpdate } from './helpers/user';
 import { userAtDebateInsert, userAtDebateVote } from './helpers/user-at-debate';
 
@@ -7,6 +7,8 @@ import { userAtDebateInsert, userAtDebateVote } from './helpers/user-at-debate';
 
 Meteor.methods({
   'debate.insert'(item) {
+    // TODO: retest
+    console.log(will )
     // For DebateCreate component
     debateInsert({
       question: item.question,
@@ -39,6 +41,7 @@ Meteor.methods({
 
 Meteor.methods({
   'user.insert'(item) {
+    // implement and test
     // For SignUp component
     userInsert({
       email: item.email,
@@ -65,6 +68,7 @@ Meteor.methods({
 
 Meteor.methods({
   'debate.remove'(debateId, loggedId) {
+    // TODO: implement and test
     // By yesUser or noUser (later maybe only before the debate.start)
     return debateRemove(debateId, loggedId)
   }
@@ -72,6 +76,7 @@ Meteor.methods({
 
 Meteor.methods({
   'debate.update'(debate, loggedId) {
+    // TODO: implement and test
     // Update if loggedId is yesUser_id or noUser_id
     return debateUpdate(
       {
@@ -89,12 +94,14 @@ Meteor.methods({
 
 Meteor.methods({
   'user.update'(name, bio, loggedId) {
+    // TODO: implement and test
     return userUpdate(name, bio, loggedId);
   }
 })
 
 Meteor.methods({
   'userAtDebate.confirm'(userId, debateId, loggedId) {
+    // TODO: implement and test
     // Update to true userAtDebate.confByYes or userAtDebate.confByNo
     return userAtDebateConfirm(userId, debateId, loggedId);
   }
@@ -102,6 +109,7 @@ Meteor.methods({
 
 Meteor.methods({
   'userAtDebate.goodPoint'(debateId, yesNo, loggedId) {
+    // TODO: implement and test
     // Update to true userAtDebate.goodPointsYes if yesNo=true or userAtDebate.goodPointsNo if nesNo=false
     return 'being developed';
   }
@@ -109,14 +117,14 @@ Meteor.methods({
 
 Meteor.methods({
   'userAtDebate.remove'(debateId, loggedId) {
+    // TODO: implement and test
     // By the iser, later maybe before debate.start
     return userAtDebateRemove(debateId, loggedId);
   }
 })
 
 Meteor.methods({
-  'userAtDebate.vote'(debateId, vote, loggedId) {
-    // Vote can be true=yes, false=no or null=abstain
-    return userAtDebateVote(debateId, vote, loggedId);
+  'debates.getProfile'(id) {
+    return debateProfileGet(id);
   }
 })
