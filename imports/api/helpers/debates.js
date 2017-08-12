@@ -18,7 +18,7 @@ export function debateProfileGet(id) {
   list.yesUser = Meteor.users.find({_id: list.yesUser_id}).fetch()[0];
   list.noUser = Meteor.users.find({_id: list.noUser_id}).fetch()[0];
   list.attedeeList = UserAtDebate.find({ debate_id: id}).fetch();
-  list.attedeeList.forEach(item => {item.name = Meteor.users.find({_id: item.user_id}).fetch()[0].profile.name });
+  list.attedeeList.forEach(item => {item.name = Meteor.users.find({_id: item.user_id}).fetch()[0] });
  
   return list;
 }
