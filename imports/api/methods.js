@@ -124,7 +124,7 @@ Meteor.methods({
 })
 
 Meteor.methods({
-  'debates.getProfileList'(id) {
+  'debates.getProfile'(id) {
     return debateProfileGet(id);
   }
 })

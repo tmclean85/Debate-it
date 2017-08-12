@@ -11,16 +11,16 @@ export function debateGetById(id) {
 }
 
 export function debateProfileGet(userId) {
-
-    console.log('debateProfileGet was called');
-    const id = debateGetIdByNum(0);
-    let list = Debates.find({_id: id}).fetch()[0];
-    console.log(list);
-    list.yesUser = Accounts.users.find({_id: list.yesUser_id}).fetch()[0];
-    list.noUser = Accounts.users.find({_id: list.noUser_id}).fetch()[0];
-    list.attedeedList = UserAtDebate.find({ debate_id: id}).fetch();
-
-    return list;
+  
+  const id = debateGetIdByNum(0); // This line only exists when testing
+  let list = Debates.find({_id: id}).fetch()[0];
+  
+  list.yesUser = Accounts.users.find({_id: list.yesUser_id}).fetch()[0];
+  list.noUser = Accounts.users.find({_id: list.noUser_id}).fetch()[0];
+  list.attedeeList = UserAtDebate.find({ debate_id: id}).fetch();
+  list.attedeeList.forEach(item => {item.name = Accounts.users.find({_id: item.user_id}).fetch()[0].profile.name });
+ 
+  return list;
 }
 
 export function debateGetIdByNum(i) {

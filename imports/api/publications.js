@@ -27,23 +27,4 @@ if (Meteor.isServer) {
     return Meteor.users.find();
   })
 
-  // Meteor.publish('debateWithAttendees', function debateWithAttendeesPublication(num) {
-  //   console.log('debateWithAttendees was called');
-  //   const id = debateGetIdByNum(num);
-  //   console.log('id', debateGetIdByNum(num));
-  //   const debateWithAttendees = Debates.aggregate([
-  //   {
-  //     $lookup:
-  //       {
-  //         from: "users",
-  //         localField: "yesUser_id",
-  //         foreignField: "_id",
-  //         as: "yesUser"
-  //       }
-  //     }
-  //   ]);
-  //   console.log(debateWithAttendees);
-  //   return debateWithAttendees.find({ _id: id});
-  // })
-
 }
