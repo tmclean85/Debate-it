@@ -10,6 +10,10 @@ import Paper from 'material-ui/Paper';
 import Avatar from 'material-ui/Avatar';
 import './styles';
 
+// I HAVE REMOVED LINKING 
+
+//<Link to={`/profile/${noUserData._id}`}>
+
 const DebateDetails = ({ debateData, yesUserData, noUserData, joinDebateSubmit }) => (
     <Card>
         <div className="debate-title-wrapper">
@@ -34,26 +38,24 @@ const DebateDetails = ({ debateData, yesUserData, noUserData, joinDebateSubmit }
         />
         <div className="debators-wrapper">
             <Paper zDepth={1}>
-                <Link to={`/profile/${yesUserData._id}`}>
+
                     <CardHeader
                         className="position-header"
-                    //title={`${yesUserData.profile.name}`}
-                    //avatar={<Gravatar email={yesUserData.emails[0].address} />}
+                        title={`${yesUserData.profile.name}`}
+                        avatar={<Gravatar email={yesUserData.emails[0].address} />}
                     />
-                </Link>
                 YES because...
                 <CardText>
                     {`${debateData.yesBecause}`}
                 </CardText>
             </Paper>
             <Paper zDepth={1}>
-                <Link to={`/profile/${noUserData._id}`}>
+                
                     <CardHeader
                         className="position-header"
-                    //title={`${noUserData.profile.name}`}
-                    //avatar={<Gravatar email={noUserData.emails[0].address} />}
+                        title={`${noUserData.profile.name}`}
+                        avatar={<Gravatar email={noUserData.emails[0].address} />} 
                     />
-                </Link>
                 NO because...
                 <CardText>
                     {`${debateData.noBecause}`}
