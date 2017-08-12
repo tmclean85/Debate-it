@@ -1,4 +1,7 @@
 import { Meteor } from 'meteor/meteor';
+import { Mongo } from 'meteor/mongo';
+import { Debates } from '../schemas/debates';
+
 
 export function userGetAll() {
 
@@ -15,6 +18,19 @@ export function userGetIdByNum(i) {
 
   const id = Meteor.users.find({}).fetch()[i]._id;
   return id;
+}
+
+export function userGetProfile(id) {
+  console.log('will get uer profile');
+  id = userGetIdByNum(1); // for tests
+  const user = Mongo.users.find({ _id: id }).fetch()[0];
+  const debates = Debates.find({ yesUser_id: id },{ _id: 1, question: 1}).fetch();
+  return {
+    name: user.profile.name,
+    email: user.emails[0].address,
+    bio: user.profile.bio,
+    debates: debates
+  };
 }
 
 export function userInsert(item) {

@@ -11,10 +11,10 @@ export function debateGetById(id) {
 }
 
 export function debateProfileGet(userId) {
-  
+
   const id = debateGetIdByNum(0); // This line only exists when testing
-  let list = Debates.find({_id: id}).fetch()[0];
-  
+  let list = Debates.find({_id: userId}).fetch()[0];
+
   list.yesUser = Accounts.users.find({_id: list.yesUser_id}).fetch()[0];
   list.noUser = Accounts.users.find({_id: list.noUser_id}).fetch()[0];
   list.attedeeList = UserAtDebate.find({ debate_id: id}).fetch();

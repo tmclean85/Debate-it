@@ -107,13 +107,12 @@ class Tests extends Component {
 
   render() {
 
-    let myDebates = Meteor.call('debates.getProfile', 2, (error, result) => {
+    let myDebates = Meteor.call('user.getProfile', 2, (error, result) => {
       if (error) {
         console.log('error', error);
         return;
       }
       console.log('success', result);
-
     });
 
     const actions = [
@@ -127,7 +126,7 @@ class Tests extends Component {
     const debateList = this.props.debates.map(item => (
       <li key={item._id}>{item._id} - {item.question}?</li>    
     ));
-
+  
     const organizationList = this.props.organizations.map(item => (
       <li key={item._id}>{item._id} - {item.name}</li>    
     ));

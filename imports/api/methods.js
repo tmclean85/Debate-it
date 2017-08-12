@@ -1,9 +1,9 @@
 import { allReset, allInsertOne } from './helpers/all';
 import { debateInsert, debateUpdate, debateProfileGet } from './helpers/debates';
-import { userInsert, userList, userUpdate } from './helpers/user';
+import { userGetProfile, userInsert, userList, userUpdate } from './helpers/user';
 import { userAtDebateInsert, userAtDebateVote } from './helpers/user-at-debate';
 
-// All
+// Debates
 
 Meteor.methods({
   'debate.insert'(item) {
@@ -23,6 +23,12 @@ Meteor.methods({
   }
 });
 
+Meteor.methods({
+  'debates.getProfile'(id) {
+    return debateProfileGet(id);
+  }
+})
+
 // Users
 
 Meteor.methods({
@@ -31,6 +37,8 @@ Meteor.methods({
     allReset();
   }
 });
+
+
 
 Meteor.methods({
   'test.insertOne'() {
@@ -51,6 +59,12 @@ Meteor.methods({
     });
   }
 });
+
+Meteor.methods({
+  'user.getProfile'(id) {
+    return userGetProfile(id);
+  }
+})
 
 // UsersAtDebate
 
@@ -123,8 +137,3 @@ Meteor.methods({
   }
 })
 
-Meteor.methods({
-  'debates.getProfile'(id) {
-    return debateProfileGet(id);
-  }
-})
