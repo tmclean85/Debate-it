@@ -3,13 +3,14 @@ import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'm
 import Subheader from 'material-ui/Subheader';
 import Gravatar from 'react-gravatar';
 import Divider from 'material-ui/Divider';
+import { Link } from 'react-router-dom';
 import Moment from 'moment';
 import RaisedButton from 'material-ui/RaisedButton';
 import Paper from 'material-ui/Paper';
 import Avatar from 'material-ui/Avatar';
 import './styles';
 
-const DebateDetails = ({ debateData, yesUserData, noUserData, joinDebateSubmit  }) => (
+const DebateDetails = ({ debateData, yesUserData, noUserData, joinDebateSubmit }) => (
     <Card>
         <div className="debate-title-wrapper">
             <div>
@@ -21,10 +22,10 @@ const DebateDetails = ({ debateData, yesUserData, noUserData, joinDebateSubmit  
                 <Subheader>{`LOCATION: ${debateData.location.toUpperCase()}`}</Subheader>
             </div>
             <CardActions>
-                <RaisedButton 
-                    label="JOIN" 
+                <RaisedButton
+                    label="JOIN"
                     primary
-                    onTouchTap={() => joinDebateSubmit()} 
+                    onTouchTap={() => joinDebateSubmit()}
                 />
             </CardActions>
         </div>
@@ -33,25 +34,27 @@ const DebateDetails = ({ debateData, yesUserData, noUserData, joinDebateSubmit  
         />
         <div className="debators-wrapper">
             <Paper zDepth={1}>
-                <CardHeader
-                    className="position-header"
+                <Link to={`/profile/${yesUserData._id}`}>
+                    <CardHeader
+                        className="position-header"
                     //title={`${yesUserData.profile.name}`}
                     //avatar={<Gravatar email={yesUserData.emails[0].address} />}
-                >
-                    YES because...
-                </CardHeader>
+                    />
+                </Link>
+                YES because...
                 <CardText>
                     {`${debateData.yesBecause}`}
                 </CardText>
             </Paper>
             <Paper zDepth={1}>
-                <CardHeader
-                    className="position-header"
+                <Link to={`/profile/${noUserData._id}`}>
+                    <CardHeader
+                        className="position-header"
                     //title={`${noUserData.profile.name}`}
                     //avatar={<Gravatar email={noUserData.emails[0].address} />}
-                >
-                    NO because...
-                </CardHeader>
+                    />
+                </Link>
+                NO because...
                 <CardText>
                     {`${debateData.noBecause}`}
                 </CardText>

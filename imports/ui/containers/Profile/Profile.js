@@ -10,17 +10,17 @@ import Star from 'material-ui/svg-icons/toggle/star';
 
 import './styles.css';
 
-const Profile = ({userLogged, userData}) => {
-  const loggedInUser = (userLogged || {profile: {}, emails: [{}]});
+const Profile = ({ userLogged }) => {
+  //const loggedInUser = (userLogged || {profile: {}, emails: [{}]});
   return (
     <div className="profile-page">  
       <div className="profile-wrapper">
         <Card>
           <div className="profile-main-box">
-            <Gravatar size={100} email={loggedInUser.emails[0].address} />
+            <Gravatar size={100} email={ userLogged.emails[0].address} />
             <CardHeader
-              title={loggedInUser.profile.name}
-              subtitle={loggedInUser.emails[0].address}
+              title={userLogged.profile.name}
+              subtitle={userLogged.emails[0].address}
             />
           </div>
           <div className="profile-meta-box">
@@ -32,7 +32,7 @@ const Profile = ({userLogged, userData}) => {
           </div>
             <div className="profile-bio-box">
               <CardText>
-                <p>{loggedInUser.profile.bio}</p>
+                <p>{userLogged.profile.bio}</p>
               </CardText>
             </div>
         </Card>
