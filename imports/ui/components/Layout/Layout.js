@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import Header from '../Header';
+import Header from '../../containers/Header';
 import Footer from '../Footer';
 import AccountsUIWrapper from '../AccountsWrapper';
 import FloatingActionButton from 'material-ui/FloatingActionButton';

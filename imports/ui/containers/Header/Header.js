@@ -2,18 +2,11 @@ import React from 'react';
 import AppBar from 'material-ui/AppBar';
 import { Meteor } from 'meteor/meteor';
 import RaisedButton from 'material-ui/RaisedButton';
-import IconButton from 'material-ui/IconButton';
 import { Link } from 'react-router-dom';
-//import logo from '../../../../public/images/Logo31.png';
 
 import './styles.css';
 
-{/* <Link to='/login'>
-          <RaisedButton label="Log In" secondary={true} className="headerbar-btns"
-           />
-        </Link> */}
-
-const Header = () => (
+const Header = ({ userDebateId }) => (
   <AppBar
     showMenuIconButton={false}
     title={
@@ -26,11 +19,20 @@ const Header = () => (
   >
     <div>
       <div className="headerbuttonwrapper">
+        {(userDebateId) ?
+          <Link to={`/debate/${userDebateId.debate_id}/user/${Meteor.userId()}/interface`}>
+            <RaisedButton
+              label="Attended Debate"
+              secondary
+              className="headerbar-btns"
+            />
+          </Link>
+          : null}
         <Link to={`/profile/${Meteor.userId()}`}>
           <RaisedButton label="My Profile" className="headerbar-btns"
           />
         </Link>
-        
+
         <RaisedButton
           label="Log Out"
           secondary

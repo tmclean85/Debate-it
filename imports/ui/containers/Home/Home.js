@@ -2,7 +2,6 @@ import React from 'react';
 import Divider from 'material-ui/Divider';
 import DebateCard from '../../components/DebateCard';
 import Masonry from 'react-masonry-component';
-import Header from '../../components/Header';
 import './styles.css';
 
 const Home = ({ debateData }) => (
@@ -20,7 +19,6 @@ const Home = ({ debateData }) => (
             )}
         </Masonry>
             <br />
-            <Divider />
         <div className="debate-header past">
             <h1>Past Debates</h1>
         </div>

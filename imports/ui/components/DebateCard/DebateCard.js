@@ -12,9 +12,11 @@ const DebateCard = ({ debateData, linkRoute }) => (
       <Paper zDepth={2}>
         <ListItem
           primaryText={`${debateData.question}?`}
-          secondaryText={`
-          ${Moment(debateData.start).format("h:mm a")} - ${Moment(debateData.end).format("h:mm a")}
-        `}
+          secondaryText={
+            (linkRoute === "debate") ?
+              `${Moment(debateData.start).format("h:mm a")} - ${Moment(debateData.end).format("h:mm a")}` 
+            : null
+          }
           leftIcon={<Chat />}
         />
       </Paper>

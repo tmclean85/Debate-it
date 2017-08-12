@@ -6,16 +6,24 @@
     font-size:  1.4rem;
     font-weight: bold;
     text-transform: uppercase;
+    padding: 1%;
 }
 
 .current {
-    margin: 1% 0 0 3%;
-    color: #FF4081;
-    
+    background-color: #FF4081;
+    color: white;
+}
+
+.current h1 {
+    margin: 0 0 0 3%;
 }
 
 .past {
     text-align: right;
-    margin: 1% 3% 0 0;
-    color: #00BCD4;
+    color: white;
+    background-color: #00BCD4;
+}
+
+.past h1 {
+    margin: 0 3% 0 0;
 }
