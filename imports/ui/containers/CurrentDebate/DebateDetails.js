@@ -24,7 +24,7 @@ const DebateDetails = ({ debateData, yesUserData, noUserData, joinDebateSubmit  
                 <RaisedButton 
                     label="JOIN" 
                     primary
-                    onTouchTap={() => joinDebateSubmit()} 
+                    onTouchTap={() => joinDebateSubmit()}
                 />
             </CardActions>
         </div>

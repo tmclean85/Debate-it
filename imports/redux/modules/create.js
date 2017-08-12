@@ -104,7 +104,7 @@ export function DebateCreateReducer(state = initialState, action) {
             ...form
         };
     case SET_START_TIME:
-    case SET_END_TIME: 
+    case SET_END_TIME:
         return {
             ...state,
             form: TimeReducer(state.form, action)

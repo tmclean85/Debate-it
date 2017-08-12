@@ -18,7 +18,7 @@ const Header = () => (
   <div>
     <AppBar
           showMenuIconButton={false}
-          title={<span style={styles.title, styles.link}><Link to="/">'Bate It</Link></span>}
+          title={<span style={styles.title}><Link to="/">'Bate It</Link></span>}
     >
     <Link to='/profile'>
       <RaisedButton label="My Profile" primary={true} buttonStyle={{
