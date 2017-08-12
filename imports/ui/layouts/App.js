@@ -17,6 +17,7 @@ import DebateResults from '../containers/DebateResults';
 import SignUp from '../containers/SignUp';
 import Login from '../containers/Login';
 import DebatorScreen from '../containers/DebatorScreen';
+import PrivateRoute from '../components/PrivateRoute';
 
 injectTapEventPlugin();
 
@@ -31,7 +32,7 @@ const App = props => (
               <Route exact path="/debate/:id" component={CurrentDebate} /> 
               <Route exact path="/profile/:id" component={Profile} />
               <Route exact path="/interface" component={DebateInterface} />
-              <Route exact path="/results" component={DebateResults} />
+              <PrivateRoute exact path="/results" component={DebateResults} />
               <Route exact path="/createdebate" component={DebateCreate} />
               <Route exact path="/signup" component={SignUp} />
               <Route exact path="/login" component={Login} /> 
