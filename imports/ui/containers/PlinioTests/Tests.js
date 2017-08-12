@@ -15,7 +15,8 @@ import {
 
 import { Organizations,
          Debates,
-         UserAtDebate
+         UserAtDebate,
+         debateWithAttendees
 } from '../../../api/publications';
 
 import './styles.css';
@@ -73,7 +74,6 @@ class Tests extends Component {
     });
   }
 
-  
   handleInsertOne = () => {
     Meteor.call('test.insertOne', (error, result) => {
       if (error) {
@@ -85,7 +85,7 @@ class Tests extends Component {
   }
 
   handleInsertUser = (item) => {
-        Meteor.call('user.insert', item, (error, result) => {
+    Meteor.call('user.insert', item, (error, result) => {
       if (error) {
         console.log('error', error);
         return;
@@ -94,9 +94,25 @@ class Tests extends Component {
     });
   }
 
-  render() {
+  // handleLastCall = (id) => {
+  //       Meteor.call('debateWithAttendees', id, (error, result) => {
+  //     if (error) {
+  //       console.log('error', error);
+  //       return;
+  //     }
+  //     console.log('success', result);
+  //   });
+  // }
 
-    const UserProfile = new Mongo.Collection(null);
+  render() {
+  
+    Meteor.call('debates.getProfile', 1, (error, result) => {
+      if (error) {
+        console.log('error', error);
+        return;
+      }
+      console.log('success', result);
+    });
 
     const actions = [
       <RaisedButton
@@ -105,7 +121,7 @@ class Tests extends Component {
         onClick={this.handleClose}
       />
     ];
-      
+
     const debateList = this.props.debates.map(item => (
       <li key={item._id}>{item._id} - {item.question}?</li>    
     ));
@@ -122,6 +138,7 @@ class Tests extends Component {
       <li key={item.user_id+'-'+item.debate_id}>{item.user_id} - {item.debate_id}</li>    
     ));
 
+    console.log(this.props.debateWithAttendees);
     return (
       <div className="tests">
         <h2>Tests</h2>
@@ -197,7 +214,7 @@ class Tests extends Component {
           </ul> 
         </Dialog>
 
-        <RaisedButton
+        {/* <RaisedButton
           label="Insert user"
           primary={true}
           onClick={() => this.handleInsertUser({
@@ -206,7 +223,7 @@ class Tests extends Component {
             name: 'myself really',
             bio: 'hjlhjl hjk jkl hjk hjkl jklhjkl hjl hjl'
           })}
-        />
+        /> */}
 
       </div>
     );
@@ -221,6 +238,7 @@ export default createContainer(() => {
   Meteor.subscribe('userAtDebate');
   Meteor.subscribe('users');
   Meteor.subscribe('organizations');
+  Meteor.subscribe('debateWithAttendees');
   
   return {
     debates: Debates.find().fetch(),

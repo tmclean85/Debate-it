@@ -5,7 +5,7 @@ import { createContainer } from 'meteor/react-meteor-data';
 import { connect } from 'react-redux';
 import Moment from 'moment';
 import { setValue, getValue } from 'neoform-plain-object-helpers';
-import { captureFormInput, setStartTime, setEndTime } from '../../../redux/modules/create';
+import { captureFormInput, setStartTime, setEndTime, setDuration, captureYesDebator, captureNoDebator } from '../../../redux/modules/create';
 import DebateCreate from './DebateCreate';
 import { Organizations, Debates } from '../../../api/publications';
 
@@ -17,14 +17,16 @@ class DebateCreateContainer extends Component {
     this.props.dispatch(setStartTime(Moment().toDate()));
   }
 
-  convertDurationToEndTime(duration) {
-    for (let i = 10; i <= 90; i += 10) {
-      if (duration === `${i} Minutes`) {
-        const end = Moment(this.props.data.start);
-        end.add(i, 'm');
-        this.props.dispatch(setEndTime(end.toDate()));
-      }
-    }
+  setDuration(duration) {
+    this.props.dispatch(setDuration(duration));
+  }
+
+  captureYesDebator(name) {
+    this.props.dispatch(captureYesDebator(name));
+  }
+
+  captureNoDebator(name) {
+    this.props.dispatch(captureNoDebator(name));
   }
 
   onChangeHandler(name, value) {
@@ -69,7 +71,9 @@ class DebateCreateContainer extends Component {
         onChange={this.onChangeHandler.bind(this)}
         onInvalid={this.onInvalid.bind(this)}
         onSubmit={this.onSubmit.bind(this)}
-        convertDuration={this.convertDurationToEndTime.bind(this)}
+        captureYesDebator={this.captureYesDebator.bind(this)}
+        captureNoDebator={this.captureNoDebator.bind(this)}
+        setDuration={this.setDuration.bind(this)}
       />
     );
   }
