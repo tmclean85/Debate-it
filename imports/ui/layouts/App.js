@@ -27,16 +27,16 @@ const App = props => (
           <Switch>
             <Layout>
               <Route exact path="/" component={Home} />
-              <Route path="/plinio" component={PlinioTests} />
+              <Route exact path="/plinio" component={PlinioTests} />
               <Route exact path="/debate/:id" component={CurrentDebate} /> 
-              <Route path="/profile" component={Profile} />
-              <Route path="/interface" component={DebateInterface} />
-              <Route path="/404" component={NotFound} />
-              <Route path="/results" component={DebateResults} />
-              <Route path="/createdebate" component={DebateCreate} />
-              <Route path="/signup" component={SignUp} />
-              <Route path="/login" component={Login} /> 
-              <Route path="/debatorscreen" component={DebatorScreen} />
+              <Route exact path="/profile/:id" component={Profile} />
+              <Route exact path="/interface" component={DebateInterface} />
+              <Route exact path="/results" component={DebateResults} />
+              <Route exact path="/createdebate" component={DebateCreate} />
+              <Route exact path="/signup" component={SignUp} />
+              <Route exact path="/login" component={Login} /> 
+              <Route exact path="/debatorscreen" component={DebatorScreen} />
+              <Route exact path="404" component={NotFound} />
             </Layout>
           </Switch>
     </Router>

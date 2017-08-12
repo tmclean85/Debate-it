@@ -111,17 +111,17 @@ const currentDebateContainer = createContainer((props) => {
     users: Meteor.users.find().fetch(),
     yesUser: Meteor.users.find({ "profile.name": "James Smith" }).fetch(),
     noUser: Meteor.users.find({ "profile.name": "Michael Jones" }).fetch(),
-    attendingUsers: Meteor.userAtDebate.aggregate([
-      {
-        $lookup:
-        {
-          from: "users",
-          localField: "_id",
-          foreignField: "user_id",
-          as: "profile-information"
-        }
-      }
-    ]),
+    // attendingUsers: Meteor.userAtDebate.aggregate([
+    //   {
+    //     $lookup:
+    //     {
+    //       from: "users",
+    //       localField: "_id",
+    //       foreignField: "user_id",
+    //       as: "profile-information"
+    //     }
+    //   }
+    // ]),
     usersAtDebate: UserAtDebate.find({ debate_id: props.match.params.id }).fetch(), //change this to props match as above
     organizations: Organizations.find().fetch()
   };

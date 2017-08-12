@@ -6,13 +6,13 @@ import { Organizations,
          UserAtDebate
 } from '../../../api/publications';
 import Profile from './Profile';
+import Loader from '../../components/Loader';
 
 class ProfileContainer extends Component {
 
   render() {
-    const thisUser = this.props.userLogged;
-    const userData = this.props.users;
-    // console.log(userData)
+    const thisUser = this.props.userLogged[0];
+    if (!thisUser) return <Loader />;
     return (
         <Profile 
           userLogged={ thisUser }
@@ -21,18 +21,10 @@ class ProfileContainer extends Component {
   }
 }
 
-export default createContainer(() => {
-  // Meteor.subscribe('debates');
+export default createContainer((props) => {
   Meteor.subscribe('users');
-  // Meteor.subscribe('userAtDebate');
-  // Meteor.subscribe('organizations');
-  
-  
+
   return {
-    userLogged: Meteor.users.find({_id: Meteor.userId()}).fetch()[0],
-    // debates: Debates.find().fetch(),
-    users: Meteor.users.find().fetch(),
-    // userAtDebate: UserAtDebate.find().fetch(),
-    // organizations: Organizations.find().fetch()
+    userLogged: Meteor.users.find({ _id: props.match.params.id }).fetch()
   };
 }, ProfileContainer);
