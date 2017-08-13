@@ -146,7 +146,6 @@ Meteor.methods({
 
 Meteor.methods({
   'userAtDebate.vote'(debateId, vote, loggedId) {
-    // TODO: implement and test
     // vote can be true=yes, false=no or null=abstain
     userAtDebateVote(debateId, vote, loggedId)
   }
