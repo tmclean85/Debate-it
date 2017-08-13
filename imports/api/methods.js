@@ -147,7 +147,7 @@ Meteor.methods({
 Meteor.methods({
   'userAtDebate.vote'(debateId, vote, loggedId) {
     // vote can be true=yes, false=no or null=abstain
-    userAtDebateVote(debateId, vote, loggedId)
+    return userAtDebateVote(debateId, vote, loggedId)
   }
 })
 
