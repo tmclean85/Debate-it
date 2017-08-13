@@ -23,7 +23,7 @@ const DebateInterface = ({ users, debate, onSubmit }) => (
     <div className="interface-wrapper">
         <Paper zDepth={2} className="interface-card">
             <div className="vote-wrapper">
-                <div className="debate-header">
+                <div className="vote-header">
                     <h1>Cast Your Vote!</h1>
                 </div>
                 <div className="vote-actions">

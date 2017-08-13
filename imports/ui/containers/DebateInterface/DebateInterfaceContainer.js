@@ -19,20 +19,11 @@ class DebateInterfaceContainer extends Component {
   }
 
   onSubmit() {
-    //e.preventDefault();
     const debateId = this.props.match.params.debateId;
     const vote = (this.props.userVote === "null") ? null : Boolean(this.props.userVote);
     const loggedId = Meteor.userId();
 
-    console.log(vote);
-
-    //(debateId, vote, loggedId)
-    Meteor.call('userAtDebate.vote',  {
-        debateId,
-        vote,
-        loggedId
-      }
-    );
+    Meteor.call('userAtDebate.vote', debateId, vote, loggedId);
   }
 
   render() {

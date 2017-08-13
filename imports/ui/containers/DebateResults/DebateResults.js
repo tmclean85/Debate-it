@@ -4,24 +4,22 @@ import Avatar from 'material-ui/Avatar';
 import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
 import './styles.css';
 
-const DebateResults = ({ users, userAtDebate, debateInfo }) => (
+const DebateResults = ({ users, userAtDebate, debateInfo, calculateResults, calculateLoser }) => (
     <div className="debate-results-wrapper">
         <Card className="debate-results-card">
             <CardHeader
                 className="results-header"
                 title={`${debateInfo.question}?`}
-                subtitle="Results"
+                subtitle="results"
             />
             <div className="results-meta-box">
                 <div className="results-meta-winner">
-                    <h1>WINNER!</h1>
-                    <h2>12 Votes</h2>
+                    {calculateResults()}
                     <h2>4 Good Points</h2>
                     <Avatar size={60} src="" />
                 </div>
                 <div className="results-meta-loser">
-                    <h1>LOSER!</h1>
-                    <h2>10 Votes</h2>
+                    {calculateLoser()}
                     <h2>6 Good Points</h2>
                     <Avatar size={60} src="" />
                 </div>
