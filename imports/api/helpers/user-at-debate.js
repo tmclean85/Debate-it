@@ -75,20 +75,28 @@ export function userAtDebateVote(debateId, vote, loggedId) {
 
   try {
 
-    if (vote !== true && vote !== false && vote !== null) throw 'vote invalid';
-    if (!userGetById(loggedId)) throw 'user invalid';
-    
-    const old = debateGetById(debateId);
-    if (!old) throw 'debate invalid';
+    const debug = false;
 
-    UserAtDebate.update({user_id: loggedId, debate_id: debateId}, { ...old, vote: vote}); // QUESTION: Can I do this?
+    if (vote !== true && vote !== false && vote !== null) throw 'vote invalid';
+    if (!userGetById(loggedId)) throw 'vote invalid';
+
+    const old = UserAtDebate.find({user_id: loggedId, debate_id: debateId}).fetch()[0];
+    if (!old) throw 'user/debate invalid';
+    if (debug) console.log('old', old);
+
+    let obj = old;
+    obj.vote = vote;
+    if (debug) console.log('new', obj);
+
+    UserAtDebate.update({user_id: loggedId, debate_id: debateId}, obj);
+    
   } catch(e) {
     console.log(e)
     throw new Meteor.Error('userAtDebateVote', e);
   }
 }
 
-// Test
+// Tests
 
 export function userAtDebateReset() {
 

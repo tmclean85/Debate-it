@@ -29,7 +29,7 @@ Meteor.methods({
   }
 })
 
-// Users
+// Tests
 
 Meteor.methods({
   'test.reset'() {
@@ -38,14 +38,14 @@ Meteor.methods({
   }
 });
 
-
-
 Meteor.methods({
   'test.insertOne'() {
     // For Test component
     allInsertOne();
   }
 });
+
+// Users
 
 Meteor.methods({
   'user.insert'(item) {
