@@ -7,7 +7,18 @@ class ProfileContainer extends Component {
 
   constructor(props) {
     super(props);
-    Meteor.call('user.recalcscore', props.match.params.id)
+    Meteor.call('user.recalcscore', props.match.params.id);
+    this.state = {
+      edit: false
+    };
+  }
+
+  handleEdit = () => {
+    this.setState({ edit: true });
+  }
+
+  handleSubmit = () => {
+    this.setState({ edit: false });
   }
 
   render() {
@@ -16,6 +27,9 @@ class ProfileContainer extends Component {
     return (
         <Profile 
           userLogged={ thisUser }
+          edit={ this.state.edit }
+          handleEdit={ ()=> this.handleEdit() }
+          handleSubmit={ ()=> this.handleSubmit() }
         />
     )
   }
