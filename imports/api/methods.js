@@ -29,7 +29,7 @@ Meteor.methods({
   }
 })
 
-// Users
+// Tests
 
 Meteor.methods({
   'test.reset'() {
@@ -38,14 +38,14 @@ Meteor.methods({
   }
 });
 
-
-
 Meteor.methods({
   'test.insertOne'() {
     // For Test component
     allInsertOne();
   }
 });
+
+// Users
 
 Meteor.methods({
   'user.insert'(item) {
@@ -146,7 +146,6 @@ Meteor.methods({
 
 Meteor.methods({
   'userAtDebate.vote'(debateId, vote, loggedId) {
-    // TODO: implement and test
     // vote can be true=yes, false=no or null=abstain
     userAtDebateVote(debateId, vote, loggedId)
   }

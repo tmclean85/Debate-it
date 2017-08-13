@@ -48,7 +48,7 @@ class CurrentDebateContainer extends Component {
     const usersAtDebate = this.props.usersAtDebate;
     const debate = this.props.debates[0];
     const attendingUsers = this.props.attendingUsers;
-    const ow = Accounts.users.filter(user => user._id === debate.yesUser_id);
+    // const ow = Accounts.users.filter(user => user._id === debate.yesUser_id);
     
 
     if (!debate) {
