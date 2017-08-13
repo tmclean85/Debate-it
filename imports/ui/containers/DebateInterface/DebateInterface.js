@@ -2,9 +2,13 @@ import React from 'react';
 import Avatar from 'material-ui/Avatar';
 import SelectField from 'material-ui/SelectField';
 import RaisedButton from 'material-ui/RaisedButton';
+import FlatButton from 'material-ui/FlatButton';
+import { Form } from 'neoform';
 import MenuItem from 'material-ui/MenuItem';
+import Paper from 'material-ui/Paper';
 import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
 import Attendees from '../../components/Attendees';
+import RadioButtonInput from '../DebateCreate/FormComponents/RadioButton';
 
 // {users.map(user =>
 //                 (<Attendees
@@ -13,22 +17,44 @@ import Attendees from '../../components/Attendees';
 //                 />)
 //             )}
 
-const DebateInterface = ({ users, debate }) => (
-    <div className="debate-interface-wrapper">
+
+
+const DebateInterface = ({ users, debate, onSubmit }) => (
+    <div className="interface-wrapper">
+        <Paper zDepth={2} className="interface-card">
+            <div className="vote-wrapper">
+                <div className="debate-header">
+                    <h1>Cast Your Vote!</h1>
+                </div>
+                <div className="vote-actions">
+                <RadioButtonInput
+                    name="userVote"
+                    className="vote-radio"
+                />
+                <div>
+                <RaisedButton
+                    label="Confirm Vote"
+                    onTouchTap={() => onSubmit()}
+                    className="vote-button"
+                    secondary
+                /></div>
+                </div>
+            </div>
+        </Paper>
+    </div>
+);
+
+export default Form(DebateInterface);
+
+{/* <div className="debate-interface-wrapper">
         <div className="debate-interface-header">
             <h1 className="interface-title">{`${debate.question}?`}</h1>
-            <SelectField
-                floatingLabelText="My Vote"
-                //value={this.state.value}
-                //onChange={this.handleChange}
-            >
-                <MenuItem value={null} primaryText="" />
-                <MenuItem value={false} primaryText="No" />
-                <MenuItem value={true} primaryText="Yes" />
-            </SelectField>
-        </div>
-        <div className="interface-attendees-box">
             
+            
+        </div>
+
+        <div className="interface-attendees-box">
+
         </div>
         <div className="debate-meta">
             <div className="debate-meta-yes">
@@ -60,7 +86,4 @@ const DebateInterface = ({ users, debate }) => (
                 </div>
             </div>
         </div>
-    </div>
-);
-
-export default DebateInterface;
+    </div> */}
