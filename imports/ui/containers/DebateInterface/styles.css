@@ -1,75 +1,37 @@
-.debate-interface-page {
-  display: flex;
-  height: 100%;
+.interface-wrapper {
   width: 100%;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: center;
 }
 
-.debate-interface-wrapper {
-  display: flex;
-  flex-flow: column nowrap;
-  width: 75%;
-  height: 40rem;
-  margin-top: 3rem;
-  border: 1px solid grey;
-  box-shadow: 10px 10px 5px 0px rgba(156,156,156,1);
+.interface-card {
+  margin: 5%;
 }
 
-.debate-interface-header {
-  display: flex;
-  justify-content: center;
-  flex-flow: column nowrap;
-  align-items: center;
-}
-
-.debate-interface-header h1 {
-  text-align: center;
-}
-
-.interface-attendees-box {
-  display: flex;
-  flex-flow: column wrap;
+.vote-wrapper {
   width: 100%;
-  height: 25rem;
+  display: flex;
+  flex-flow: column;
 }
 
-.debate-meta {
+.debate-header {
+    font-size:  1.4rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 1%;
+    text-align: center;
+    color: white;
+    background-color: #00BCD4;
+}
+
+.vote-radio {
+  padding: 10px;
+}
+
+.vote-radio > * {
+  margin: 0;
+}
+
+.vote-actions {
   display: flex;
-  flex-flow: row nowrap;
   justify-content: space-around;
-  height: 12rem;
-}
-
-.debate-meta-yes {
-  display: flex;
-  text-align: center;
-  justify-content: space-around;
-  flex-flow: column nowrap;
-}
-
-.debate-meta-no {
-  display: flex;
-  text-align: center;
-  justify-content: space-around;
-  flex-flow: column nowrap;
-}
-
-.vote-bold {
-  font-weight: bold;
-}
-
-.good-point-yes {
-  display: flex;
-  justify-content: center;
   align-items: center;
-  height: 100%
-}
-
-.good-point-no {
-  display: flex;
-  justify-content: center;
-  align-items: center;  
-  height: 100%
 }

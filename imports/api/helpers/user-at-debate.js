@@ -75,7 +75,7 @@ export function userAtDebateVote(debateId, vote, loggedId) {
 
   try {
 
-    if (vote !== true && vote !== false && vote !== null) throw 'vote invalid';
+    if (vote !== true || vote !== false || vote !== null) throw 'vote invalid';
     if (!userGetById(loggedId)) throw 'user invalid';
     
     const old = debateGetById(debateId);

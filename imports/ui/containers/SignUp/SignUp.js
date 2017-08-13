@@ -1,6 +1,6 @@
 import React from 'react';
 import { Form } from 'neoform';
-import TextInput from './FormComponents/TextInput';
+import TextInput from '../DebateCreate/FormComponents/TextInput';
 import RaisedButton from 'material-ui/RaisedButton';
 import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
 import './styles.css';

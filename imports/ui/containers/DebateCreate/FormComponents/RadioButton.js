@@ -1,27 +1,25 @@
 import React from 'react';
 import { Field } from 'neoform';
 import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
+import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
+ 
 
-const styles = {
-    radioButton: {
-        marginBottom: 16,
-        fontSize: 14
-    }
-};
-
-const RadioButtonInput = ({ value, onChange, state }) => (
+const RadioButtonInput = ({ value, onChange, className }) => (
     <RadioButtonGroup
+        className={className}
         onChange={(e) => onChange(e.target.value)}
     >
         <RadioButton
-            value="8" //set this to current user_id
-            label="I Agree!"
-            style={styles.radioButton}
+            value="Yes" //set this to current user_id
+            label="Yes!"
         />
         <RadioButton
-            value="8" //set this to empty string
-            label="I Disagree!"
-            style={styles.radioButton}
+            value={""} //to simulate a falsy value
+            label="No!"
+        />
+        <RadioButton
+            value="null" //set this to empty string
+            label="Undecided!"
         />
     </RadioButtonGroup>
 );
