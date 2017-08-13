@@ -7,18 +7,6 @@
   padding-top: 20px;
 }
 
-.profile-wrapper {
-  height: auto;
-  width: 40%;
-  padding: 10px;
-}
-
-/* .profile-main-box {
-  display: flex;
-  flex-flow: row nowrap;
-  padding: 1rem;
-} */
-
 .profile-main-box {
   padding-left: 10px;
   padding-right: 10px;
