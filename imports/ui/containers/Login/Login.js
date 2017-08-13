@@ -1,11 +1,11 @@
 import React from 'react';
-import TextField from 'material-ui/TextField';
+import TextInput from '../DebateCreate/FormComponents/TextInput';
 import { Link } from 'react-router-dom';
 import RaisedButton from 'material-ui/RaisedButton';
 import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
 import './styles.css';
 
-const Login = ({ login }) => (
+const Login = (email, password) => (
   <div className="login-page">
     <Card className="login-card">
       <form onSubmit={login} autoComplete="off">
@@ -14,13 +14,13 @@ const Login = ({ login }) => (
           subtitle="Please provide your e-mail and password" 
         />
         <div className="login-main">
-          <TextField
-            label="Email"
+          <TextInput
+            name="email"
             floatingLabelText="Email"
             floatingLabelFixed={true}
           /><br />
-          <TextField
-            label="Password"
+          <TextInput
+            name="password"
             floatingLabelText="Password"
             floatingLabelFixed={true}
           /><br />
@@ -44,14 +44,21 @@ const Login = ({ login }) => (
         <RaisedButton
           buttonStyle={{
             height: '2.75rem',
-            width: '8rem'        
+            width: '8rem'
           }}
           label="Sign Up"
-        />           
-      </Link>          
+        />
+      </Link>
     </Card>
-  </div>  
+  </div>
 );
+
+function mapStateToProps(state) {
+  return {
+    email: this.props.email,
+    password: this.props.password
+  }
+}
 
 
 export default Login;

@@ -4,11 +4,13 @@ import { DebateReducer } from './modules/debates';
 import { DebateCreateReducer } from './modules/create';
 import { NewUserReducer } from './modules/register';
 import { VoteReducer } from './modules/vote';
+import { LogInReducer } from './modules/login';
 
 
 export default combineReducers({
     debates: DebateReducer,
     create: DebateCreateReducer,
     register: NewUserReducer,
-    vote: VoteReducer
+    vote: VoteReducer,
+    login: LogInReducer
 });
