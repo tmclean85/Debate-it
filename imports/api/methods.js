@@ -29,7 +29,7 @@ Meteor.methods({
   }
 })
 
-// Users
+// Tests
 
 Meteor.methods({
   'test.reset'() {
@@ -38,14 +38,14 @@ Meteor.methods({
   }
 });
 
-
-
 Meteor.methods({
   'test.insertOne'() {
     // For Test component
     allInsertOne();
   }
 });
+
+// Users
 
 Meteor.methods({
   'user.insert'(item) {
@@ -141,6 +141,13 @@ Meteor.methods({
     // TODO: implement and test
     // By the iser, later maybe before debate.start
     return userAtDebateRemove(debateId, loggedId);
+  }
+})
+
+Meteor.methods({
+  'userAtDebate.vote'(debateId, vote, loggedId) {
+    // vote can be true=yes, false=no or null=abstain
+    userAtDebateVote(debateId, vote, loggedId)
   }
 })
 

@@ -94,25 +94,26 @@ class Tests extends Component {
     });
   }
 
-  // handleLastCall = (id) => {
-  //       Meteor.call('debateWithAttendees', id, (error, result) => {
-  //     if (error) {
-  //       console.log('error', error);
-  //       return;
-  //     }
-  //     console.log('success', result);
-  //   });
-  // }
-
-  render() {
-  
-    Meteor.call('debates.getProfile', 1, (error, result) => {
+  // 'userAtDebate.vote'(debateId, vote, loggedId)
+  handleVote = (debateId, vote, loggedId) => {
+    Meteor.call('userAtDebate.vote', debateId, vote, loggedId, (error, result) => {
       if (error) {
         console.log('error', error);
         return;
       }
       console.log('success', result);
     });
+  }
+
+  render() {
+  
+    // Meteor.call('debates.getProfile', 1, (error, result) => {
+    //   if (error) {
+    //     console.log('error', error);
+    //     return;
+    //   }
+    //   console.log('success', result);
+    // });
 
     const actions = [
       <RaisedButton
@@ -214,16 +215,11 @@ class Tests extends Component {
           </ul> 
         </Dialog>
 
-        {/* <RaisedButton
-          label="Insert user"
+          <RaisedButton
+          label="Test vote"
           primary={true}
-          onClick={() => this.handleInsertUser({
-            email: 'myself@example.com',
-            password: '1q2w3e',
-            name: 'myself really',
-            bio: 'hjlhjl hjk jkl hjk hjkl jklhjkl hjl hjl'
-          })}
-        /> */}
+          onClick={() => this.handleVote('oKXDvXrdLLiFkKdKP', true, 'aZYZAkto9SERs5B4v')} 
+        /> 
 
       </div>
     );

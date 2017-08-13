@@ -35,15 +35,11 @@ export function debateGetIdByNum(i) {
 export function debateInsert(item) {
 
   try {
-
-    console.log('will insert', item);
-
     isValid = DebateSchema.namedContext("myContext").validate(item);
     Meteor.startup(function() {
       Tracker.autorun(function() {
         var context = DebateSchema.namedContext("myContext");
         if (!context.isValid()) {
-          // console.log(context.invalidKeys());
           throw new Meteor.Error('schema', context.invalidKeys())
         }
       });
