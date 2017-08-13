@@ -30,6 +30,9 @@ export function userInsert(item) {
 
 export function userUpdate(name, bio, id)  {
   try {
+    const debug = true;
+
+    if (debug) console.log('will update '+id+' wuth name='+name+' and bio='+bio);
     Meteor.users.update(id, {$set: {'profile.name': name, 'profile.bio': bio}});
   } catch(e) {
     console.log('error at userUpdate', e);
