@@ -14,6 +14,23 @@ import './styles.css';
 
 class DebateInterfaceContainer extends Component {
 
+  getDebate() {
+
+    const users = this.props.users;
+    let debate = this.props.debate;
+    const userAtDebate = this.props.userAtDebate;
+
+    if (debate && users && userAtDebate) {
+      const yesUser = users.find(item => item._id === debate.yesUser_id);
+      debate.yesUser = { email: yesUser.emails[0].address, name: yesUser.profile.name };
+
+      const noUser = users.find(item => item._id === debate.noUser_id);
+      debate.noUser = { email: noUser.emails[0].address, name: noUser.profile.name };
+
+    }
+    return debate;
+  }
+
   onChangeHandler(name, value) {
     this.props.dispatch(captureUserVote(name, value));
   }
@@ -27,26 +44,26 @@ class DebateInterfaceContainer extends Component {
   }
 
   render() {
-    const users = this.props.users;
-    const vote = this.props.userAtDebate
-    const debate = this.props.debates[0];
+    const debate = this.getDebate();
 
-    console.log(Meteor.userId());
-
-    if (!debate) return <Loader />;
-    return (
-      (this.props.match.params.userId === Meteor.userId()) ?
+    if (!Meteor.userId()) {
+      return <Redirect to="/login" />
+    } else if (!debate) {
+      return <Loader />;
+    } else {
+      return (
+        (this.props.match.params.userId === Meteor.userId()) ?
           <DebateInterface
-            users={users}
-            vote={vote}
-            debate={debate}
+            debate={debate || {}}
             getValue={getValue}
             onChange={this.onChangeHandler.bind(this)}
             onSubmit={this.onSubmit.bind(this)}
           />
-        : <p>Sorry, you've reached the wrong page. Please return to the homepage</p>
-    )
+        : <Redirect to="/" />
+      );
+    }
   }
+
 }
 
 function mapStateToProps(state) {
@@ -61,8 +78,8 @@ const debateInterfaceContainer = createContainer((props) => {
   Meteor.subscribe('userAtDebate');
 
   return {
-    debates: Debates.find({ _id: props.match.params.debateId }).fetch(),
     users: Meteor.users.find().fetch(),
+    debate: Debates.find({ _id: props.match.params.debateId }).fetch()[0],
     userAtDebate: UserAtDebate.find().fetch()
   };
 }, DebateInterfaceContainer);

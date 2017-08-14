@@ -112,3 +112,16 @@
         width: 33%;
     }
 }
+
+.debate-undecided-header {
+  width: 100%;
+  text-align: center;
+  background-color: #FF4081;
+  color: white;
+  font-size:  1rem;
+  font-weight: bold;
+}
+
+.undecided-card-text {
+  text-align: center;
+}

@@ -1,5 +1,5 @@
 import React from 'react';
-import Avatar from 'material-ui/Avatar';
+import Gravatar from 'react-gravatar';
 import SelectField from 'material-ui/SelectField';
 import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
@@ -15,16 +15,8 @@ import ContentInbox from 'material-ui/svg-icons/content/inbox';
 import ActionStars from 'material-ui/svg-icons/action/stars';
 
 import './styles.css';
-// {users.map(user =>
-//                 (<Attendees
-//                     userData={user}
-//                     key={user._id}
-//                 />)
-//             )}
 
-
-
-const DebateInterface = ({ users, debate, onSubmit }) => (
+const DebateInterface = ({ debate, onSubmit }) => (
     <div className="interface-wrapper">
         <Paper zDepth={2} className="interface-card">
             <div className="current-debate-header">
@@ -32,7 +24,7 @@ const DebateInterface = ({ users, debate, onSubmit }) => (
             </div>
                 <CardTitle
                     subtitle="Currently up for debate"
-                    title={`Should Scientists Mix Animal Cells with Human Cells?`}
+                    title={`${debate.question}?`}
                     className="current-debate-question"
                 />
             <div className="current-debate-status-wrapper">
@@ -41,16 +33,16 @@ const DebateInterface = ({ users, debate, onSubmit }) => (
                             <h1>YES</h1>
                         </div>
                         <CardHeader
-                            title="James Logane"
+                            title={debate.yesUser.name}
                             subtitle={
                                 <div>
-                                    GOOD POINTS:
-                                    <span className="good-points-made">
-                                        7
+                                    <span className="debator-argument-text">
+                                        Argument
                                     </span>
+                                    {debate.yesBecause}                               
                                 </div>
-                            }
-                            avatar={""}
+                            } 
+                            avatar={<Gravatar email={debate.yesUser.email} />}
                         />
                     </Paper>
                     <div className="current-versus-wrapper">
@@ -61,16 +53,16 @@ const DebateInterface = ({ users, debate, onSubmit }) => (
                             <h1>NO</h1>
                         </div>
                         <CardHeader
-                            title="Jack Jimcraig"
+                            title={debate.noUser.name}
                             subtitle={
                                 <div>
-                                    GOOD POINTS:
-                                    <span className="good-points-made">
-                                        4
+                                    <span className="debator-argument-text">
+                                        Argument
                                     </span>
+                                    {debate.noBecause}
                                 </div>
                             }
-                            avatar={""}
+                            avatar={<Gravatar email={debate.noUser.email} />}
                         />
                     </Paper>
                 </div>

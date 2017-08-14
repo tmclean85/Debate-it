@@ -124,7 +124,7 @@ function mapStateFromProps(state) {
 
 
 const currentDebateContainer = createContainer((props) => {
-  debate = Meteor.subscribe('debates');
+  Meteor.subscribe('debates');
   Meteor.subscribe('users');
   Meteor.subscribe('userAtDebate');
 
