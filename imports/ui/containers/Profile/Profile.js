@@ -1,8 +1,8 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-
+import { Form } from 'neoform';
 import RaisedButton from 'material-ui/RaisedButton';
-import TextField from 'material-ui/TextField';
+import TextInput from '../DebateCreate/FormComponents/TextInput';
 import Gravatar from 'react-gravatar';
 import {List, ListItem} from 'material-ui/List';
 import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
@@ -13,7 +13,7 @@ import Star from 'material-ui/svg-icons/toggle/star';
 
 import './styles.css';
 
-const Profile = ({ userLogged, edit, handleEdit, handleSubmit }) => {
+const Profile = ({ userLogged, edit, handleEdit, onSubmit }) => {
 
   const updateUser = () => {console.log('updateUser')};
 
@@ -25,7 +25,7 @@ const Profile = ({ userLogged, edit, handleEdit, handleSubmit }) => {
       <Card>
         <div className="profile-button">
           <RaisedButton
-          style={btEditStyle}
+            style={btEditStyle}
             primary 
             type="button"
             onClick={() => { handleEdit() }}           
@@ -35,7 +35,7 @@ const Profile = ({ userLogged, edit, handleEdit, handleSubmit }) => {
           style={btSubmitStyle}
             primary 
             type="submit"
-            onClick={() => { handleSubmit() }}           
+            onTouchTap={() => onSubmit()}       
             label="Submit"
           />
         </div>
@@ -50,17 +50,21 @@ const Profile = ({ userLogged, edit, handleEdit, handleSubmit }) => {
           </div>
           <div className="profile-main-box">
             <p>{userLogged.emails[0].address}</p>
-            <TextField
+            <TextInput
+              name="form.name"
               label="name"
               floatingLabelText="Name"
-              floatingLabelFixed={false}
+              floatingLabelFixed={true}
+              multiLine={true}
+              rows={3}
+              rowsMax={4}              
               disabled={!edit}
               defaultValue={userLogged.profile.name}
-              fullWidth={true}
               />
           </div>
           <div className="profile-bio-box">
-            <TextField
+            <TextInput
+                name="form.bio"
                 label="bio"
                 floatingLabelText="Bio"
                 floatingLabelFixed={true}
@@ -77,4 +81,4 @@ const Profile = ({ userLogged, edit, handleEdit, handleSubmit }) => {
   )
 }
 
-export default Profile;
+export default (Form(Profile));

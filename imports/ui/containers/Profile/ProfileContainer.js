@@ -1,9 +1,14 @@
 import { createContainer } from 'meteor/react-meteor-data';
 import React, { Component } from 'react';
 import { Redirect } from 'react-router';
+import { connect } from 'react-redux';
+import { getValue } from 'neoform-plain-object-helpers';
+import { Meteor } from 'meteor/meteor';
 
 import Profile from './Profile';
 import Loader from '../../components/Loader';
+import { updateUser } from '../../../redux/modules/updateProfile';
+
 
 class ProfileContainer extends Component {
 
@@ -19,12 +24,16 @@ class ProfileContainer extends Component {
     this.setState({ edit: true });
   }
 
-  handleSubmit = () => {
+  onChangeHandler(name, value) {
+    this.props.dispatch(updateUser(name, value))
+  }
+
+  onSubmit = () => {
 
     // the next instruction is only for test before we get p from form
     const user = {
-      name: 'Newbie',
-      bio: 'I am an immaginary test user and have no bio. jghjkghj hjkg hk ghjk ghjk ghjkg hkg hjk ghkg hkghjk ghk'
+      name: this.props.data.name,
+      bio: this.props.data.bio
     }
     // End test
 
@@ -38,8 +47,13 @@ class ProfileContainer extends Component {
     });
   }
 
+  onInvalid() {
+    console.log('Invalid');
+  }
+
   render() {
     const thisUser = this.props.userLogged[0];
+    console.log(thisUser)
     if (!Meteor.userId()) {
       return <Redirect to="/login" />
     } else if (!thisUser) {
@@ -47,19 +61,32 @@ class ProfileContainer extends Component {
     } else {
       return (
         <Profile
+          data={this.props.data}
           userLogged={ thisUser }
           edit={ this.state.edit }
           handleEdit={ () => this.handleEdit() }
           handleSubmit={ () => this.handleSubmit() }
+          onInvalid={this.onInvalid.bind(this)}
+          getValue={getValue}
+          onChange={this.onChangeHandler.bind(this)}
+          onSubmit={this.onSubmit.bind(this)}   
         />
       )
     }
   }
 }
 
-export default createContainer((props) => {
+function mapStateFromProps(state) {
+  return {
+    data: state.updateProfile.form
+  };
+}
+
+const profileContainer = createContainer((props) => {
 
   return {
     userLogged: Meteor.users.find({ _id: Meteor.userId() }).fetch() || {}
   };
 }, ProfileContainer);
+
+export default connect(mapStateFromProps)(profileContainer);

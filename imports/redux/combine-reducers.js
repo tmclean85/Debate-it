@@ -5,6 +5,7 @@ import { DebateCreateReducer } from './modules/create';
 import { NewUserReducer } from './modules/register';
 import { VoteReducer } from './modules/vote';
 import { LogInReducer } from './modules/login';
+import { UpdateUserReducer } from './modules/updateProfile';
 
 
 export default combineReducers({
@@ -12,5 +13,6 @@ export default combineReducers({
     create: DebateCreateReducer,
     register: NewUserReducer,
     vote: VoteReducer,
-    login: LogInReducer
+    login: LogInReducer,
+    updateProfile:  UpdateUserReducer
 });
