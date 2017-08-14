@@ -10,7 +10,7 @@ const TextInput = ({ floatingLabalText, value, onChange, rows, disabled, hintTex
         rows={rows}
         disabled={disabled}
         hintText={hintText}
-        floatingLabelText={floatingLabelText}
+//        floatingLabelText={floatingLabelText}
     />
 );
 
