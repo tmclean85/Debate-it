@@ -17,8 +17,6 @@ const DebateResults = ({ users, userAtDebate, debateInfo, calculateResults, calc
                 <h1>Debate Results</h1>
             </div>
             <Card>
-                <div className="debate-title-wrapper">
-                </div>
                 <CardTitle
                     title={`Should Scientists Mix Animal Cells with Human Cells?`}
                     className="debate-results-question"
@@ -181,34 +179,3 @@ const DebateResults = ({ users, userAtDebate, debateInfo, calculateResults, calc
 );
 
 export default DebateResults;
-
-//  <div className="debate-results-wrapper">
-//         <Paper className="debate-results-card">
-//             <CardHeader
-//                 className="results-header"
-//                 title={`${debateInfo.question}?`}
-//                 subtitle="results"
-//             />
-//             <div className="results-meta-box">
-//                 <div className="results-meta-winner">
-//                     <Card>
-//                     </Card>
-//                     <h2>4 Good Points</h2>
-//                     <Avatar size={60} src="" />
-//                 </div>
-//                 {/* <div className="results-meta-loser">
-//                     {calculateLoser()}
-//                     <h2>6 Good Points</h2>
-//                     <Avatar size={60} src="" />
-//                 </div>
-//             </div> */}
-//             <div className="interface-attendees-box">
-//                 {/* {users.map(user =>
-//                     (<DebateAttendees
-//                         userData={user}
-//                         key={user._id}
-//                     />)
-//                 )} */}
-//             </div>
-//         </Paper>
-//     </div>
