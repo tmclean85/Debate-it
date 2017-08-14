@@ -1,6 +1,7 @@
 import { createContainer } from 'meteor/react-meteor-data';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { setValue, getValue } from 'neoform-plain-object-helpers';
 import { Meteor } from 'meteor/meteor';
 import { Organizations,
          Users,
@@ -11,9 +12,11 @@ import Login from './Login';
 
 class LoginContainer extends Component {
 
+  onChangeHandler(name, value) {
+    this.props.dispatch(logInUser(name, value))
+  }
 
   onSubmit() {
-
     const { data } = this.props;
     const email = data.email;
     const password = data.email;
@@ -31,8 +34,10 @@ class LoginContainer extends Component {
   render() {
     return (
       <Login 
-        email={state.login.email}
-        password={state.login.password}
+        data={this.props.data}
+        getValue={getValue}
+        onChange={this.onChangeHandler.bind(this)}
+        onSubmit={this.onSubmit.bind(this)}
       />
     );
   }

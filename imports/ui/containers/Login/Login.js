@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Form } from 'neoform';
 import TextInput from '../DebateCreate/FormComponents/TextInput';
 import { Link } from 'react-router-dom';
@@ -6,7 +7,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
 import './styles.css';
 
-const Login = (email, password) => (
+const Login = (data, onSubmit) => (
   <div className="login-page">
     <Card className="login-card">
       <form>
@@ -28,7 +29,7 @@ const Login = (email, password) => (
           <RaisedButton
             primary 
             type="submit"
-            onTouchTap={() => Meteor.loginWithPassword({Email}, {Password})}           
+            onTouchTap={() => Meteor.loginWithPassword(form.email, form.password)}           
             buttonStyle={{
               height: '2.75rem',
               width: '8rem'        
@@ -53,13 +54,6 @@ const Login = (email, password) => (
     </Card>
   </div>
 );
-
-function mapStateToProps(state) {
-  return {
-    email: state.login.email,
-    password: state.login.password
-  }
-}
 
 
 export default Login;

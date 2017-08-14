@@ -1,27 +1,32 @@
+import { setValue } from 'neoform-plain-object-helpers';
+
+
 const RETURNING_USER = "RETURNING_USER";
 
 const initialState = {
-  email: '',
-  password: ''
+  form: {
+    email: '',
+    password: ''
+  }  
 };
 
-export function logInUser(email, password) {
+export function logInUser(name, value) {
   return {
     type: RETURNING_USER,
     payload: {
-      email,
-      password
+      name,
+      value
     }
   }
 }
 
-function LogInReducer(state = initialState, action) {
+export function LogInReducer(state = initialState, action) {
   switch (action.type) {
     case RETURNING_USER:
+      const form = setValue(state, action.payload.name, action.payload.value)
       return {
         ...state,
-        email: action.payload.email,
-        password: action.payload.password
+        ...form
       };
       default:
         return state;
