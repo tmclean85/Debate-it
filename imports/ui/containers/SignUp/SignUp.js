@@ -1,11 +1,12 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Form } from 'neoform';
 import TextInput from '../DebateCreate/FormComponents/TextInput';
 import RaisedButton from 'material-ui/RaisedButton';
 import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
 import './styles.css';
 
-const SignUp = ({ email }) => (
+const SignUp = ({ data, onSubmit }) => (
 
   <div className="sign-up-form">
     <Card className="sign-up-card">
@@ -16,30 +17,22 @@ const SignUp = ({ email }) => (
         />
         <div className="sign-up-main">
           <TextInput
-            value={email}
-            onChange={this._handleTextFieldChange}
-            floatingLabelText="Name"
-            floatingLabelFixed={true}
+            name="form.name"
+            floatingLabelText="Name"            
           /><br />
           <TextInput
-            value={this.state.emailFieldValue}
-            onChange={this._handleTextFieldChange}
-            floatingLabelText="Email"
-            floatingLabelFixed={true}
+            name="form.email"
+            floatingLabelText="E-mail"            
           /><br />
-          <TextField
-            value={this.state.passwordFieldValue}
-            onChange={this._handleTextFieldChange}
-            floatingLabelText="Password"
-            floatingLabelFixed={true}
+          <TextInput
+            name="form.password"
+            floatingLabelText="Password"            
           /><br />
         </div>
         <div className="sign-up-meta">
           <TextInput
-            value={this.state.bioFieldValue}
-            onChange={this._handleTextFieldChange}
-            floatingLabelText="Biography"
-            floatingLabelFixed={true}
+            name="form.bio"
+            floatingLabelText="Biography"            
           /><br />
         </div>  
         <RaisedButton
@@ -48,11 +41,11 @@ const SignUp = ({ email }) => (
             width: '8rem'        
           }}
           label="Sign Up!"
-          onTouchTap={insertUser()}
+          onTouchTap={() => onSubmit()}
         />      
       </form>  
     </Card>  
   </div>  
 );
 
-export default SignUp;
+export default (Form(SignUp));

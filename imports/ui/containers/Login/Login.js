@@ -18,21 +18,24 @@ const Login = ({data, onSubmit}) => (
         <div className="login-main">
           <TextInput
             name="form.email"
-            hintText="Email"
+            floatingLabelText="E-mail"
           /><br />
           <TextInput
+            type="password"
             name="form.password"
-            hintText="Password"
+            floatingLabelText="Password"            
           /><br />
+          <Link to="/">
           <RaisedButton
-            primary 
-            onTouchTap={() => onSubmit()}           
-            buttonStyle={{
-              height: '2.75rem',
-              width: '8rem'        
-            }}
-            label="LogIn"
-          />           
+              primary 
+              onTouchTap={() => onSubmit()}
+              buttonStyle={{
+                height: '2.75rem',
+                width: '8rem'        
+              }}
+              label="LogIn"
+            />
+          </Link>     
         </div>
       </form>    
       <CardHeader

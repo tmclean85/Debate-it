@@ -1,59 +1,67 @@
 import { createContainer } from 'meteor/react-meteor-data';
 import React, { Component } from 'react';
+import { getValue } from 'neoform-plain-object-helpers';
+import { Meteor } from 'meteor/meteor';
 import { connect } from 'react-redux';
 import { Organizations,
          Users,
          Debates,
          UserAtDebate  
 } from '../../../api/publications';
+import { addUser } from '../../../redux/modules/register';
 import SignUp from './SignUp';
 
 class SignUpContainer extends Component {
 
-  registerNewUser() {
-    const email = this.props.email;
-    const password = this.props.password;
-    const name = this.props.name;
-    const bio = this.props.bio;
+  onChangeHandler(name, value) {
+    this.props.dispatch(addUser(name, value));
+  }
 
+  onSubmit() {
+    const email = this.props.data.email;
+    const password = this.props.data.password;
+    const name = this.props.data.name;
+    const bio = this.props.data.bio;
     Meteor.call('user.insert', {
       email,
       password,
       name,
       bio
     });
+    Meteor.loginWithPassword(
+      email,
+      password
+    );
+  }
+
+  onInvalid() {
+    console.log('Invalid');
   }
 
   render() {
     return (
       <SignUp 
-        email={this.props.email}/>
+        data={this.props.data}
+        onInvalid={this.onInvalid.bind(this)}
+        getValue={getValue}
+        onChange={this.onChangeHandler.bind(this)}
+        onSubmit={this.onSubmit.bind(this)}      
+      />
     );
   }
 };
 
 function mapStateFromProps(state) {
   return {
-    name: state.register.name,
-    email: state.register.email,
-    password: state.register.password,
-    bio: state.register.bio
+    data: state.register.form
   };
 }
 
 const signUpContainer = createContainer(() => {
-  Meteor.subscribe('debates');
   Meteor.subscribe('users');
-  Meteor.subscribe('userAtDebate');
-  Meteor.subscribe('organizations');
-  
   
   return {
-    userLogged: Meteor.users.find({_id: Meteor.userId()}).fetch()[0],    
-    debates: Debates.find().fetch(),
     users: Meteor.users.find().fetch(),
-    userAtDebate: UserAtDebate.find().fetch(),
-    organizations: Organizations.find().fetch()
   };
 }, SignUpContainer);
 

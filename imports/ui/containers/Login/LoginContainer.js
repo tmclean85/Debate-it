@@ -31,9 +31,9 @@ class LoginContainer extends Component {
 
   render() {
     return (
-      <Login 
+      <Login
         data={this.props.data}
-        onInvalid={this.onInvalid.bind(this)}        
+        onInvalid={this.onInvalid.bind(this)}
         getValue={getValue}
         onChange={this.onChangeHandler.bind(this)}
         onSubmit={this.onSubmit.bind(this)}
