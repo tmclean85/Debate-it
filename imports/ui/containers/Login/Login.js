@@ -18,9 +18,11 @@ const Login = ({data, onSubmit}) => (
         <div className="login-main">
           <TextInput
             name="form.email"
+            hintText="Email"
           /><br />
           <TextInput
             name="form.password"
+            hintText="Password"
           /><br />
           <RaisedButton
             primary 
