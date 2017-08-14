@@ -33,6 +33,20 @@
     justify-content: flex-start;
 }
 
+.debator-reasoning {
+    margin-left: 5%;
+}
+
+.debator-current-position {
+    font-weight: bold;
+    color: #FF4081;
+}
+
+.debate-details-span {
+    font-weight: bold;
+    color: #00BCD4;
+}
+
 /* .position-header > img {
     border-radius: 50%;
 } */
