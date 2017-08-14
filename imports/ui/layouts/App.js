@@ -37,7 +37,7 @@ const App = props => (
               <Route exact path="/signup" component={SignUp} />
               <Route exact path="/login" component={Login} /> 
               <Route exact path="/debatorscreen" component={DebatorScreen} />
-              <Route path="*" component={NotFound} />
+              <PrivateRoute exact path="404" component={NotFound} />
             </Layout>
           </Switch>
     </Router>
