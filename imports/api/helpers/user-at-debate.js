@@ -24,19 +24,6 @@ export function userAtDebateInsert(item) {
   }
 }
 
-export function userAtDebateGetByIds(userId, debateId) {
-  
-  try {
-
-    item = UserAtDebate.find({ user_id: userId, debate_id: debateId })
-    return item;
-
-  } catch(e) {
-    console.log(e)
-    throw new Meteor.Error(e);
-  } 
-}
-
 export function userAtDebateConfirm(userId, debateId, loggedId) {
   
   try {
@@ -52,7 +39,6 @@ export function userAtDebateConfirm(userId, debateId, loggedId) {
     } else {
       throw 'confirmer invalid';
     }
-    
   } catch(e) {
     console.log(e)
     throw new Meteor.Error(e);
@@ -94,6 +80,25 @@ export function userAtDebateVote(debateId, vote, loggedId) {
     console.log(e)
     throw new Meteor.Error('userAtDebateVote', e);
   }
+}
+
+export function userAtDebateAttend(userId, debate, loggedUser) {
+  console.log(userId+' will arrived at '+loggedUser)
+}
+
+// Helpers
+
+export function userAtDebateGetByIds(userId, debateId) {
+  
+  try {
+
+    item = UserAtDebate.find({ user_id: userId, debate_id: debateId })
+    return item;
+
+  } catch(e) {
+    console.log(e)
+    throw new Meteor.Error(e);
+  } 
 }
 
 // Tests

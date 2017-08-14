@@ -106,14 +106,6 @@ class Tests extends Component {
   }
 
   render() {
-  
-    // Meteor.call('debates.getProfile', 1, (error, result) => {
-    //   if (error) {
-    //     console.log('error', error);
-    //     return;
-    //   }
-    //   console.log('success', result);
-    // });
 
     const actions = [
       <RaisedButton

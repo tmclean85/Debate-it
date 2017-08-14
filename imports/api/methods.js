@@ -1,7 +1,7 @@
 import { allReset, allInsertOne } from './helpers/all';
 import { debateInsert, debateUpdate, debateProfileGet } from './helpers/debates';
 import { userGetProfile, userInsert, userList, userUpdate, userRecalcScore } from './helpers/user';
-import { userAtDebateInsert, userAtDebateVote } from './helpers/user-at-debate';
+import { userAtDebateInsert, userAtDebateAttend, userAtDebateVote } from './helpers/user-at-debate';
 
 // Debates
 
@@ -24,26 +24,30 @@ Meteor.methods({
 });
 
 Meteor.methods({
-  'debates.getProfile'(id) {
-    return debateProfileGet(id);
+  'debate.update'(debate, loggedId) {
+    // TODO: implement and test
+    // Update if loggedId is yesUser_id or noUser_id
+    return debateUpdate(
+      {
+        question: debate.question, 
+        yesBecause: debate.yesBecause,
+        noBecause: debate.noBecause,
+        location: debate.location,
+        start: debate.start, 
+        end: debate.end
+      },
+      loggedId
+    )
   }
 })
 
-// Tests
-
 Meteor.methods({
-  'test.reset'() {
-    // For Test component
-    allReset();
+  'debate.remove'(debateId, loggedId) {
+    // TODO: implement and test
+    // By yesUser or noUser (later maybe only before the debate.start)
+    return debateRemove(debateId, loggedId)
   }
-});
-
-Meteor.methods({
-  'test.insertOne'() {
-    // For Test component
-    allInsertOne();
-  }
-});
+})
 
 // Users
 
@@ -79,7 +83,6 @@ Meteor.methods({
   }
 })
 
-
 // UsersAtDebate
 
 Meteor.methods({
@@ -92,34 +95,6 @@ Meteor.methods({
   }
 })
 
-// The below methods are not tested and some incomplete, but they should be all the MVP needs
-
-Meteor.methods({
-  'debate.remove'(debateId, loggedId) {
-    // TODO: implement and test
-    // By yesUser or noUser (later maybe only before the debate.start)
-    return debateRemove(debateId, loggedId)
-  }
-})
-
-Meteor.methods({
-  'debate.update'(debate, loggedId) {
-    // TODO: implement and test
-    // Update if loggedId is yesUser_id or noUser_id
-    return debateUpdate(
-      {
-        question: debate.question, 
-        yesBecause: debate.yesBecause,
-        noBecause: debate.noBecause,
-        location: debate.location,
-        start: debate.start, 
-        end: debate.end
-      },
-      loggedId
-    )
-  }
-})
-
 Meteor.methods({
   'userAtDebate.confirm'(userId, debateId, loggedId) {
     // TODO: implement and test
@@ -127,14 +102,6 @@ Meteor.methods({
     return userAtDebateConfirm(userId, debateId, loggedId);
   }
 })
-
-// Meteor.methods({
-//   'userAtDebate.goodPoint'(debateId, yesNo, loggedId) {
-//     // TODO: implement and test
-//     // Update to true userAtDebate.goodPointsYes if yesNo=true or userAtDebate.goodPointsNo if nesNo=false
-//     return 'being developed';
-//   }
-// })
 
 Meteor.methods({
   'userAtDebate.remove'(debateId, loggedId) {
@@ -145,11 +112,29 @@ Meteor.methods({
 })
 
 Meteor.methods({
+  'userAtDebate.attend'(userId, debateId, loggedUser) {
+    return userAtDebateAttend(userId, debateId, loggedUser);
+  }
+})
+
+Meteor.methods({
   'userAtDebate.vote'(debateId, vote, loggedId) {
-    // vote can be true=yes, false=no or null=abstain
     return userAtDebateVote(debateId, vote, loggedId)
   }
 })
 
-// ‘userAtDebateCheckin’(userId, loggedUser) TODO: build it
+// Tests
 
+Meteor.methods({
+  'test.reset'() {
+    // For Test component
+    allReset();
+  }
+});
+
+Meteor.methods({
+  'test.insertOne'() {
+    // For Test component
+    allInsertOne();
+  }
+});
