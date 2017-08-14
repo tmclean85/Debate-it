@@ -11,26 +11,16 @@ import Login from './Login';
 
 class LoginContainer extends Component {
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      email: props.email,
-      password: props.password
-    };
-
-    this.onChangeHandler = this.onChangeHandler.bind(this);
-  }
-
-  onChangeHandler(name, value) {
-    this.setState((prevState) => setValue(prevState, name, value));
-  }
 
   onSubmit() {
-    console.log(`Submitting ${this.state.data}`);
+
+    const { data } = this.props;
+    const email = data.email;
+    const password = data.email;
+
     Meteor.loginWithPassword(
-      state.login.email,
-      state.login.password
+      email,
+      password
     )
   }
 
@@ -50,24 +40,17 @@ class LoginContainer extends Component {
 
 function mapStateFromProps(state) {
   return {
-    email: state.login.email,
-    password: state.login.password
+    data: state.login.form
   }
 }
 
 
 const loginContainer = createContainer(() => {
-  Meteor.subscribe('debates');
+
   Meteor.subscribe('users');
-  Meteor.subscribe('userAtDebate');
-  Meteor.subscribe('organizations');
-  
-  
+ 
   return {
-    debates: Debates.find().fetch(),
     users: Meteor.users.find().fetch(),
-    userAtDebate: UserAtDebate.find().fetch(),
-    organizations: Organizations.find().fetch()
   };
 }, LoginContainer);
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Form } from 'neoform';
 import TextInput from '../DebateCreate/FormComponents/TextInput';
 import { Link } from 'react-router-dom';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -8,19 +9,19 @@ import './styles.css';
 const Login = (email, password) => (
   <div className="login-page">
     <Card className="login-card">
-      <form onSubmit={login} autoComplete="off">
+      <form>
         <CardHeader
           title="LOG IN"
           subtitle="Please provide your e-mail and password" 
         />
         <div className="login-main">
           <TextInput
-            name="email"
+            name="form.email"
             floatingLabelText="Email"
             floatingLabelFixed={true}
           /><br />
           <TextInput
-            name="password"
+            name="form.password"
             floatingLabelText="Password"
             floatingLabelFixed={true}
           /><br />
@@ -31,7 +32,7 @@ const Login = (email, password) => (
             buttonStyle={{
               height: '2.75rem',
               width: '8rem'        
-            }} 
+            }}
             label="LogIn"
           />           
         </div>
@@ -39,7 +40,7 @@ const Login = (email, password) => (
       <CardHeader
         title="Not already a member?"
         subtitle="Sign up now!"
-      />    
+      />
       <Link to="/signup">
         <RaisedButton
           buttonStyle={{
@@ -55,8 +56,8 @@ const Login = (email, password) => (
 
 function mapStateToProps(state) {
   return {
-    email: this.props.email,
-    password: this.props.password
+    email: state.login.email,
+    password: state.login.password
   }
 }
 
