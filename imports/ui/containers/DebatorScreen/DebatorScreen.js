@@ -6,11 +6,12 @@ import Paper from 'material-ui/Paper';
 import DebateAttendees from '../CurrentDebate/DebateAttendees';
 import Avatar from 'material-ui/Avatar';
 import Masonry from 'react-masonry-component';
+import Gravatar from 'react-gravatar';
 
 import { List, ListItem } from 'material-ui/List';
 import './styles';
 
-const debatorScreen = () => (
+const debatorScreen = ({ debate }) => (
     <div className="debate-results-wrapper">
         <Paper zDepth={2}>
             <div className="debate-results-header">
@@ -19,12 +20,16 @@ const debatorScreen = () => (
             <Card>
                 <CardTitle
                     subtitle="Currently up for debate"
-                    title={`Should Scientists Mix Animal Cells with Human Cells?`}
+                    title={`${debate.question}?`}
                     className="debate-results-question"
                 />
                 <div className="debator-info">
                     <CardHeader
-                        title="James"
+                        title={
+                            (Meteor.userId() === debate.yesUser_id)
+                                ? debate.yesUser.name
+                                : debate.noUser.name
+                        }
                         subtitle={
                             <div>
                                 GOOD POINTS MADE:
@@ -33,13 +38,19 @@ const debatorScreen = () => (
                                 </span>
                             </div>
                         }
-                        avatar={""}
+                        avatar={<Gravatar email={
+                            (Meteor.userId() === debate.yesUser_id)
+                                ? debate.yesUser.email
+                                : debate.noUser.email} />
+                        }
                     />
-                    <CardTitle title="Your Argument..." />
-                    <CardText className="argument-text">
-                        I think this and this and this.
-                    </CardText>
                 </div>
+                <CardTitle title="Your Argument..." />
+                <CardText className="argument-text">
+                    {(Meteor.userId() === debate.yesUser_id)
+                        ? debate.yesBecause
+                        : debate.noBecause}
+                </CardText>
                 <div className="debate-response-wrapper">
                     <div className="debate-response-header">
                         <h1>Check-In Attendees</h1>
@@ -50,42 +61,20 @@ const debatorScreen = () => (
                     <Paper className="audience-responses-wrapper">
                         <div>
                             <Masonry>
-                                <div className="response-card-wrapper">
-                                    <Paper zDepth={2} className="audience-response-card">
-                                        <ListItem
-                                            primaryText="James Belljam"
-                                            leftIcon={<Avatar />}
-                                            rightIcon={<Checkbox />}
-                                        />
-                                    </Paper>
-                                </div>
-                                <div className="response-card-wrapper">
-                                    <Paper zDepth={2} className="audience-response-card">
-                                        <ListItem
-                                            primaryText="James Belljam"
-                                            leftIcon={<Avatar />}
-                                            rightIcon={<Checkbox />}
-                                        />
-                                    </Paper>
-                                </div>
-                                <div className="response-card-wrapper">
-                                    <Paper zDepth={2} className="audience-response-card">
-                                        <ListItem
-                                            primaryText="James Belljam"
-                                            leftIcon={<Avatar />}
-                                            rightIcon={<Checkbox />}
-                                        />
-                                    </Paper>
-                                </div>
-                                <div className="response-card-wrapper">
-                                    <Paper zDepth={2} className="audience-response-card">
-                                        <ListItem
-                                            primaryText="James Belljam"
-                                            leftIcon={<Avatar />}
-                                            rightIcon={<Checkbox />}
-                                        />
-                                    </Paper>
-                                </div>
+                                {debate.userList.map(item =>
+                                    (!item.attended) ?
+                                        <div className="response-card-wrapper">
+                                            <Paper zDepth={2} className="audience-response-card">
+                                                <ListItem
+                                                    primaryText={item.name}
+                                                    leftIcon={<Gravatar email={item.email} />}
+                                                    rightIcon={<Checkbox />}
+                                                    key={item._id}
+                                                />
+                                            </Paper>
+                                        </div>
+                                        : null
+                                )}
                             </Masonry>
                         </div>
                     </Paper>
@@ -95,38 +84,19 @@ const debatorScreen = () => (
                     <Paper className="audience-responses-wrapper">
                         <div>
                             <Masonry>
-                                <div className="response-card-wrapper">
-                                    <Paper zDepth={2} className="audience-response-card">
-                                        <ListItem
-                                            primaryText="James Belljam"
-                                            leftIcon={<Avatar />}
-                                        />
-                                    </Paper>
-                                </div>
-                                <div className="response-card-wrapper">
-                                    <Paper zDepth={2} className="audience-response-card">
-                                        <ListItem
-                                            primaryText="James Belljam"
-                                            leftIcon={<Avatar />}
-                                        />
-                                    </Paper>
-                                </div>
-                                <div className="response-card-wrapper">
-                                    <Paper zDepth={2} className="audience-response-card">
-                                        <ListItem
-                                            primaryText="James Belljam"
-                                            leftIcon={<Avatar />}
-                                        />
-                                    </Paper>
-                                </div>
-                                <div className="response-card-wrapper">
-                                    <Paper zDepth={2} className="audience-response-card">
-                                        <ListItem
-                                            primaryText="James Belljam"
-                                            leftIcon={<Avatar />}
-                                        />
-                                    </Paper>
-                                </div>
+                                {debate.userList.map(item =>
+                                    (item.attended) ?
+                                        <div className="response-card-wrapper">
+                                            <Paper zDepth={2} className="audience-response-card">
+                                                <ListItem
+                                                    primaryText={item.name}
+                                                    leftIcon={<Gravatar email={item.email} />}
+                                                    key={item._id}
+                                                />
+                                            </Paper>
+                                        </div>
+                                        : null
+                                )}
                             </Masonry>
                         </div>
                     </Paper>

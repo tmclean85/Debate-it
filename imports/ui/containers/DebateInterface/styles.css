@@ -100,11 +100,15 @@
     align-items: center;
 }
 
-.good-points-made {
-  padding: 5% !important;
-  font-size: 1.1rem;
+.debator-argument-text {
+    color: #FF4081;
+    margin-right: 2%;
+    width: 100%;
+    font-weight: bold;
+}
+
+.current-versus-wrapper {
+  font-size: 2rem;
   color: #FF4081;
-   margin-left: 3%; 
-   width: 100%;
   font-weight: bold;
 }
