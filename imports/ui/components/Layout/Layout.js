@@ -10,7 +10,6 @@ import './styles.css';
 
 const Layout = ({ children }) => (
   <div className="layout-wrapper">
-    <AccountsUIWrapper />
     <div className="layout-header">
       <Header />
     </div>

@@ -32,8 +32,8 @@ const Profile = ({ userLogged, edit, handleEdit, onSubmit }) => {
             label="Edit"
           />
         <RaisedButton
-          style={btSubmitStyle}
-            primary 
+            style={btSubmitStyle}
+            secondary
             type="submit"
             onTouchTap={() => onSubmit()}       
             label="Submit"

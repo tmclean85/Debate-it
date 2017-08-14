@@ -32,6 +32,7 @@ class SignUpContainer extends Component {
       email,
       password
     );
+    
   }
 
   onInvalid() {
