@@ -22,7 +22,7 @@ const Header = ({ userDebateId, currentDebatorId }) => (
         {(currentDebatorId) ?
           <Link to={`/debatorscreen`}>
             <RaisedButton
-              label="Attended Debate"
+              label="Current Debate"
               secondary
               className="headerbar-btns"
             />

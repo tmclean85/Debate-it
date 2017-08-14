@@ -94,9 +94,9 @@ class Tests extends Component {
     });
   }
 
-  // 'userAtDebate.vote'(debateId, vote, loggedId)
-  handleVote = (debateId, vote, loggedId) => {
-    Meteor.call('userAtDebate.vote', debateId, vote, loggedId, (error, result) => {
+  lastTest = (userId, debateId, loggedId) => {
+    console.log(1);
+    Meteor.call('userAtDebate.attend', userId, debateId, loggedId, (error, result) => {
       if (error) {
         console.log('error', error);
         return;
@@ -208,9 +208,9 @@ class Tests extends Component {
         </Dialog>
 
           <RaisedButton
-          label="Test vote"
+          label="CheckIn"
           primary={true}
-          onClick={() => this.handleVote('LRsQnTeLjro5HtxNT', true, 'ZqAgayzv9hJFuwuXn')} 
+          onClick={() => this.lastTest('uYtyexvNayTr7YmrZ', 'qciKvcv3mryec9trx', '3mR3MZpEeks9EAzyv')} 
         /> 
 
       </div>

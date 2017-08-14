@@ -31,9 +31,10 @@ class CurrentDebateContainer extends Component {
     const users = this.props.users;
     let debate = this.props.debate;
     const userAtDebate = this.props.userAtDebate;
+
     if (debate && users && userAtDebate) {
       const yesUser = users.find(item => item._id === debate.yesUser_id);
-      console.log('uesUser', yesUser)      
+      if (true) console.log('uesUser', yesUser)      
       debate.yesUser = { email: yesUser.emails[0].address, name: yesUser.profile.name };
       
       const noUser = users.find(item => item._id === debate.noUser_id);
@@ -60,7 +61,6 @@ class CurrentDebateContainer extends Component {
 
   render() {
     const debate = this.getDebate();
-    console.log(debate)
 
     if (!Meteor.userId()) {
       return <Redirect to="/login" />
@@ -124,7 +124,7 @@ function mapStateFromProps(state) {
 
 
 const currentDebateContainer = createContainer((props) => {
-  debate = Meteor.subscribe('debates');
+  Meteor.subscribe('debates');
   Meteor.subscribe('users');
   Meteor.subscribe('userAtDebate');
 

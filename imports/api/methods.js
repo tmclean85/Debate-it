@@ -112,8 +112,8 @@ Meteor.methods({
 })
 
 Meteor.methods({
-  'userAtDebate.attend'(userId, debateId, loggedUser) {
-    return userAtDebateAttend(userId, debateId, loggedUser);
+  'userAtDebate.attend'(userId, debateId, loggedId) {
+    return userAtDebateAttend(userId, debateId, loggedId);
   }
 })
 

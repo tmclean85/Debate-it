@@ -82,8 +82,16 @@ export function userAtDebateVote(debateId, vote, loggedId) {
   }
 }
 
-export function userAtDebateAttend(userId, debate, loggedUser) {
-  console.log(userId+' will arrived at '+loggedUser)
+export function userAtDebateAttend(userId, debateId, loggedId) {
+  try {
+    const old = UserAtDebate.find({user_id: userId, debate_id: debateId}).fetch()[0];
+    const obj = { ...old, attended: !old.attended};
+    UserAtDebate.update({user_id: userId, debate_id: debateId}, obj);
+
+    return !old.attended;  
+  } catch (e) {
+    throw e;
+  }   
 }
 
 // Helpers
