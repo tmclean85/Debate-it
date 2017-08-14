@@ -47,6 +47,10 @@
     color: #00BCD4;
 }
 
+.debator-reasoning-text {
+    min-width: 525px;
+}
+
 /* .position-header > img {
     border-radius: 50%;
 } */

@@ -42,7 +42,7 @@ const DebateDetails = ({ debate, joinDebateSubmit }) => (
         <div className="debator-reasoning">
           <span className="debator-current-position">YES</span> because...
         </div>
-        <CardText>
+        <CardText className="debator-reasoning-text">
           {debate.yesBecause}
         </CardText>
       </Paper>
@@ -55,7 +55,7 @@ const DebateDetails = ({ debate, joinDebateSubmit }) => (
         <div className="debator-reasoning">
           <span className="debator-current-position">NO</span> because...
         </div>
-        <CardText>
+        <CardText className="debator-reasoning-text">
           {debate.noBecause}
         </CardText>
       </Paper>

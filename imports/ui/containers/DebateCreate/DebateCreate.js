@@ -17,6 +17,7 @@ import TextInput from './FormComponents/TextInput';
 import TimeDrop from './FormComponents/TimeDrop';
 import SelectDebators from './FormComponents/SelectDebators';
 import { stepForward, stepBackward } from '../../../redux/modules/create';
+import { Redirect } from 'react-router-dom';
 import './styles.css';
 
 const styles = {

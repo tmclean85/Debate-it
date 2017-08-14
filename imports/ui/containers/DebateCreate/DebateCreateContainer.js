@@ -8,6 +8,7 @@ import { setValue, getValue } from 'neoform-plain-object-helpers';
 import { captureFormInput, setStartTime, setEndTime, setDuration, captureYesDebator, captureNoDebator } from '../../../redux/modules/create';
 import DebateCreate from './DebateCreate';
 import { Organizations, Debates } from '../../../api/publications';
+import { withRouter } from 'react-router-dom';
 
 import './styles.css';
 
@@ -56,6 +57,8 @@ class DebateCreateContainer extends Component {
       end
     }
     );
+
+    this.props.history.push('/');
   }
 
   onInvalid() {
@@ -98,4 +101,4 @@ const debateCreateContainer = createContainer(() => {
   };
 }, DebateCreateContainer);
 
-export default connect(mapStateFromProps)(debateCreateContainer);
+export default withRouter(connect(mapStateFromProps)(debateCreateContainer));
