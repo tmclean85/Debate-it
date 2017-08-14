@@ -1,29 +1,27 @@
 import { createContainer } from 'meteor/react-meteor-data';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { setValue, getValue } from 'neoform-plain-object-helpers';
+import { getValue } from 'neoform-plain-object-helpers';
 import { Meteor } from 'meteor/meteor';
 import { Organizations,
          Users,
          Debates,
          UserAtDebate  
 } from '../../../api/publications';
+import { logInUser } from '../../../redux/modules/login';
 import Login from './Login';
 
 class LoginContainer extends Component {
 
   onChangeHandler(name, value) {
-    this.props.dispatch(logInUser(name, value))
+    this.props.dispatch(logInUser(name, value));
+    console.log(name, value);
   }
 
   onSubmit() {
-    const { data } = this.props;
-    const email = data.email;
-    const password = data.email;
-
     Meteor.loginWithPassword(
-      email,
-      password
+      state.login.form.email,
+      state.login.form.password
     )
   }
 
@@ -35,6 +33,7 @@ class LoginContainer extends Component {
     return (
       <Login 
         data={this.props.data}
+        onInvalid={this.onInvalid.bind(this)}        
         getValue={getValue}
         onChange={this.onChangeHandler.bind(this)}
         onSubmit={this.onSubmit.bind(this)}
@@ -46,7 +45,7 @@ class LoginContainer extends Component {
 function mapStateFromProps(state) {
   return {
     data: state.login.form
-  }
+  };
 }
 
 

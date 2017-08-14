@@ -4,6 +4,7 @@ import { Form } from 'neoform';
 import TextInput from '../DebateCreate/FormComponents/TextInput';
 import { Link } from 'react-router-dom';
 import RaisedButton from 'material-ui/RaisedButton';
+import { logInUser } from '../../../redux/modules/login';
 import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
 import './styles.css';
 
@@ -18,18 +19,13 @@ const Login = (data, onSubmit) => (
         <div className="login-main">
           <TextInput
             name="form.email"
-            floatingLabelText="Email"
-            floatingLabelFixed={true}
           /><br />
           <TextInput
             name="form.password"
-            floatingLabelText="Password"
-            floatingLabelFixed={true}
           /><br />
           <RaisedButton
             primary 
-            type="submit"
-            onTouchTap={() => Meteor.loginWithPassword(form.email, form.password)}           
+            onTouchTap={() => onSubmit()}           
             buttonStyle={{
               height: '2.75rem',
               width: '8rem'        
@@ -44,6 +40,7 @@ const Login = (data, onSubmit) => (
       />
       <Link to="/signup">
         <RaisedButton
+          type="submit"
           buttonStyle={{
             height: '2.75rem',
             width: '8rem'
@@ -56,4 +53,4 @@ const Login = (data, onSubmit) => (
 );
 
 
-export default Login;
+export default (Form(Login))
