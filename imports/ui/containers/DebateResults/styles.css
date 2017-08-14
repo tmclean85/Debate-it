@@ -13,11 +13,11 @@
   padding: 1%;
 }
 
-.debate-results-question {
+.debate-question {
   text-align: center;
 }
 
-.debators-results-wrapper {
+.debate-status-wrapper {
     display: flex;
     width: 70%;
     margin: 0 auto;
@@ -25,7 +25,7 @@
     align-items: center;
 }
 
-.debators-results-wrapper > * {
+.debate-status-wrapper  > * {
     margin: 1em;
 }
 
