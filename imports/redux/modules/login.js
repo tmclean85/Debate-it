@@ -20,7 +20,7 @@ function LogInReducer(state = initialState, action) {
     case RETURNING_USER:
       return {
         ...state,
-        email: action.paylod.email,
+        email: action.payload.email,
         password: action.payload.password
       };
       default:

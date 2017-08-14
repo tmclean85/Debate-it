@@ -30,13 +30,6 @@ class DebatorScreenContainer extends Component {
             />
           </div>
           <div className="check-in-box">
-             {users.map(user =>
-              (<DebateAttendees 
-                userData={user} 
-                icon={<ToggleCheckBoxOutlineBlank />}
-                key={user._id}
-              />)
-            )} 
           </div>
           <div className="debator-good-points-box">
             <h1>Good Points earned this debate:</h1>

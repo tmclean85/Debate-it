@@ -53,8 +53,8 @@ const DebateDetails = ({ debateData, yesUserData, noUserData, joinDebateSubmit }
                 
                     <CardHeader
                         className="position-header"
-                        title={`${noUserData.profile.name}`}
-                        avatar={<Gravatar email={noUserData.emails[0].address} />} 
+                        //title={`${noUserData.profile.name}`}
+                        //avatar={<Gravatar email={noUserData.emails[0].address} />} 
                     />
                 NO because...
                 <CardText>

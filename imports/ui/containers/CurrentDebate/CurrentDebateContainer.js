@@ -48,7 +48,7 @@ class CurrentDebateContainer extends Component {
     const usersAtDebate = this.props.usersAtDebate;
     const debate = this.props.debates[0];
     const attendingUsers = this.props.attendingUsers;
-    // const ow = Accounts.users.filter(user => user._id === debate.yesUser_id);
+    const ow = users.filter(user => user._id === debate.yesUser_id);
     
 
     if (!debate) {
@@ -64,7 +64,7 @@ class CurrentDebateContainer extends Component {
               <div>
                 <DebateDetails
                   debateData={debate}
-                  //yesUserData={ow[0]}
+                  yesUserData={ow[0]}
                   //noUserData={this.props.debateInfo.noUser}
                   joinDebateSubmit={this.joinDebateSubmit.bind(this)}
                 />
@@ -73,26 +73,11 @@ class CurrentDebateContainer extends Component {
             <Tab label="ATTENDEES" value="b">
               <List>
                 <Subheader>People in Attendance</Subheader>
-                {usersAtDebate.map(user =>
-                  (user.attended) ?
-                    (<DebateAttendees
-                      //attendeeData={this.props.debateInfo.attedeeList}
-                      icon={<ToggleCheckBox />}
-                      key={user._id}
-                    />)
-                    : null
-                )}
+                
               </List>
               <List>
                 <Subheader>People Enroute</Subheader>
-                {usersAtDebate.map(user =>
-                  (!user.attended) ?
-                    (<DebateAttendees
-                      userData={user}
-                      icon={<ToggleCheckBoxOutlineBlank />}
-                      key={user._id}
-                    />) : null
-                )}
+                
               </List>
             </Tab>
           </Tabs>
