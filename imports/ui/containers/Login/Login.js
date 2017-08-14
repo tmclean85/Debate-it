@@ -4,11 +4,10 @@ import { Form } from 'neoform';
 import TextInput from '../DebateCreate/FormComponents/TextInput';
 import { Link } from 'react-router-dom';
 import RaisedButton from 'material-ui/RaisedButton';
-import { logInUser } from '../../../redux/modules/login';
 import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
 import './styles.css';
 
-const Login = (data, onSubmit) => (
+const Login = ({data, onSubmit}) => (
   <div className="login-page">
     <Card className="login-card">
       <form>

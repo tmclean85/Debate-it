@@ -20,8 +20,8 @@ class LoginContainer extends Component {
 
   onSubmit() {
     Meteor.loginWithPassword(
-      state.login.form.email,
-      state.login.form.password
+      this.props.data.email,
+      this.props.data.password
     )
   }
 
