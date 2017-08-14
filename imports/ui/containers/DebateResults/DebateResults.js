@@ -98,7 +98,7 @@ const DebateResults = ({ debate }) => (
                     <Paper className="audience-responses-wrapper">
                         <Masonry>
                             {debate.userList.map(item =>
-                                (item.attended) ?
+                                //(item.attended) ? REMOVED FOR PRESENTATION PURPOSES AND TESTING
                                     <div className="response-card-wrapper">
                                         <Paper zDepth={2} className="audience-response-card">
                                             <ListItem
@@ -117,7 +117,7 @@ const DebateResults = ({ debate }) => (
                                             />
                                         </Paper>
                                     </div>
-                                    : null
+                                    //: null
                             )}
                         </Masonry>
                     </Paper>
