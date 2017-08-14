@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Tabs, Tab } from 'material-ui/Tabs';
 import { List, ListItem } from 'material-ui/List';
 import { ToggleCheckBox, ToggleCheckBoxOutlineBlank } from 'material-ui/svg-icons';
+import { Redirect } from 'react-router'
 import Avatar from 'material-ui/Avatar';
 import Subheader from 'material-ui/Subheader';
 import DebateDetails from './DebateDetails';
@@ -20,38 +21,50 @@ import './styles';
 
 class CurrentDebateContainer extends Component {
 
-
-  joinDebateSubmit() {
-    const debate_id = this.props.debates[0]._id;
-    const user_id = this.props.currentUserId;
-
-    Meteor.call('userAtDebate.insert', {
-      user_id,
-      debate_id
-    });
+  handleJoinDebate(debateId, userId) {
+    Meteor.call('userAtDebate.insert', {debateId, userId});
   }
 
-  componentDidMount() {
-    // Meteor.call('debates.getProfile', this.props.match.params.id, (error, result) => {
-    //   if (error) {
-    //     console.log('error', error);
-    //     return;
-    //   }
-    //     console.log(result);
-    //     this.props.dispatch(mapDebateInfoToState(result));
-    //     this.props.dispatch(loading(false));
-    // })
-  }
-  
-  render() {
+  getDebate() {
+    const debug = false;
+
     const users = this.props.users;
-    const usersAtDebate = this.props.usersAtDebate;
-    const debate = this.props.debates[0];
-    const attendingUsers = this.props.attendingUsers;
-    // const ow = Accounts.users.filter(user => user._id === debate.yesUser_id);
-    
+    let debate = this.props.debate;
+    const userAtDebate = this.props.userAtDebate;
+    if (debate && users && userAtDebate) {
+      const yesUser = users.find(item => item._id === debate.yesUser_id);
+      console.log('uesUser', yesUser)      
+      debate.yesUser = { email: yesUser.emails[0].address, name: yesUser.profile.name };
+      
+      const noUser = users.find(item => item._id === debate.noUser_id);
+      debate.noUser = { email: noUser.emails[0].address, name: noUser.profile.name };
 
-    if (!debate) {
+      debate.userList = [];
+      if (debug) console.log('starting attendees');
+      userAtDebate.forEach(item => {
+        if (debug) console.log('checking user',item);
+        const usr = users.find(it => it._id === item.user_id);
+        if (debug) console.log('he is', usr);
+        debate.userList.push({
+          _id: usr._id,
+          email: usr.emails[0].address,
+          name: usr.profile.name,
+          attended: item.attended,
+          vote: item.vote
+        });
+      })
+    }
+    if (debug) console.log(debate);
+    return debate;
+  }
+
+  render() {
+    const debate = this.getDebate();
+    console.log(debate)
+
+    if (!Meteor.userId()) {
+      return <Redirect to="/login" />
+    } else if (!debate) {
       return <Loader />;
     } else {
       return (
@@ -63,37 +76,35 @@ class CurrentDebateContainer extends Component {
             <Tab label="DETAILS" value="a">
               <div>
                 <DebateDetails
-                  debateData={debate}
-                  //yesUserData={ow[0]}
-                  //noUserData={this.props.debateInfo.noUser}
-                  joinDebateSubmit={this.joinDebateSubmit.bind(this)}
+                  debate={debate || {}}
+                  joinDebateSubmit={this.handleJoinDebate(debate.id, Meteor.userId())}
                 />
               </div>
             </Tab>
             <Tab label="ATTENDEES" value="b">
               <List>
                 <Subheader>People in Attendance</Subheader>
-                {usersAtDebate.map(user =>
-                  (user.attended) ?
+                {debate.userList.map(item =>
+                  (item.attended) ?
                     (<DebateAttendees
-                      //attendeeData={this.props.debateInfo.attedeeList}
+                      user={item}
                       icon={<ToggleCheckBox />}
-                      key={user._id}
+                      key={item._id}
                     />)
                     : null
                 )}
               </List>
-              <List>
+               <List>
                 <Subheader>People Enroute</Subheader>
-                {usersAtDebate.map(user =>
-                  (!user.attended) ?
+                {debate.userList.map(item =>
+                  (!item.attended) ?
                     (<DebateAttendees
-                      userData={user}
+                      user={item}
                       icon={<ToggleCheckBoxOutlineBlank />}
-                      key={user._id}
+                      key={item._id}
                     />) : null
                 )}
-              </List>
+              </List> 
             </Tab>
           </Tabs>
         </div>
@@ -113,17 +124,14 @@ function mapStateFromProps(state) {
 
 
 const currentDebateContainer = createContainer((props) => {
-  Meteor.subscribe('debates');
+  debate = Meteor.subscribe('debates');
   Meteor.subscribe('users');
   Meteor.subscribe('userAtDebate');
-  Meteor.subscribe('organizations');
 
   return {
-    currentUserId: Meteor.userId(),
-    debates: Debates.find({ _id: props.match.params.id }).fetch(),
     users: Meteor.users.find().fetch(),
-    usersAtDebate: UserAtDebate.find({ debate_id: props.match.params.id }).fetch(), //change this to props match as above
-    organizations: Organizations.find().fetch()
+    debate: Debates.find({ _id: props.match.params.id }).fetch()[0],
+    userAtDebate: UserAtDebate.find({ debate_id: props.match.params.id }).fetch()
   };
 }, CurrentDebateContainer);
 

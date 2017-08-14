@@ -10,7 +10,7 @@ const RadioButtonInput = ({ value, onChange, className }) => (
         onChange={(e) => onChange(e.target.value)}
     >
         <RadioButton
-            value="Yes" //set this to current user_id
+            value="Yes"
             label="Yes!"
         />
         <RadioButton
@@ -18,7 +18,7 @@ const RadioButtonInput = ({ value, onChange, className }) => (
             label="No!"
         />
         <RadioButton
-            value="null" //set this to empty string
+            value="null"
             label="Undecided!"
         />
     </RadioButtonGroup>

@@ -218,7 +218,7 @@ class Tests extends Component {
           <RaisedButton
           label="Test vote"
           primary={true}
-          onClick={() => this.handleVote('oKXDvXrdLLiFkKdKP', true, 'aZYZAkto9SERs5B4v')} 
+          onClick={() => this.handleVote('LRsQnTeLjro5HtxNT', true, 'ZqAgayzv9hJFuwuXn')} 
         /> 
 
       </div>

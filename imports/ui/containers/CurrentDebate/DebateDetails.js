@@ -14,55 +14,53 @@ import './styles';
 
 //<Link to={`/profile/${noUserData._id}`}>
 
-const DebateDetails = ({ debateData, yesUserData, noUserData, joinDebateSubmit }) => (
-    <Card>
-        <div className="debate-title-wrapper">
-            <div>
-                <div className="debate-time-wrapper">
-                    <Subheader>{`START: ${Moment(debateData.start).format("h:mma")}`}</Subheader>
-                    <Subheader>{`END: ${Moment(debateData.end).format("h:mma")}`}</Subheader>
-                </div>
-                <Divider />
-                <Subheader>{`LOCATION: ${debateData.location.toUpperCase()}`}</Subheader>
-            </div>
-            <CardActions>
-                <RaisedButton
-                    label="JOIN"
-                    primary
-                    onTouchTap={() => joinDebateSubmit()}
-                />
-            </CardActions>
+const DebateDetails = ({ debate, joinDebateSubmit }) => (
+  <Card>
+    <div className="debate-title-wrapper">
+      <div>
+        <div className="debate-time-wrapper">
+          <Subheader>START: {Moment(debate.start).format("h:mma")}</Subheader>
+          <Subheader>END:{Moment(debate.end).format("h:mma")}</Subheader>
         </div>
-        <CardTitle
-            title={`${debateData.question}?`}
+        <Divider />
+        <Subheader>{'LOCATION: ' + debate.location.toUpperCase()}</Subheader>
+      </div>
+      <CardActions>
+        <RaisedButton
+          label="JOIN"
+          primary
+          onTouchTap={() => joinDebateSubmit()}
         />
-        <div className="debators-wrapper">
-            <Paper zDepth={1}>
-
-                    <CardHeader
-                        className="position-header"
-                        title={`${yesUserData.profile.name}`}
-                        avatar={<Gravatar email={yesUserData.emails[0].address} />}
-                    />
-                YES because...
-                <CardText>
-                    {`${debateData.yesBecause}`}
-                </CardText>
-            </Paper>
-            <Paper zDepth={1}>
-                
-                    <CardHeader
-                        className="position-header"
-                        title={`${noUserData.profile.name}`}
-                        avatar={<Gravatar email={noUserData.emails[0].address} />} 
-                    />
-                NO because...
-                <CardText>
-                    {`${debateData.noBecause}`}
-                </CardText>
-            </Paper>
-        </div>
-    </Card>
+      </CardActions>
+    </div>
+    <CardTitle
+      title={debate.question + '?'}
+    />
+    <div className="debators-wrapper">
+      <Paper zDepth={1}>
+        <CardHeader
+          className="position-header"
+          title={debate.yesUser.name}
+          avatar={<Gravatar email={debate.yesUser.email} />}
+        />
+        YES because...
+        <CardText>
+          {debate.yesBecause}`}
+        </CardText>
+      </Paper>
+      <Paper zDepth={1}>
+        <CardHeader
+          className="position-header"
+          title={debate.noUser.name}
+          avatar={<Gravatar email={debate.noUser.email} />}
+        />
+        NO because...
+        <CardText>
+          {'debateData.noBecause'}
+        </CardText>
+      </Paper>
+    </div>
+  </Card>
 );
 
 export default DebateDetails;

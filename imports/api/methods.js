@@ -67,6 +67,13 @@ Meteor.methods({
 })
 
 Meteor.methods({
+  'user.update'(name, bio, loggedId) {
+    // TODO: implement and test
+    return userUpdate(name, bio, loggedId);
+  }
+})
+
+Meteor.methods({
   'user.recalcscore'(id) {
     return userRecalcScore(id);
   }
@@ -114,13 +121,6 @@ Meteor.methods({
 })
 
 Meteor.methods({
-  'user.update'(name, bio, loggedId) {
-    // TODO: implement and test
-    return userUpdate(name, bio, loggedId);
-  }
-})
-
-Meteor.methods({
   'userAtDebate.confirm'(userId, debateId, loggedId) {
     // TODO: implement and test
     // Update to true userAtDebate.confByYes or userAtDebate.confByNo
@@ -128,13 +128,13 @@ Meteor.methods({
   }
 })
 
-Meteor.methods({
-  'userAtDebate.goodPoint'(debateId, yesNo, loggedId) {
-    // TODO: implement and test
-    // Update to true userAtDebate.goodPointsYes if yesNo=true or userAtDebate.goodPointsNo if nesNo=false
-    return 'being developed';
-  }
-})
+// Meteor.methods({
+//   'userAtDebate.goodPoint'(debateId, yesNo, loggedId) {
+//     // TODO: implement and test
+//     // Update to true userAtDebate.goodPointsYes if yesNo=true or userAtDebate.goodPointsNo if nesNo=false
+//     return 'being developed';
+//   }
+// })
 
 Meteor.methods({
   'userAtDebate.remove'(debateId, loggedId) {
@@ -147,7 +147,9 @@ Meteor.methods({
 Meteor.methods({
   'userAtDebate.vote'(debateId, vote, loggedId) {
     // vote can be true=yes, false=no or null=abstain
-    userAtDebateVote(debateId, vote, loggedId)
+    return userAtDebateVote(debateId, vote, loggedId)
   }
 })
+
+// ‘userAtDebateCheckin’(userId, loggedUser) TODO: build it
 

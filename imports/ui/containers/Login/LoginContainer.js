@@ -12,7 +12,7 @@ import { logInUser } from '../../../redux/modules/login';
 import Login from './Login';
 
 class LoginContainer extends Component {
-
+  
   onChangeHandler(name, value) {
     this.props.dispatch(logInUser(name, value));
     console.log(name, value);
@@ -47,7 +47,6 @@ function mapStateFromProps(state) {
     data: state.login.form
   };
 }
-
 
 const loginContainer = createContainer(() => {
 

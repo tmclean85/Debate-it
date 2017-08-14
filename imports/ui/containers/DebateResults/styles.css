@@ -1,48 +1,114 @@
-
-.debate-results-page {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-}
-
 .debate-results-wrapper {
-  margin-top: 3rem;
-  width: 75%;
+    margin: 1rem; 
 }
 
-.debate-results-card {
-  padding: 3rem;
-}
-
-.results-header {
-  display: flex;
-  text-align: center;
-  justify-content: center;
-}
-
-.results-meta-box {
-  display: flex;
-  height: 14rem;
+.debate-results-header {
   width: 100%;
-  margin-bottom: 3rem;
+  text-align: center;
+  background-color: #FF4081;
+  color: white;
+  text-transform: uppercase;
+  font-size:  1.4rem;
+  font-weight: bold;
+  padding: 1%;
 }
 
-.results-meta-winner {
-  align-items: center;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  width: 50%;
+.debate-results-question {
+  text-align: center;
 }
 
-.results-meta-loser {
-  align-items: center;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;  
-  width: 50%;
+.debators-results-wrapper {
+    display: flex;
+    width: 70%;
+    margin: 0 auto;
+    justify-content: space-around;
+    align-items: center;
 }
 
-.results-attendees-box {
-  margin-bottom: 3rem;
+.debators-results-wrapper > * {
+    margin: 1em;
+}
+
+.debator-status-header {
+  background-color: #00BCD4;
+  text-align: center;
+  text-transform: uppercase;
+  font-size:  1.5rem;
+  font-weight: bold;
+  padding: 1%;
+  color: white;
+}
+
+.versus-wrapper {
+  font-size: 2rem;
+  color: #FF4081;
+  font-weight: bold;
+}
+
+.result-stat {
+  padding: 5% !important;
+  font-size: 1.4rem;
+  color: #FF4081;
+  margin-left: 3%;
+  font-weight: bold;
+}
+
+.debate-position {
+  padding: 5% !important;
+  font-size: 1.1rem;
+  color: #00BCD4;
+  margin-left: 3%;
+  font-weight: bold;
+}
+
+.debate-response-wrapper {
+  padding: 2%;
+}
+
+.debate-response-header {
+  width: 100%;
+  text-align: center;
+  background-color: #00BCD4;
+  color: white;
+  text-transform: uppercase;
+  font-size:  1.2rem;
+  font-weight: bold;
+  padding: 1%;
+}
+
+.audience-responses-wrapper {
+  width: 100%;
+  padding: 1%;
+}
+
+.audience-response-card {
+   text-align: left;
+}
+
+.audience-position {
+  margin-right: 5%;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #FF4081;
+}
+
+.audience-text {
+  font-size: .7rem;
+}
+
+.response-card-wrapper {
+  width: 100%;
+  padding: 1%;
+}
+
+@media only screen and (min-width: 600px) {
+    .response-card-wrapper {
+        width: 50%;
+    }
+}
+
+@media only screen and (min-width: 960px) {
+    .response-card-wrapper {
+        width: 33%;
+    }
 }
