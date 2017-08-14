@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 import './styles.css';
 
-const Header = ({ userDebateId }) => (
+const Header = ({ userDebateId, currentDebatorId }) => (
   <AppBar
     showMenuIconButton={false}
     title={
@@ -19,8 +19,16 @@ const Header = ({ userDebateId }) => (
   >
     <div>
       <div className="headerbuttonwrapper">
-        {(userDebateId) ?
-          <Link to={`/debate/${userDebateId.debate_id}/user/${Meteor.userId()}/interface`}>
+        {(currentDebatorId) ?
+          <Link to={`/debatorscreen`}>
+            <RaisedButton
+              label="Attended Debate"
+              secondary
+              className="headerbar-btns"
+            />
+          </Link>
+          : (userDebateId) ?
+            <Link to={`/debate/${userDebateId.debate_id}/user/${Meteor.userId()}/interface`}>
             <RaisedButton
               label="Attended Debate"
               secondary

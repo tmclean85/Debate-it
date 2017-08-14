@@ -10,9 +10,15 @@ class HeaderContainer extends Component {
   render() {
 
   const userDebateId = this.props.userAtDebate[0];
+  const currentDebator = this.props.debates.filter(debate => Meteor.userId() === (debate.yesUser_id || debate.noUser_id));
+
+  console.log(currentDebator);
 
     return (
-      <Header userDebateId={userDebateId} />
+      <Header 
+        userDebateId={userDebateId} 
+        currentDebatorId={currentDebator[0]}
+      />
     );
   }
 }
