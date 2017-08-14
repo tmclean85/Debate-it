@@ -77,7 +77,7 @@ class CurrentDebateContainer extends Component {
               <div>
                 <DebateDetails
                   debate={debate || {}}
-                  joinDebateSubmit={this.handleJoinDebate(debate.id, Meteor.userId())}
+                  joinDebateSubmit={this.handleJoinDebate.bind(this)}
                 />
               </div>
             </Tab>

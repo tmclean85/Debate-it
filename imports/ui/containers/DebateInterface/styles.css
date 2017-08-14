@@ -6,6 +6,43 @@
   margin: 5%;
 }
 
+.current-debate-question {
+  text-align: center;
+}
+
+.current-debate-status-wrapper {
+    display: flex;
+    width: 70%;
+    margin: 0 auto;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.current-debate-status-wrapper  > * {
+    margin: 1em;
+}
+
+.current-debator-status-header {
+  background-color: #00BCD4;
+  text-align: center;
+  text-transform: uppercase;
+  font-size:  1rem;
+  font-weight: bold;
+  padding: 1%;
+  color: white;
+}
+
+.current-debate-header {
+  width: 100%;
+  text-align: center;
+  background-color: #FF4081;
+  color: white;
+  text-transform: uppercase;
+  font-size:  1.4rem;
+  font-weight: bold;
+  padding: 1%;
+}
+
 .vote-wrapper {
   width: 100%;
   display: flex;
@@ -35,4 +72,39 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
+}
+
+.vote-reason-header {
+  width: 100%;
+  background-color: #FF4081;
+  color: white;
+  text-transform: uppercase;
+  font-size:  .8rem;
+  padding: 2%;
+}
+
+.vote-reason-wrapper {
+  width: 40%;
+}
+
+.vote-reason-input {
+  width: 100% !important;
+  margin: .5%;
+}
+
+.debators-results-wrapper {
+    display: flex;
+    width: 70%;
+    margin: 0 auto;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.good-points-made {
+  padding: 5% !important;
+  font-size: 1.1rem;
+  color: #FF4081;
+   margin-left: 3%; 
+   width: 100%;
+  font-weight: bold;
 }

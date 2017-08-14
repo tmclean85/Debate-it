@@ -9,7 +9,12 @@ import Paper from 'material-ui/Paper';
 import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
 import Attendees from '../../components/Attendees';
 import RadioButtonInput from '../DebateCreate/FormComponents/RadioButton';
+import TextInput from '../DebateCreate/FormComponents/TextInput';
+import { List, ListItem } from 'material-ui/List';
+import ContentInbox from 'material-ui/svg-icons/content/inbox';
+import ActionStars from 'material-ui/svg-icons/action/stars';
 
+import './styles.css';
 // {users.map(user =>
 //                 (<Attendees
 //                     userData={user}
@@ -22,22 +27,81 @@ import RadioButtonInput from '../DebateCreate/FormComponents/RadioButton';
 const DebateInterface = ({ users, debate, onSubmit }) => (
     <div className="interface-wrapper">
         <Paper zDepth={2} className="interface-card">
+            <div className="current-debate-header">
+                <h1>Current Debate</h1>
+            </div>
+                <CardTitle
+                    subtitle="Currently up for debate"
+                    title={`Should Scientists Mix Animal Cells with Human Cells?`}
+                    className="current-debate-question"
+                />
+            <div className="current-debate-status-wrapper">
+                    <Paper zDepth={1}>
+                        <div className="current-debator-status-header">
+                            <h1>YES</h1>
+                        </div>
+                        <CardHeader
+                            title="James Logane"
+                            subtitle={
+                                <div>
+                                    GOOD POINTS:
+                                    <span className="good-points-made">
+                                        7
+                                    </span>
+                                </div>
+                            }
+                            avatar={""}
+                        />
+                    </Paper>
+                    <div className="current-versus-wrapper">
+                        <h1>VS</h1>
+                    </div>
+                    <Paper zDepth={1}>
+                        <div className="current-debator-status-header">
+                            <h1>NO</h1>
+                        </div>
+                        <CardHeader
+                            title="Jack Jimcraig"
+                            subtitle={
+                                <div>
+                                    GOOD POINTS:
+                                    <span className="good-points-made">
+                                        4
+                                    </span>
+                                </div>
+                            }
+                            avatar={""}
+                        />
+                    </Paper>
+                </div>
+                <br />
             <div className="vote-wrapper">
                 <div className="vote-header">
                     <h1>Cast Your Vote!</h1>
                 </div>
                 <div className="vote-actions">
-                <RadioButtonInput
-                    name="userVote"
-                    className="vote-radio"
-                />
-                <div>
-                <RaisedButton
-                    label="Confirm Vote"
-                    onTouchTap={() => onSubmit()}
-                    className="vote-button"
-                    secondary
-                /></div>
+                    <RadioButtonInput
+                        name="userVote"
+                        className="vote-radio"
+                    />
+                    <Paper zDepth={2} className="vote-reason-wrapper">
+                        <div className="vote-reason-header">
+                            <h2>Please Include a Reason Before Voting</h2>
+                        </div>
+                        <TextInput
+                            name="because"
+                            rows={2}
+                            className="vote-reason-input"
+                        />
+                    </Paper>
+                    <div>
+                        <RaisedButton
+                            label="Confirm Vote"
+                            onTouchTap={() => onSubmit()}
+                            className="vote-button"
+                            secondary
+                        />
+                    </div>
                 </div>
             </div>
         </Paper>
@@ -45,45 +109,3 @@ const DebateInterface = ({ users, debate, onSubmit }) => (
 );
 
 export default Form(DebateInterface);
-
-{/* <div className="debate-interface-wrapper">
-        <div className="debate-interface-header">
-            <h1 className="interface-title">{`${debate.question}?`}</h1>
-            
-            
-        </div>
-
-        <div className="interface-attendees-box">
-
-        </div>
-        <div className="debate-meta">
-            <div className="debate-meta-yes">
-                <h1 className="vote-bold">Votes Yes:</h1>
-                <p>11</p>
-                <div className="good-point-yes">
-                    <Avatar size={60} src="" />
-                    <RaisedButton
-                        buttonStyle={{
-                            height: '3.75rem',
-                            width: '8rem'
-                        }}
-                        label="Good Point!"
-                    />
-                </div>
-            </div>
-            <div className="debate-meta-no">
-                <h1 className="vote-bold">Votes No:</h1>
-                <p>14</p>
-                <div className="good-point-no">
-                    <RaisedButton
-                        buttonStyle={{
-                            height: '3.75rem',
-                            width: '8rem'
-                        }}
-                        label="Good Point!"
-                    />
-                    <Avatar size={60} src="" />
-                </div>
-            </div>
-        </div>
-    </div> */}

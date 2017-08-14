@@ -29,7 +29,7 @@ const DebateDetails = ({ debate, joinDebateSubmit }) => (
         <RaisedButton
           label="JOIN"
           primary
-          onTouchTap={() => joinDebateSubmit()}
+          onTouchTap={() => joinDebateSubmit(debate.id, Meteor.userId())}
         />
       </CardActions>
     </div>
