@@ -38,7 +38,6 @@ const DebateDetails = ({ debate, joinDebateSubmit }) => (
     />
     <div className="debators-wrapper">
       <Paper zDepth={1}>
-
         <CardHeader
           className="position-header"
           title={debate.yesUser.name}

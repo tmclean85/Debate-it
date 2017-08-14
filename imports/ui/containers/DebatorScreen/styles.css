@@ -1,38 +1,124 @@
-.debator-page {
+.debate-results-wrapper {
+    margin: 1rem; 
+}
+
+.debate-results-header {
   width: 100%;
-  display: flex;
-  justify-content: center;
+  text-align: center;
+  background-color: #FF4081;
+  color: white;
+  text-transform: uppercase;
+  font-size:  1.4rem;
+  font-weight: bold;
+  padding: 1%;
 }
 
-.debator-card {
-  display: flex;
-  width: 75%;
-  padding: 1.5rem;
-  margin-top: 3rem;
-  margin-bottom: 5rem;
-  justify-content: center;  
-  flex-flow: column nowrap;
-  border: 1px solid grey;
-  box-shadow: 10px 10px 5px 0px rgba(156,156,156,1);  
+.debate-results-question {
+  text-align: center;
 }
 
- .check-in-box {
-  display: flex;
-  flex-flow: column wrap;
-  height: 20rem;
+.debators-results-wrapper {
+    display: flex;
+    width: 70%;
+    margin: 0 auto;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.debators-results-wrapper > * {
+    margin: 1em;
+}
+
+.debator-status-header {
+  background-color: #00BCD4;
+  text-align: center;
+  text-transform: uppercase;
+  font-size:  1.5rem;
+  font-weight: bold;
+  padding: 1%;
+  color: white;
+}
+
+.versus-wrapper {
+  font-size: 2rem;
+  color: #FF4081;
+  font-weight: bold;
+}
+
+.result-stat {
+  padding: 5% !important;
+  font-size: 1.4rem;
+  color: #FF4081;
+  margin-left: 3%;
+  font-weight: bold;
+}
+
+.debate-position {
+  padding: 5% !important;
+  font-size: 1.1rem;
+  color: #00BCD4;
+  margin-left: 3%;
+  font-weight: bold;
+}
+
+.debate-response-wrapper {
+  padding: 2%;
+}
+
+.debate-response-header {
   width: 100%;
-} 
-
-.debator-card-header {
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  flex-flow: column nowrap;
+  text-align: center;
+  background-color: #00BCD4;
+  color: white;
+  text-transform: uppercase;
+  font-size:  1.2rem;
+  font-weight: bold;
+  padding: 1%;
 }
 
-.debator-good-points-box {
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: center;
+.audience-responses-wrapper {
+  width: 100%;
+  padding: 1%;
+}
 
+.audience-response-card {
+   text-align: left;
+}
+
+.audience-position {
+  margin-right: 5%;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #FF4081;
+}
+
+.audience-text {
+  font-size: .7rem;
+}
+
+.to-check-in-header {
+  width: 100%;
+  background-color: #FF4081;
+  color: white;
+  text-transform: uppercase;
+  font-size:  1rem;
+  font-weight: bold;
+  padding: 1%;
+}
+
+.response-card-wrapper {
+  width: 100%;
+  padding: 1%;
+}
+
+@media only screen and (min-width: 600px) {
+    .response-card-wrapper {
+        width: 50%;
+    }
+}
+
+@media only screen and (min-width: 960px) {
+    .response-card-wrapper {
+        width: 33%;
+    }
 }

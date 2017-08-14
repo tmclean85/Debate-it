@@ -59,7 +59,6 @@ class CurrentDebateContainer extends Component {
   }
 
   render() {
-
     const debate = this.getDebate();
     console.log(debate)
 
