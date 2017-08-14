@@ -22,16 +22,30 @@ const debatorScreen = () => (
                     title={`Should Scientists Mix Animal Cells with Human Cells?`}
                     className="debate-results-question"
                 />
-                <h1>Your Argument...</h1>
-                <CardText>
-                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi gravida libero nec velit. Morbi scelerisque luctus velit. Etiam dui sem, fermentum vitae, sagittis id, malesuada in, quam.
-                </CardText>
+                <div className="debator-info">
+                    <CardHeader
+                        title="James"
+                        subtitle={
+                            <div>
+                                GOOD POINTS MADE:
+                                <span className="debator-good-points">
+                                    8
+                                </span>
+                            </div>
+                        }
+                        avatar={""}
+                    />
+                    <CardTitle title="Your Argument..." />
+                    <CardText className="argument-text">
+                        I think this and this and this.
+                    </CardText>
+                </div>
                 <div className="debate-response-wrapper">
                     <div className="debate-response-header">
                         <h1>Check-In Attendees</h1>
                     </div>
                     <div className="to-check-in-header">
-                                <h2>Attendees To Check-In</h2>
+                        <h2>Attendees To Check-In</h2>
                     </div>
                     <Paper className="audience-responses-wrapper">
                         <div>
@@ -74,11 +88,11 @@ const debatorScreen = () => (
                                 </div>
                             </Masonry>
                         </div>
-                        </Paper>
-                        <div className="to-check-in-header">
-                             <h2>Current Attendees</h2>
-                        </div>
-                        <Paper>
+                    </Paper>
+                    <div className="to-check-in-header">
+                        <h2>Current Attendees</h2>
+                    </div>
+                    <Paper className="audience-responses-wrapper">
                         <div>
                             <Masonry>
                                 <div className="response-card-wrapper">
