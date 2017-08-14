@@ -151,3 +151,5 @@ Meteor.methods({
   }
 })
 
+// ‘userAtDebateCheckin’(userId, loggedUser) TODO: build it
+
