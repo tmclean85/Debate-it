@@ -9,6 +9,7 @@ import {
 import DebateInterface from './DebateInterface';
 import { captureUserVote } from '../../../redux/modules/vote';
 import Loader from '../../components/Loader';
+import { Redirect } from 'react-router-dom';
 
 import './styles.css';
 
@@ -38,9 +39,10 @@ class DebateInterfaceContainer extends Component {
   onSubmit() {
     const debateId = this.props.match.params.debateId;
     const vote = (this.props.userVote === "null") ? null : Boolean(this.props.userVote);
+    const because = this.props.because;
     const loggedId = Meteor.userId();
 
-    Meteor.call('userAtDebate.vote', debateId, vote, loggedId);
+    Meteor.call('userAtDebate.vote', debateId, vote, because, loggedId);
   }
 
   render() {
@@ -68,7 +70,8 @@ class DebateInterfaceContainer extends Component {
 
 function mapStateToProps(state) {
   return {
-    userVote: state.vote.userVote
+    userVote: state.vote.userVote,
+    because: state.vote.because
   };
 }
 
