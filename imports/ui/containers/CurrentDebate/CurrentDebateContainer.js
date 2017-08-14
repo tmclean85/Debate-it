@@ -21,8 +21,26 @@ import './styles';
 
 class CurrentDebateContainer extends Component {
 
-  handleJoinDebate(debateId, userId) {
-    Meteor.call('userAtDebate.insert', {debateId, userId});
+  constructor(props) {
+    super(props);
+    this.state = {
+      joined: false
+    };
+  }
+
+  handleJoinDebate = (userId, debateId) => {
+    Meteor.call('userAtDebate.insert', userId, debateId, (error, result) => {
+      if (error) {
+        console.log('error', error);
+        return;
+      }
+      // console.log('success', result);
+      if (result !== true) {
+        console.log(result);
+      } else {
+        this.state.joined = true;
+      }
+    });
   }
 
   getDebate() {
@@ -32,9 +50,10 @@ class CurrentDebateContainer extends Component {
     let debate = this.props.debate;
     const userAtDebate = this.props.userAtDebate;
 
+    // TODO: After presentation, at least forEach should replaced by code that don't alter props
     if (debate && users && userAtDebate) {
       const yesUser = users.find(item => item._id === debate.yesUser_id);
-      if (true) console.log('uesUser', yesUser)      
+      if (debug) console.log('uesUser', yesUser)      
       debate.yesUser = { email: yesUser.emails[0].address, name: yesUser.profile.name };
       
       const noUser = users.find(item => item._id === debate.noUser_id);
@@ -64,6 +83,8 @@ class CurrentDebateContainer extends Component {
 
     if (!Meteor.userId()) {
       return <Redirect to="/login" />
+    } else if (this.state.joined) {
+      return <Redirect to="/" />;
     } else if (!debate) {
       return <Loader />;
     } else {
@@ -77,7 +98,7 @@ class CurrentDebateContainer extends Component {
               <div>
                 <DebateDetails
                   debate={debate || {}}
-                  joinDebateSubmit={this.handleJoinDebate.bind(this)}
+                  joinDebateSubmit={this.handleJoinDebate}
                 />
               </div>
             </Tab>
@@ -94,7 +115,7 @@ class CurrentDebateContainer extends Component {
                     : null
                 )}
               </List>
-               <List>
+               <List key="route">
                 <Subheader>People Enroute</Subheader>
                 {debate.userList.map(item =>
                   (!item.attended) ?

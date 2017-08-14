@@ -95,7 +95,6 @@ class Tests extends Component {
   }
 
   lastTest = (userId, debateId, loggedId) => {
-    console.log(1);
     Meteor.call('userAtDebate.attend', userId, debateId, loggedId, (error, result) => {
       if (error) {
         console.log('error', error);

@@ -10,10 +10,6 @@ import Paper from 'material-ui/Paper';
 import Avatar from 'material-ui/Avatar';
 import './styles';
 
-// I HAVE REMOVED LINKING 
-
-//<Link to={`/profile/${noUserData._id}`}>
-
 const DebateDetails = ({ debate, joinDebateSubmit }) => (
   <Card>
     <div className="debate-title-wrapper">
@@ -29,7 +25,7 @@ const DebateDetails = ({ debate, joinDebateSubmit }) => (
         <RaisedButton
           label="JOIN"
           primary
-          onTouchTap={() => joinDebateSubmit(debate.id, Meteor.userId())}
+          onClick={() => joinDebateSubmit(Meteor.userId(), debate._id)}
         />
       </CardActions>
     </div>
@@ -45,7 +41,7 @@ const DebateDetails = ({ debate, joinDebateSubmit }) => (
         />
         YES because...
         <CardText>
-          {debate.yesBecause}`}
+          {debate.yesBecause}
         </CardText>
       </Paper>
       <Paper zDepth={1}>
@@ -56,7 +52,7 @@ const DebateDetails = ({ debate, joinDebateSubmit }) => (
         />
         NO because...
         <CardText>
-          {'debateData.noBecause'}
+          {debate.noBecause}
         </CardText>
       </Paper>
     </div>
