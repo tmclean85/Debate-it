@@ -17,20 +17,32 @@ const Login = ({data, onSubmit}) => (
         />
         <div className="login-main">
           <TextInput
+            type="input"
             name="form.email"
+            floatingLabelFixed={true}
+            multiLine={true}
+            rows={3}
+            rowsMax={4}
             floatingLabelText="E-mail"
+            defaultValue=""
           /><br />
           <TextInput
             type="password"
+            floatingLabelFixed={true}
+            multiLine={true}
+            rows={3}
+            rowsMax={4}
             name="form.password"
-            floatingLabelText="Password"            
+            floatingLabelText="Password"    
+            autoComplete="off"    
+            defaultValue=""                
           /><br />
           <Link to="/">
           <RaisedButton
               primary 
               onTouchTap={() => onSubmit()}
               buttonStyle={{
-                height: '2.75rem',
+                height: '2rem',
                 width: '8rem'        
               }}
               label="LogIn"
@@ -46,7 +58,7 @@ const Login = ({data, onSubmit}) => (
         <RaisedButton
           type="submit"
           buttonStyle={{
-            height: '2.75rem',
+            height: '2rem',
             width: '8rem'
           }}
           label="Sign Up"

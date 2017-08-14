@@ -17,27 +17,40 @@ const SignUp = ({ data, onSubmit }) => (
         />
         <div className="sign-up-main">
           <TextInput
+            multiLine={true}
+            rows={3}
+            rowsMax={4}
             name="form.name"
             floatingLabelText="Name"            
           /><br />
           <TextInput
+            multiLine={true}
+            rows={3}
+            rowsMax={4}
             name="form.email"
             floatingLabelText="E-mail"            
           /><br />
           <TextInput
+            type="password"
+            multiLine={true}
+            rows={3}
+            rowsMax={4}
             name="form.password"
             floatingLabelText="Password"            
           /><br />
         </div>
         <div className="sign-up-meta">
           <TextInput
+            multiLine={true}
+            rows={3}
+            rowsMax={4}
             name="form.bio"
             floatingLabelText="Biography"            
           /><br />
         </div>  
         <RaisedButton
           buttonStyle={{
-            height: '2.75rem',
+            height: '2rem',
             width: '8rem'        
           }}
           label="Sign Up!"

@@ -57,7 +57,7 @@ const Profile = ({ userLogged, edit, handleEdit, onSubmit }) => {
               floatingLabelFixed={true}
               multiLine={true}
               rows={3}
-              rowsMax={4}              
+              rowsMax={4}
               disabled={!edit}
               defaultValue={userLogged.profile.name}
               />

@@ -2,9 +2,10 @@ import React from 'react';
 import { Field } from 'neoform';
 import TextField from 'material-ui/TextField';
 
-const TextInput = ({ defaultValue, className, floatingLabelText, value, onChange, rows, disabled, hintText }) => (
+const TextInput = ({ autoComplete, type, defaultValue, className, floatingLabelText, value, onChange, rows, disabled, hintText }) => (
     <TextField
-        type="input"
+        autoComplete={autoComplete}
+        type={type}
         value={value}
         onChange={(e) => onChange(e.target.value)}
         rows={rows}
