@@ -7,22 +7,14 @@ import { debateGetById, debateGetIdByNum } from './debates';
 export function userAtDebateInsert(userId, debateId) {
 
   try {
-    // Validations
-    console.log('debateId', debateId)
-    console.log(1);
+
     const debate = Debates.find({_id: debateId}).fetch()[0];
-    console.log(2);
-    console.log('debate', debate)
-    console.log(3);
     if (!debate) return 'Debate not found';
-    console.log(4);
     if (debate.yesUser_id === userId || debate.noUser_id === userId) return 'Already a debator';
-    console.log(5);
-    const count = UserAtDebate.find({user_id: userId, debate_id: debateId}).fetch().count();
-    console.log(count);
-    if (count) return 'Already in this debate';
-console.log(3);
-    return UserAtDebate.insert({
+    const uad = UserAtDebate.find({user_id: userId, debate_id: debateId}).fetch()[0];
+    if (uad) return 'Already in this debate';
+
+    UserAtDebate.insert({
       user_id: userId,
       debate_id: debateId,
       confByYes: false, 
