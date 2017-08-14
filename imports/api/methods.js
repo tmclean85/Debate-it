@@ -86,12 +86,8 @@ Meteor.methods({
 // UsersAtDebate
 
 Meteor.methods({
-  'userAtDebate.insert'(item) {
-    // TODO: To be used in a component to be determined, when someone signs up for a deabte
-    userAtDebateInsert({
-      user_id: item.user_id,
-      debate_id: item.debate_id
-    });
+  'userAtDebate.insert'(userId, debateId) {
+    return userAtDebateInsert(userId, debateId);
   }
 })
 
@@ -118,8 +114,8 @@ Meteor.methods({
 })
 
 Meteor.methods({
-  'userAtDebate.vote'(debateId, vote, loggedId) {
-    return userAtDebateVote(debateId, vote, loggedId)
+  'userAtDebate.vote'(debateId, vote, because, loggedId) {
+    return userAtDebateVote(debateId, vote, because, loggedId)
   }
 })
 
