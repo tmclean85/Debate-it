@@ -11,6 +11,15 @@ import './styles.css';
 
 class DebatorScreenContainer extends Component {
 
+  handleAttend = (userId, debateId) => {
+    Meteor.call('userAtDebate.attend', userId, debateId, Meteor.userId(), (error, result) => {
+      if (error) {
+        console.log('error', error);
+        return;
+      }
+    });
+  }
+
   getDebate() {
 
     const users = this.props.users;
@@ -49,7 +58,8 @@ class DebatorScreenContainer extends Component {
     } else {
       return (
         <DebatorScreen 
-          debate={debate || {}}
+          debate={debate}
+          handleAttend={this.handleAttend}
         />
       );
     }
