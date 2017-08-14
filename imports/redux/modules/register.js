@@ -1,33 +1,34 @@
+import { setValue } from 'neoform-plain-object-helpers';
+
+
 const NEW_USER = 'NEW_USER';
 
 const initialState = {
+  form: {
     name: '',
     email: '',
     password: '',
     bio: ''
+  }    
 };
 
-export function addUser(name, email, password, bio) {
+export function addUser(name, value) {
   return {
     type: NEW_USER,
     payload: { 
       name,
-      email,
-      password,
-      bio
+      value
      }
   }
 }
 
-function NewUserReducer(state = initialState, action) {
+export function NewUserReducer(state = initialState, action) {
   switch (action.type) {
     case NEW_USER:
+      const form = setValue(state, action.payload.name, action.payload.value)    
       return {
         ...state,
-        name: action.payload.name,
-        email: action.payload.email,
-        password: action.payload.password,
-        bio: action.payload.bio
+        ...form
       };
       default:
         return state;
