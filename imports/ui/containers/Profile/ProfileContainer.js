@@ -1,6 +1,6 @@
 import { createContainer } from 'meteor/react-meteor-data';
 import React, { Component } from 'react';
-import { Redirect } from 'react-router'
+import { Redirect } from 'react-router';
 
 import Profile from './Profile';
 import Loader from '../../components/Loader';

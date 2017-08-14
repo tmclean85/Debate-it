@@ -8,7 +8,7 @@ import './styles.css';
 const Login = (email, password) => (
   <div className="login-page">
     <Card className="login-card">
-      <form onSubmit={login} autoComplete="off">
+      <form autoComplete="off">
         <CardHeader
           title="LOG IN"
           subtitle="Please provide your e-mail and password" 
@@ -26,8 +26,7 @@ const Login = (email, password) => (
           /><br />
           <RaisedButton
             primary 
-            type="submit"
-            onTouchTap={() => Meteor.loginWithPassword({Email}, {Password})}           
+            type="submit"         
             buttonStyle={{
               height: '2.75rem',
               width: '8rem'        
@@ -52,13 +51,5 @@ const Login = (email, password) => (
     </Card>
   </div>
 );
-
-function mapStateToProps(state) {
-  return {
-    email: this.props.email,
-    password: this.props.password
-  }
-}
-
 
 export default Login;

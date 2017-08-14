@@ -4,14 +4,13 @@ import { ToggleCheckBox, ToggleCheckBoxOutlineBlank } from 'material-ui/svg-icon
 import Avatar from 'material-ui/Avatar';
 import Gravatar from 'react-gravatar';
 
-const DebateAttendees = ({ attendeeData, icon }) => (
+const DebateAttendees = ({ user, icon }) => (
     <div>
-        {attendeeData.map(attendee =>
         <ListItem
-            primaryText={attendee.name}
-            //leftAvatar={<Gravatar email={userData.emails[0].address} />}
+            primaryText={user.name}
+            leftAvatar={<Gravatar email={user.email} />}
             rightIcon={icon}
-        />)}
+        />
     </div>
 );
 
