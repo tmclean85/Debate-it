@@ -90,9 +90,10 @@ export function userAtDebateVote(debateId, vote, because, loggedId) {
 
     let obj = old;
     obj.vote = vote;
+    obj.because = because;
     if (debug) console.log('new', obj);
 
-    UserAtDebate.update({user_id: loggedId, debate_id: debateId, because: because}, obj);
+    UserAtDebate.update({user_id: loggedId, debate_id: debateId}, obj);
     
   } catch(e) {
     console.log(e)
