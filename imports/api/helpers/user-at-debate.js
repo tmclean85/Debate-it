@@ -82,8 +82,8 @@ export function userAtDebateVote(debateId, vote, loggedId) {
   }
 }
 
-export function userAtDebateAttend(userId, debate, loggedUser) {
-  console.log(userId+' will arrived at '+loggedUser)
+export function userAtDebateAttend(userId, debateId, loggedUser) {
+  console.log(userId+' will arrived at '+debateI+', '+loggedUser)
 }
 
 // Helpers
