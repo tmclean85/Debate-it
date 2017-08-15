@@ -1,4 +1,6 @@
 import { createContainer } from 'meteor/react-meteor-data';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import {
     Debates,
@@ -6,8 +8,19 @@ import {
 } from '../../../api/publications';
 import Header from './Header';
 import Loader from '../../components/Loader';
+import { logInUser } from '../../../redux/modules/login';
 
 class HeaderContainer extends Component {
+
+  onLogout(name, value) {
+    this.props.dispatch(logInUser('', ''));
+    const headerProps = this.props;
+    Meteor.logout(
+      function() {
+        headerProps.history.push('/login');  
+      }
+    );
+  }
 
     render() {
         const { debates, users } = this.props;
@@ -24,12 +37,19 @@ class HeaderContainer extends Component {
             <Header
                 attending={attending}
                 debator={debator}
+                onLogout={this.onLogout.bind(this)}
             />
         );
     }
 }
 
-export default createContainer(() => {
+function mapStateFromProps(state) {
+  return {
+    data: state.login.form
+  }  
+}
+
+const headerContainer = createContainer(() => {
     Meteor.subscribe('debates');
     Meteor.subscribe('userAtDebate');
     Meteor.subscribe('users');
@@ -40,3 +60,5 @@ export default createContainer(() => {
         userAtDebate: UserAtDebate.find({ user_id: Meteor.userId() }).fetch()
     };
 }, HeaderContainer);
+
+export default withRouter(connect(mapStateFromProps)(headerContainer));
