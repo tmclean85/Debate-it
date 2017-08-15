@@ -1,8 +1,20 @@
+import { Mongo } from 'meteor/mongo';
+import SimpleSchema from 'simpl-schema';
+
 export const Organizations = new Mongo.Collection('organizations');
 
-// export const organizationsInit = [
-//   {
-//     name: 'Red Academy',
-//     address: '1490 W Broadway #200, Vancouver, BC, V6H 4E8'
-//   }
-// ];
+// For documentation purpose since in this version there is not insert or update
+export const organizationsSchema = new SimpleSchema({
+  name: {
+    type: String,
+    label: 'Name',
+    max: 140,
+    optional: false
+  },
+  address: {
+    type: String,
+    label: 'Address',
+    max: 280,
+    optional: false
+  },
+});

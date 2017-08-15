@@ -1,7 +1,9 @@
 import { Meteor } from 'meteor/meteor';
-import { Mongo } from 'meteor/mongo';
+import { userUpdateSchema } from '../schemas/users';
+
 import { Debates } from '../schemas/debates';
 import { UserAtDebate } from '../schemas/user-at-debate';
+
 
 export function userGetById(id) {
   const user = Meteor.users.find({ _id: id }).fetch();
@@ -15,81 +17,95 @@ export function userGetIdByNum(i) {
 }
 
 export function userInsert(item) {
-  
   Accounts.createUser({
-    email : item.email,
-    password : item.password,
+    email: item.email,
+    password: item.password,
     profile: {
       name: item.name,
       bio: item.bio,
       wins: 0,
       losses: 0
     }
-  });  
+  });
 }
 
 export function userUpdate(name, bio, id)  {
   try {
-    const debug = true;
+    const user = {
+      name,
+      bio
+    };
 
-    if (debug) console.log('will update '+id+' wuth name='+name+' and bio='+bio);
-    Meteor.users.update(id, {$set: {'profile.name': name, 'profile.bio': bio}});
-  } catch(e) {
+    console.log('will update');
+    console.log(user);
+    const isValid = userUpdateSchema.validate(user);
+    console.log(isValid);
+
+    Meteor.startup(function() {
+      Tracker.autorun(function() {
+        var context = userUpdateSchema.namedContext('myContext');
+        if (!context.isValid()) {
+          throw new Meteor.Error('schema', context.invalidKeys())
+        }
+      });
+    });
+
+    Meteor.users.update(id, {$set: { 'profile.name': name, 'profile.bio': bio}});
+  } catch (e) {
     console.log('error at userUpdate', e);
     throw new Meteor.Error('error at userUpdate', e);
   }
 } 
 
 export function userRecalcScore() {
-
   const debug = false;
-  if (debug) console.log('recalculating scores from '+id);
-  
-  let id = Meteor.userId();
+  if (debug) console.log('recalculating scores');
+
+  const id = Meteor.userId();
   let wins = 0;
   let losses = 0;
-  
+
   // Votes when Yes
-  let debates = Debates.find({yesUser_id: id}).fetch();
+  let debates = Debates.find({ yesUser_id: id }).fetch();
   debates.forEach(item => {
-    if (debug) console.log('debate '+item._id+' with '+id+' as yes')
+    if (debug) console.log('debate ' + item._id + ' with ' + id + ' as yes')
     let winnerYes = 0;
     const voteList = UserAtDebate.find({ debate_id: item._id }).fetch();
     voteList.forEach(it=>{
-      if (debug) console.log('user '+it._id+' voted '+it.vote)
-      if (it.vote === true) winnerYes+=1;
-      else if (it.vote === false) winnerYes-=1;
+      if (debug) console.log('user ' + it._id + ' voted ' + it.vote);
+      if (it.vote === true) winnerYes += 1;
+      else if (it.vote === false) winnerYes -= 1;
       if (debug) console.log('winnerYes become '+winnerYes);
     })
     if (winnerYes > 0) {
       if (debug) console.log('yes won');
-      wins++;
-    } 
+      wins += 1;
+    }
     if (winnerYes < 0) {
       if (debug) console.log('yes lost');
-      losses++;
+      losses += 1;
     }
   });
- 
+
   // Votes when Yes
   debates = Debates.find({noUser_id: id}).fetch();
   debates.forEach(item => {
-    if (debug) console.log('debate '+item._id+' with '+id+' as yes')
+    if (debug) console.log('debate ' + item._id + ' with ' + id + ' as yes')
     let winnerYes = 0;
     const voteList = UserAtDebate.find({ debate_id: item._id }).fetch();
     voteList.forEach(it=>{
-      if (debug) console.log('user '+it._id+' voted '+it.vote)
+      if (debug) console.log('user ' + it._id + ' voted ' + it.vote)
       if (it.vote === true) winnerYes+=1;
       else if (it.vote === false) winnerYes-=1;
-      if (debug) console.log('winnersNo has become '+winnerYes);
-    })
+      if (debug) console.log('winnersNo has become ' + winnerYes);
+    });
     if (winnerYes > 0) {
       if (debug) console.log('yes won');
-      wins++;
-    } 
+      wins += 1;
+    }
     if (winnerYes < 0) {
       if (debug) console.log('yes lost');
-      losses++;
+      losses += 1;
     }
   });
   if (debug) console.log(wins, losses);

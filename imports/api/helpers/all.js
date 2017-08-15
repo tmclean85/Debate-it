@@ -6,31 +6,24 @@ import { usersReset, userAddTest } from '../helpers/user';
 import { userAtDebateReset, userAtDebateAddTest } from '../helpers/user-at-debate';
 
 export function allReset() {
- 
   try {
-
     organizationsReset();
     usersReset();
     debateReset();
     userAtDebateReset();
     Meteor.logout();
-
-  } catch(e) {
+  } catch (e) {
     throw new Meteor.Error(e);
   }
 }
 
 export function allInsertOne() {
-
   try {
-
     userAddTest();
     debateAddTest();
     userAtDebateAddTest();
-    
-  } catch(e) {
+  } catch (e) {
     throw new Meteor.Error(e);
   }
 }
-
 
