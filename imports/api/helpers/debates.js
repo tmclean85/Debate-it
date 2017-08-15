@@ -1,5 +1,5 @@
 import { Meteor } from 'meteor/meteor';
-import { Debates, DebateSchema } from '../schemas/debates';
+import { Debates, debateSchema } from '../schemas/debates';
 import { Organizations } from '../schemas/organizations';
 import { UserAtDebate } from '../schemas/user-at-debate';
 
@@ -9,7 +9,6 @@ export function debateGetById(id) {
   const debate = Debates.find({ _id: id }).fetch();
   return debate;
 }
-
 
 export function debateProfileGet(userId) {
 
@@ -35,15 +34,18 @@ export function debateGetIdByNum(i) {
 export function debateInsert(item) {
 
   try {
-  //   isValid = DebateSchema.namedContext("myContext").validate(item);
-  //   Meteor.startup(function() {
-  //     Tracker.autorun(function() {
-  //       var context = DebateSchema.namedContext("myContext");
-  //       if (!context.isValid()) {
-  //         throw new Meteor.Error('schema', context.invalidKeys())
-  //       }
-  //     });
-  //   });
+
+    // isValid = debateSchema.validate(item);
+    // console.log(isValid);
+
+    // Meteor.startup(function() {
+    //   Tracker.autorun(function() {
+    //     var context = DebateSchema.namedContext("myContext");
+    //     if (!context.isValid()) {
+    //       throw new Meteor.Error('schema', context.invalidKeys())
+    //     }
+    //   });
+    // });
 
     if (!userGetById(item.yesUser_id)) throw new Meteor.Error('invalid yesUser', [ { name: 'yesUser_id', type: 'inexistent', value: null } ])
     if (!userGetById(item.noUser_id)) throw new Meteor.Error('invalid noUser', [ { name: 'noUser_id', type: 'inexistent', value: null } ])
