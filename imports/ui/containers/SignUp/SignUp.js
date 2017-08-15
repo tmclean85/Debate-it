@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Form } from 'neoform';
+import { Form } from 'neoform';import { withRouter } from 'react-router-dom';
 import TextInput from '../DebateCreate/FormComponents/TextInput';
 import RaisedButton from 'material-ui/RaisedButton';
 import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
@@ -47,11 +47,11 @@ const SignUp = ({ data, onSubmit }) => (
             name="form.bio"
             floatingLabelText="Biography"            
           /><br />
-        </div>  
+        </div>
         <RaisedButton
           buttonStyle={{
             height: '2rem',
-            width: '8rem'        
+            width: '8rem'
           }}
           label="Sign Up!"
           onTouchTap={() => onSubmit()}
