@@ -27,16 +27,16 @@ const App = props => (
     <Router>
           <Switch>
             <Layout>
-              <Route exact path="/" component={Home} />
+              <PrivateRoute exact path="/" component={Home} />
               <Route exact path="/plinio" component={PlinioTests} />
-              <Route exact path="/debate/:id" component={CurrentDebate} /> 
+              <PrivateRoute exact path="/debate/:id" component={CurrentDebate} /> 
               <PrivateRoute exact path="/profile/:id" component={Profile} />
-              <Route exact path="/debate/:debateId/user/:userId/interface" component={DebateInterface} />
-              <Route exact path="/results/:id" component={DebateResults} />
+              <PrivateRoute exact path="/debate/:debateId/user/:userId/interface" component={DebateInterface} />
+              <PrivateRoute exact path="/results/:id" component={DebateResults} />
               <PrivateRoute exact path="/createdebate" component={DebateCreate} />
               <Route exact path="/signup" component={SignUp} />
               <Route exact path="/login" component={Login} /> 
-              <Route exact path="/debate/:debateId/user/:userId/debatorscreen" component={DebatorScreen} />
+              <PrivateRoute exact path="/debate/:debateId/user/:userId/debatorscreen" component={DebatorScreen} />
               <PrivateRoute exact path="404" component={NotFound} />
             </Layout>
           </Switch>

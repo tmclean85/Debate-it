@@ -46,7 +46,7 @@ const Login = ({data, onSubmit}) => (
                 width: '8rem'        
               }}
               label="LogIn"
-            />
+          />
           </Link>     
         </div>
       </form>    
@@ -56,7 +56,6 @@ const Login = ({data, onSubmit}) => (
       />
       <Link to="/signup">
         <RaisedButton
-          type="submit"
           buttonStyle={{
             height: '2rem',
             width: '8rem'
