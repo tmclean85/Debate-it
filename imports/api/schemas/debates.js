@@ -3,7 +3,7 @@ import SimpleSchema from 'simpl-schema';
 
 export const Debates = new Mongo.Collection('debates');
 
-export const debateSchema = new SimpleSchema({
+export const DebateSchema = new SimpleSchema({
   question: {
     type: String,
     label: 'Question',
@@ -30,9 +30,9 @@ export const debateSchema = new SimpleSchema({
     optional: false
   },
   noBecause: {
-    type: Boolean,
+    type: String,
     label: 'noBecause',
-    min: 140,
+    max: 140,
     autoValue: () => '',
     optional: true
   },

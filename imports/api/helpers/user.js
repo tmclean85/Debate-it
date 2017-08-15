@@ -1,5 +1,5 @@
 import { Meteor } from 'meteor/meteor';
-import { userUpdateSchema } from '../schemas/users';
+import { userUpdateSchema, userSchema } from '../schemas/users';
 
 import { Debates } from '../schemas/debates';
 import { UserAtDebate } from '../schemas/user-at-debate';
@@ -15,9 +15,12 @@ export function userGetIdByNum(i) {
   const id = Meteor.users.find({}).fetch()[i]._id;
   return id;
 }
-
+ 
 export function userInsert(item) {
-  Accounts.createUser({
+
+  console.log(item);
+
+  const user = {
     email: item.email,
     password: item.password,
     profile: {
@@ -26,7 +29,12 @@ export function userInsert(item) {
       wins: 0,
       losses: 0
     }
-  });
+  }
+
+  const isValid = userSchema.validate(user);
+  console.log(isValid);
+
+  Accounts.createUser(user);
 }
 
 export function userUpdate(name, bio, id)  {
@@ -36,21 +44,18 @@ export function userUpdate(name, bio, id)  {
       bio
     };
 
-    console.log('will update');
-    console.log(user);
     const isValid = userUpdateSchema.validate(user);
-    console.log(isValid);
 
-    Meteor.startup(function() {
-      Tracker.autorun(function() {
-        var context = userUpdateSchema.namedContext('myContext');
+    Meteor.startup(() => {
+      Tracker.autorun(() => {
+        const context = userUpdateSchema.namedContext('myContext');
         if (!context.isValid()) {
           throw new Meteor.Error('schema', context.invalidKeys())
         }
       });
     });
 
-    Meteor.users.update(id, {$set: { 'profile.name': name, 'profile.bio': bio}});
+    Meteor.users.update(id, {$set: { 'profile.name': user.name, 'profile.bio': user.bio } });
   } catch (e) {
     console.log('error at userUpdate', e);
     throw new Meteor.Error('error at userUpdate', e);

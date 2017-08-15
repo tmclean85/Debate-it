@@ -46,14 +46,12 @@ export const userSchema = new SimpleSchema({
 export const userUpdateSchema = new SimpleSchema({
   name: {
     type: String,
-    label: 'Name',
-    max: 140,
-    optional: false
+    max: 70,
+    optional: true
   },
   bio: {
     type: String,
-    label: 'Bio',
-    max: 70,
+    max: 140,
     optional: true
   }
-}).newContext();
+});

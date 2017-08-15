@@ -1,5 +1,5 @@
 import { Meteor } from 'meteor/meteor';
-import { Debates, debateSchema } from '../schemas/debates';
+import { Debates, DebateSchema } from '../schemas/debates';
 import { Organizations } from '../schemas/organizations';
 import { UserAtDebate } from '../schemas/user-at-debate';
 
@@ -35,24 +35,8 @@ export function debateInsert(item) {
 
   try {
 
-    // isValid = debateSchema.validate(item);
-    // console.log(isValid);
-
-    // Meteor.startup(function() {
-    //   Tracker.autorun(function() {
-    //     var context = DebateSchema.namedContext("myContext");
-    //     if (!context.isValid()) {
-    //       throw new Meteor.Error('schema', context.invalidKeys())
-    //     }
-    //   });
-    // });
-
-    if (!userGetById(item.yesUser_id)) throw new Meteor.Error('invalid yesUser', [ { name: 'yesUser_id', type: 'inexistent', value: null } ])
-    if (!userGetById(item.noUser_id)) throw new Meteor.Error('invalid noUser', [ { name: 'noUser_id', type: 'inexistent', value: null } ])
-
     const org = Organizations.find({}).fetch()[0];
-
-    return Debates.insert({
+    const debate = {
       question: item.question, 
       yesUser_id: item.yesUser_id, 
       yesBecause: item.yesBecause,
@@ -66,7 +50,25 @@ export function debateInsert(item) {
       start: item.start, 
       end: item.end,
       closed: false
+    };
+    console.log(debate);
+
+    isValid = DebateSchema.validate(item);
+    console.log(isValid);
+
+    Meteor.startup(function() {
+      Tracker.autorun(function() {
+        var context = DebateSchema.namedContext("insert");
+        if (!context.isValid()) {
+          throw new Meteor.Error('schema', context.invalidKeys())
+        }
+      });
     });
+
+    if (!userGetById(item.yesUser_id)) throw new Meteor.Error('invalid yesUser', [ { name: 'yesUser_id', type: 'inexistent', value: null } ])
+    if (!userGetById(item.noUser_id)) throw new Meteor.Error('invalid noUser', [ { name: 'noUser_id', type: 'inexistent', value: null } ])
+
+    return Debates.insert(debate);
 
   } catch(e) {
     console.log('error at help', e);
