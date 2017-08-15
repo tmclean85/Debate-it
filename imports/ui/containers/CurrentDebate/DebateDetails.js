@@ -23,11 +23,11 @@ const DebateDetails = ({ debate, joinDebateSubmit }) => {
       <div className="debate-title-wrapper">
         <div>
           <div className="debate-time-wrapper">
-            <Subheader>START: {Moment(debate.start).format("h:mma")}</Subheader>
-            <Subheader>END:{Moment(debate.end).format("h:mma")}</Subheader>
+            <Subheader><span className="debate-details-span">START: </span>{Moment(debate.start).format("h:mma")}</Subheader>
+            <Subheader><span className="debate-details-span">END: </span>{Moment(debate.end).format("h:mma")}</Subheader>
           </div>
           <Divider />
-          <Subheader>{'LOCATION: ' + debate.location.toUpperCase()}</Subheader>
+          <Subheader><span className="debate-details-span">LOCATION: </span>{debate.location.toUpperCase()}</Subheader>
         </div>
         <CardActions>
           <RaisedButton
@@ -48,8 +48,10 @@ const DebateDetails = ({ debate, joinDebateSubmit }) => {
             title={debate.yesUser.name}
             avatar={<Gravatar email={debate.yesUser.email} />}
           />
-          YES because...
-          <CardText>
+          <div className="debator-reasoning">
+            <span className="debator-current-position">YES</span> because...
+          </div>
+          <CardText className="debator-reasoning-text">
             {debate.yesBecause}
           </CardText>
         </Paper>
@@ -59,8 +61,10 @@ const DebateDetails = ({ debate, joinDebateSubmit }) => {
             title={debate.noUser.name}
             avatar={<Gravatar email={debate.noUser.email} />}
           />
-          NO because...
-          <CardText>
+          <div className="debator-reasoning">
+            <span className="debator-current-position">NO</span> because...
+          </div>
+          <CardText className="debator-reasoning-text">
             {debate.noBecause}
           </CardText>
         </Paper>

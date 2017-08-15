@@ -1,12 +1,13 @@
 import { createContainer } from 'meteor/react-meteor-data';
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import { getValue } from 'neoform-plain-object-helpers';
 import { Meteor } from 'meteor/meteor';
 import { connect } from 'react-redux';
 import { Organizations,
          Users,
          Debates,
-         UserAtDebate  
+         UserAtDebate
 } from '../../../api/publications';
 import { addUser } from '../../../redux/modules/register';
 import SignUp from './SignUp';
@@ -18,6 +19,7 @@ class SignUpContainer extends Component {
   }
 
   onSubmit() {
+    event.preventDefault();
     const email = this.props.data.email;
     const password = this.props.data.password;
     const name = this.props.data.name;
@@ -28,11 +30,14 @@ class SignUpContainer extends Component {
       name,
       bio
     });
+    const theProps = this.props;
     Meteor.loginWithPassword(
       email,
-      password
+      password,
+      function() {
+        theProps.history.push('/')
+    }
     );
-    
   }
 
   onInvalid() {
@@ -41,7 +46,7 @@ class SignUpContainer extends Component {
 
   render() {
     return (
-      <SignUp 
+      <SignUp
         data={this.props.data}
         onInvalid={this.onInvalid.bind(this)}
         getValue={getValue}
@@ -66,4 +71,4 @@ const signUpContainer = createContainer(() => {
   };
 }, SignUpContainer);
 
-export default connect(mapStateFromProps)(signUpContainer)
+export default withRouter(connect(mapStateFromProps)(signUpContainer));
