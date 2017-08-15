@@ -12,14 +12,8 @@ import { logInUser } from '../../../redux/modules/login';
 
 class HeaderContainer extends Component {
 
-  onLogout(name, value) {
-    this.props.dispatch(logInUser('', ''));
-    const headerProps = this.props;
-    Meteor.logout(
-      function() {
-        headerProps.history.push('/login');  
-      }
-    );
+  onLogout() {
+    Meteor.logout();
   }
 
     render() {
