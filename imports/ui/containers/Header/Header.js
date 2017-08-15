@@ -6,29 +6,31 @@ import { Link } from 'react-router-dom';
 
 import './styles.css';
 
-const Header = ({ userAtDebate, currentDebator }) => (
+
+
+const Header = ({ attending, debator }) => (
   <AppBar
     showMenuIconButton={false}
     title={
       <div className="title-wrapper">
         <Link to={"/"}>
-          <img className="headerbar-logo" src={"/images/debate-logo.svg"} alt={"\'bate it logo"} />
+          <img className="headerbar-logo" src={"/images/debate-logo.svg"} alt={"'bate it logo"} />
         </Link>
       </div>
     }
   >
     <div>
       <div className="headerbuttonwrapper">
-        {(currentDebator) ?
-          <Link to={`/debate/${currentDebator._id}/user/${Meteor.userId()}/debatorscreen`}>
+        {(debator.length > 0) ?
+          <Link to={`/debate/${debator[0]._id}/user/${Meteor.userId()}/debatorscreen`}>
             <RaisedButton
               label="Current Debate"
               secondary
               className="headerbar-btns"
             />
           </Link>
-          : (userAtDebate) ?
-            <Link to={`/debate/${userAtDebate.debate_id}/user/${Meteor.userId()}/interface`}>
+          : (attending.length > 0) ?
+            <Link to={`/debate/${attending[0].debate_id}/user/${Meteor.userId()}/interface`}>
             <RaisedButton
               label="Attended Debate"
               secondary
