@@ -24,23 +24,23 @@ injectTapEventPlugin();
 const App = props => (
   <MuiThemeProvider>
     <Provider store={store}>
-    <Router>
+      <Router>
+        <Layout>
           <Switch>
-            <Layout>
-              <PrivateRoute exact path="/" component={Home} />
-              <Route exact path="/plinio" component={PlinioTests} />
-              <PrivateRoute exact path="/debate/:id" component={CurrentDebate} /> 
-              <PrivateRoute exact path="/profile/:id" component={Profile} />
-              <PrivateRoute exact path="/debate/:debateId/user/:userId/interface" component={DebateInterface} />
-              <PrivateRoute exact path="/results/:id" component={DebateResults} />
-              <PrivateRoute exact path="/createdebate" component={DebateCreate} />
-              <Route exact path="/signup" component={SignUp} />
-              <Route exact path="/login" component={Login} /> 
-              <PrivateRoute exact path="/debate/:debateId/user/:userId/debatorscreen" component={DebatorScreen} />
-              <PrivateRoute exact path="404" component={NotFound} />
-            </Layout>
+            <PrivateRoute exact path="/" component={Home} />
+            <Route exact path="/plinio" component={PlinioTests} />
+            <PrivateRoute exact path="/debate/:id" component={CurrentDebate} />
+            <PrivateRoute exact path="/profile/:id" component={Profile} />
+            <PrivateRoute exact path="/debate/:debateId/user/:userId/interface" component={DebateInterface} />
+            <PrivateRoute exact path="/results/:id" component={DebateResults} />
+            <PrivateRoute exact path="/createdebate" component={DebateCreate} />
+            <Route exact path="/signup" component={SignUp} />
+            <Route exact path="/login" component={Login} />
+            <PrivateRoute exact path="/debate/:debateId/user/:userId/debatorscreen" component={DebatorScreen} />
+            <PrivateRoute component={NotFound} />
           </Switch>
-    </Router>
+        </Layout>
+      </Router>
     </Provider>
   </MuiThemeProvider>
 );
