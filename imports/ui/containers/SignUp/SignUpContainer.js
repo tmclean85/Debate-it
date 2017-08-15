@@ -30,13 +30,17 @@ class SignUpContainer extends Component {
       name,
       bio
     });
-    const theProps = this.props;
+    const signUpProps = this.props;
     Meteor.loginWithPassword(
       email,
       password,
       function() {
-        theProps.history.push('/')
-    }
+        if(Meteor.user()) {
+          signUpProps.history.push('/')
+        } else {
+          alert("Please fill out all of the fields!");
+        }
+      }
     );
   }
 
@@ -51,7 +55,7 @@ class SignUpContainer extends Component {
         onInvalid={this.onInvalid.bind(this)}
         getValue={getValue}
         onChange={this.onChangeHandler.bind(this)}
-        onSubmit={this.onSubmit.bind(this)}      
+        onSubmit={this.onSubmit.bind(this)}
       />
     );
   }

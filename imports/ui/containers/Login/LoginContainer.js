@@ -1,5 +1,6 @@
 import { createContainer } from 'meteor/react-meteor-data';
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getValue } from 'neoform-plain-object-helpers';
 import { Meteor } from 'meteor/meteor';
@@ -15,13 +16,20 @@ class LoginContainer extends Component {
   
   onChangeHandler(name, value) {
     this.props.dispatch(logInUser(name, value));
-    console.log(name, value);
   }
 
   onSubmit() {
+    const loginProps = this.props;
     Meteor.loginWithPassword(
       this.props.data.email,
-      this.props.data.password
+      this.props.data.password,
+      function() {
+        if(Meteor.user()) {
+        loginProps.history.push('/')
+        } else {
+          alert("Please enter a valid e-mail and password");
+        }
+      }
     )
   }
 
@@ -58,4 +66,4 @@ const loginContainer = createContainer(() => {
   };
 }, LoginContainer);
 
-export default connect(mapStateFromProps)(loginContainer);
+export default withRouter(connect(mapStateFromProps)(loginContainer));
