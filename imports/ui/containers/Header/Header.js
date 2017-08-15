@@ -8,7 +8,7 @@ import './styles.css';
 
 
 
-const Header = ({ attending, debator }) => (
+const Header = ({ attending, debator, onLogout }) => (
   <AppBar
     showMenuIconButton={false}
     title={
@@ -47,7 +47,7 @@ const Header = ({ attending, debator }) => (
           label="Log Out"
           secondary
           className="headerbar-btns"
-          onTouchTap={() => Meteor.logout()}
+          onTouchTap={() => onLogout()}
         />
       </div>
     </div>

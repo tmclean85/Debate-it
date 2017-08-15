@@ -18,13 +18,13 @@ class LoginContainer extends Component {
     this.props.dispatch(logInUser(name, value));
   }
 
-  onSubmit() {
+  onLogin() {
     const loginProps = this.props;
     Meteor.loginWithPassword(
       this.props.data.email,
       this.props.data.password,
       function() {
-        if(Meteor.user()) {
+        if(Meteor.user() !== null) {
         loginProps.history.push('/')
         } else {
           alert("Please enter a valid e-mail and password");
@@ -45,7 +45,7 @@ class LoginContainer extends Component {
         onInvalid={this.onInvalid.bind(this)}
         getValue={getValue}
         onChange={this.onChangeHandler.bind(this)}
-        onSubmit={this.onSubmit.bind(this)}
+        onLogin={this.onLogin.bind(this)}
       />
     );
   }

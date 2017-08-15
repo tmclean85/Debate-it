@@ -7,7 +7,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
 import './styles.css';
 
-const Login = ({data, onSubmit}) => (
+const Login = ({data, onLogin}) => (
   <div className="login-page">
     <Card className="login-card">
       <form>
@@ -40,7 +40,7 @@ const Login = ({data, onSubmit}) => (
           <Link to="/">
           <RaisedButton
               primary 
-              onTouchTap={() => onSubmit()}
+              onTouchTap={() => onLogin()}
               buttonStyle={{
                 height: '2rem',
                 width: '8rem'        
