@@ -10,54 +10,64 @@ import Paper from 'material-ui/Paper';
 import Avatar from 'material-ui/Avatar';
 import './styles';
 
-const DebateDetails = ({ debate, joinDebateSubmit }) => (
-  <Card>
-    <div className="debate-title-wrapper">
-      <div>
-        <div className="debate-time-wrapper">
-          <Subheader>START: {Moment(debate.start).format("h:mma")}</Subheader>
-          <Subheader>END:{Moment(debate.end).format("h:mma")}</Subheader>
+const DebateDetails = ({ debate, joinDebateSubmit }) => {
+
+  let nattending = 0;
+  debate.userList.forEach(it=> {if (it._id === Meteor.userId()) nattending++});
+  const debator = (debate.yesUser_id !== Meteor.userId() && debate.noUser_id !== Meteor.userId()) 
+  
+  const btJoinStyle = { display: (nattending && !debator) ? 'inline-block' : 'none' };
+
+  return (
+    <Card>
+      <div className="debate-title-wrapper">
+        <div>
+          <div className="debate-time-wrapper">
+            <Subheader>START: {Moment(debate.start).format("h:mma")}</Subheader>
+            <Subheader>END:{Moment(debate.end).format("h:mma")}</Subheader>
+          </div>
+          <Divider />
+          <Subheader>{'LOCATION: ' + debate.location.toUpperCase()}</Subheader>
         </div>
-        <Divider />
-        <Subheader>{'LOCATION: ' + debate.location.toUpperCase()}</Subheader>
+        <CardActions>
+          <RaisedButton
+            label="JOIN"
+            primary
+            style={btJoinStyle}
+            onClick={() => joinDebateSubmit(Meteor.userId(), debate._id)}
+          />
+        </CardActions>
       </div>
-      <CardActions>
-        <RaisedButton
-          label="JOIN"
-          primary
-          onClick={() => joinDebateSubmit(Meteor.userId(), debate._id)}
-        />
-      </CardActions>
-    </div>
-    <CardTitle
-      title={debate.question + '?'}
-    />
-    <div className="debators-wrapper">
-      <Paper zDepth={1}>
-        <CardHeader
-          className="position-header"
-          title={debate.yesUser.name}
-          avatar={<Gravatar email={debate.yesUser.email} />}
-        />
-        YES because...
-        <CardText>
-          {debate.yesBecause}
-        </CardText>
-      </Paper>
-      <Paper zDepth={1}>
-        <CardHeader
-          className="position-header"
-          title={debate.noUser.name}
-          avatar={<Gravatar email={debate.noUser.email} />}
-        />
-        NO because...
-        <CardText>
-          {debate.noBecause}
-        </CardText>
-      </Paper>
-    </div>
-  </Card>
-);
+      <CardTitle
+        title={debate.question + '?'}
+      />
+      <div className="debators-wrapper">
+        <Paper zDepth={1}>
+          <CardHeader
+            className="position-header"
+            title={debate.yesUser.name}
+            avatar={<Gravatar email={debate.yesUser.email} />}
+          />
+          YES because...
+          <CardText>
+            {debate.yesBecause}
+          </CardText>
+        </Paper>
+        <Paper zDepth={1}>
+          <CardHeader
+            className="position-header"
+            title={debate.noUser.name}
+            avatar={<Gravatar email={debate.noUser.email} />}
+          />
+          NO because...
+          <CardText>
+            {debate.noBecause}
+          </CardText>
+        </Paper>
+      </div>
+    </Card>
+  )
+};
 
 export default DebateDetails;
 

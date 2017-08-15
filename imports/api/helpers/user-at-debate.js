@@ -34,6 +34,7 @@ export function userAtDebateInsert(userId, debateId) {
   }
 }
 
+
 export function userAtDebateConfirm(userId, debateId, loggedId) {
   
   try {
