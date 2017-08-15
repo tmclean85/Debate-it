@@ -2,6 +2,7 @@
   bottom: 1rem;
   position: fixed;
   right: 1rem;
+  z-index: 999;
 }
 
 .app-footer {
