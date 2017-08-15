@@ -30,10 +30,13 @@ class SignUpContainer extends Component {
       name,
       bio
     });
+    const theProps = this.props;
     Meteor.loginWithPassword(
       email,
       password,
-      this.props.history.push('/')                                 
+      function() {
+        theProps.history.push('/')
+    }
     );
   }
 
