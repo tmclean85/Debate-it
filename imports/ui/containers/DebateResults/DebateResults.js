@@ -24,7 +24,8 @@ const DebateResults = ({ debate }) => (
                 />
                 {((debate.undecidedVotes > debate.yesVotes
                     && debate.undecidedVotes > debate.noVotes)
-                    || (debate.undecidedVotes === 0 && debate.yesVotes === 0 && debate.noVotes === 0))
+                    || (debate.undecidedVotes === 0 && debate.yesVotes === 0 && debate.noVotes === 0)
+                    || (debate.yesVotes === debate.noVotes))
                     ? <div className="debate-response-wrapper">
                     <Paper zDepth={1}>
                         <div className="debate-undecided-header">
