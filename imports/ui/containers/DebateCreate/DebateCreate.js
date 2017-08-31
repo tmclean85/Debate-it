@@ -15,6 +15,7 @@ import TextInput from './FormComponents/TextInput';
 import TimeDrop from './FormComponents/TimeDrop';
 import SelectDebators from './FormComponents/SelectDebators';
 import { stepForward, stepBackward } from '../../../redux/modules/create';
+import { FormValidation } from 'neoform-validation';
 import './styles.css';
 
 const DebateCreate = ({
@@ -57,7 +58,10 @@ const DebateCreate = ({
             style={{ maxWidth: 800, maxHeight: 500, margin: 'auto' }}
             className={'stepForm-wrapper'}
         >
-            <form>
+            <form onSubmit={(e) => {
+                this.props.validate(onSubmit)
+                e.preventDefault();
+            }}>
                 <Stepper
                     activeStep={stepIndex}
                     linear
@@ -167,7 +171,7 @@ function mapStateToProps(state) {
     };
 }
 
-export default connect(mapStateToProps)(Form(DebateCreate));
+export default connect(mapStateToProps)(Form(FormValidation(DebateCreate)));
 
 DebateCreate.defaultProps = {
     data: PropTypes.shape({

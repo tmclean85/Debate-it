@@ -13,7 +13,8 @@ const TextInput = ({
     rows,
     disabled,
     hintText,
-    name
+    name,
+    validate
     }) => (
         <TextField
             autoComplete={autoComplete}
@@ -27,6 +28,7 @@ const TextInput = ({
             className={className}
             defaultValue={defaultValue}
             name={name}
+            onBlur={validate}
         />
   );
 
