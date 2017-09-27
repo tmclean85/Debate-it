@@ -18,7 +18,7 @@ Application for a comunity of people who want to debate and watch debates
 * MongoDb
 
 ### AUTHORS 
-Charlie Shingleton, Trevor McClean, Plinio Prado
+Charlie Shingleton, Trevor McLean, Plinio Prado
 
 
 
