@@ -1,20 +1,20 @@
 # 'BATE IT
 
-Application for a comunity of people who want to debate and watch debates
+A web app to facilitate the lost art of debate. Sign up and either post a debate for your peers to judge, or attend one youself and vote on the outcome. 
 
 ## Main features
 
-* Create debate by a Yes and No debator
-* Attendees can join to attend
-* Debators confirm and then check theis presence
-* Attendees can vote for Yes or No side, justiying
-* Keeping of the historical of debates and results
+* Create and host a debate with both a 'Yes' and 'No' party
+* Register to attend and judge a debate
+* Debators confirm the presence of registered judges
+* Attendees can vote for Yes or No side and supply a comment
+* Access historical debate records
 
 # Stack
 
 * Meteor
 * React/Redux
-* Simple Schema - For allr data beinf added and update by the users
+* Simple Schema - For all user-manipulated data
 * MongoDb
 
 ### AUTHORS 
